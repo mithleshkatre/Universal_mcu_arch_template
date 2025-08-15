@@ -1,0 +1,786 @@
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"pal_clock.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.map_ahb_div,"ax",%progbits
+  20              		.align	1
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	map_ahb_div:
+  26              	.LVL0:
+  27              	.LFB130:
+  28              		.file 1 "PAL/Vendor/ST/Src/pal_clock.c"
+   1:PAL/Vendor/ST/Src/pal_clock.c **** #include "pal_clock.h"
+   2:PAL/Vendor/ST/Src/pal_clock.c **** #include "stm32f4xx_hal.h"
+   3:PAL/Vendor/ST/Src/pal_clock.c **** 
+   4:PAL/Vendor/ST/Src/pal_clock.c **** /* One family-neutral HAL include: define STM32 series in your project and
+   5:PAL/Vendor/ST/Src/pal_clock.c ****  * have your HAL bring in the right headers. The alias below is common in recent HALs.
+   6:PAL/Vendor/ST/Src/pal_clock.c ****  * If your environment uses a family header directly, include that instead. */
+   7:PAL/Vendor/ST/Src/pal_clock.c **** #include "stm32f4xx_hal_rcc.h"
+   8:PAL/Vendor/ST/Src/pal_clock.c **** 
+   9:PAL/Vendor/ST/Src/pal_clock.c **** /* Map PAL dividers to HAL RCC macros at runtime */
+  10:PAL/Vendor/ST/Src/pal_clock.c **** static uint32_t map_ahb_div(pal_ahb_div_t d) {
+  29              		.loc 1 10 46 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  11:PAL/Vendor/ST/Src/pal_clock.c ****     switch (d) {
+  34              		.loc 1 11 5 view .LVU1
+  35 0000 4028     		cmp	r0, #64
+  36 0002 25D0     		beq	.L9
+  37 0004 12D8     		bhi	.L3
+  38 0006 1028     		cmp	r0, #16
+  39 0008 24D8     		bhi	.L10
+  40 000a 0228     		cmp	r0, #2
+  41 000c 24D3     		bcc	.L11
+  42 000e 0238     		subs	r0, r0, #2
+  43              	.LVL1:
+  44              		.loc 1 11 5 is_stmt 0 view .LVU2
+  45 0010 0E28     		cmp	r0, #14
+  46 0012 09D8     		bhi	.L4
+  47 0014 DFE800F0 		tbb	[pc, r0]
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 2
+
+
+  48              	.L6:
+  49 0018 22       		.byte	(.L12-.L6)/2
+  50 0019 08       		.byte	(.L4-.L6)/2
+  51 001a 16       		.byte	(.L8-.L6)/2
+  52 001b 08       		.byte	(.L4-.L6)/2
+  53 001c 08       		.byte	(.L4-.L6)/2
+  54 001d 08       		.byte	(.L4-.L6)/2
+  55 001e 18       		.byte	(.L7-.L6)/2
+  56 001f 08       		.byte	(.L4-.L6)/2
+  57 0020 08       		.byte	(.L4-.L6)/2
+  58 0021 08       		.byte	(.L4-.L6)/2
+  59 0022 08       		.byte	(.L4-.L6)/2
+  60 0023 08       		.byte	(.L4-.L6)/2
+  61 0024 08       		.byte	(.L4-.L6)/2
+  62 0025 08       		.byte	(.L4-.L6)/2
+  63 0026 1A       		.byte	(.L5-.L6)/2
+  64 0027 00       		.p2align 1
+  65              	.L4:
+  66 0028 0020     		movs	r0, #0
+  67 002a 7047     		bx	lr
+  68              	.LVL2:
+  69              	.L3:
+  70              		.loc 1 11 5 view .LVU3
+  71 002c B0F5807F 		cmp	r0, #256
+  72 0030 16D0     		beq	.L13
+  73 0032 B0F5007F 		cmp	r0, #512
+  74 0036 01D1     		bne	.L16
+  12:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_1:   return RCC_SYSCLK_DIV1;
+  13:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_2:   return RCC_SYSCLK_DIV2;
+  14:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_4:   return RCC_SYSCLK_DIV4;
+  15:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_8:   return RCC_SYSCLK_DIV8;
+  16:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_16:  return RCC_SYSCLK_DIV16;
+  17:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_64:  return RCC_SYSCLK_DIV64;
+  18:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_128: return RCC_SYSCLK_DIV128;
+  19:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_256: return RCC_SYSCLK_DIV256;
+  20:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_512: return RCC_SYSCLK_DIV512;
+  75              		.loc 1 20 38 view .LVU4
+  76 0038 F020     		movs	r0, #240
+  77              	.LVL3:
+  78              		.loc 1 20 38 view .LVU5
+  79 003a 7047     		bx	lr
+  80              	.LVL4:
+  81              	.L16:
+  11:PAL/Vendor/ST/Src/pal_clock.c ****     switch (d) {
+  82              		.loc 1 11 5 view .LVU6
+  83 003c 8028     		cmp	r0, #128
+  84 003e 11D1     		bne	.L15
+  18:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_256: return RCC_SYSCLK_DIV256;
+  85              		.loc 1 18 38 view .LVU7
+  86 0040 D020     		movs	r0, #208
+  87              	.LVL5:
+  18:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_256: return RCC_SYSCLK_DIV256;
+  88              		.loc 1 18 38 view .LVU8
+  89 0042 7047     		bx	lr
+  90              	.L8:
+  14:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_8:   return RCC_SYSCLK_DIV8;
+  91              		.loc 1 14 31 is_stmt 1 view .LVU9
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 3
+
+
+  14:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_8:   return RCC_SYSCLK_DIV8;
+  92              		.loc 1 14 38 is_stmt 0 view .LVU10
+  93 0044 9020     		movs	r0, #144
+  94 0046 7047     		bx	lr
+  95              	.L7:
+  15:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_16:  return RCC_SYSCLK_DIV16;
+  96              		.loc 1 15 31 is_stmt 1 view .LVU11
+  15:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_16:  return RCC_SYSCLK_DIV16;
+  97              		.loc 1 15 38 is_stmt 0 view .LVU12
+  98 0048 A020     		movs	r0, #160
+  99 004a 7047     		bx	lr
+ 100              	.L5:
+  16:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_64:  return RCC_SYSCLK_DIV64;
+ 101              		.loc 1 16 31 is_stmt 1 view .LVU13
+  16:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_64:  return RCC_SYSCLK_DIV64;
+ 102              		.loc 1 16 38 is_stmt 0 view .LVU14
+ 103 004c B020     		movs	r0, #176
+ 104 004e 7047     		bx	lr
+ 105              	.LVL6:
+ 106              	.L9:
+  17:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_128: return RCC_SYSCLK_DIV128;
+ 107              		.loc 1 17 38 view .LVU15
+ 108 0050 C020     		movs	r0, #192
+ 109              	.LVL7:
+  17:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_128: return RCC_SYSCLK_DIV128;
+ 110              		.loc 1 17 38 view .LVU16
+ 111 0052 7047     		bx	lr
+ 112              	.LVL8:
+ 113              	.L10:
+  11:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_1:   return RCC_SYSCLK_DIV1;
+ 114              		.loc 1 11 5 view .LVU17
+ 115 0054 0020     		movs	r0, #0
+ 116              	.LVL9:
+  11:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_1:   return RCC_SYSCLK_DIV1;
+ 117              		.loc 1 11 5 view .LVU18
+ 118 0056 7047     		bx	lr
+ 119              	.LVL10:
+ 120              	.L11:
+  11:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_1:   return RCC_SYSCLK_DIV1;
+ 121              		.loc 1 11 5 view .LVU19
+ 122 0058 0020     		movs	r0, #0
+ 123              	.LVL11:
+  11:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_1:   return RCC_SYSCLK_DIV1;
+ 124              		.loc 1 11 5 view .LVU20
+ 125 005a 7047     		bx	lr
+ 126              	.L12:
+  13:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_4:   return RCC_SYSCLK_DIV4;
+ 127              		.loc 1 13 38 view .LVU21
+ 128 005c 8020     		movs	r0, #128
+ 129 005e 7047     		bx	lr
+ 130              	.LVL12:
+ 131              	.L13:
+  19:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_512: return RCC_SYSCLK_DIV512;
+ 132              		.loc 1 19 38 view .LVU22
+ 133 0060 E020     		movs	r0, #224
+ 134              	.LVL13:
+  19:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_512: return RCC_SYSCLK_DIV512;
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 4
+
+
+ 135              		.loc 1 19 38 view .LVU23
+ 136 0062 7047     		bx	lr
+ 137              	.LVL14:
+ 138              	.L15:
+  11:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_1:   return RCC_SYSCLK_DIV1;
+ 139              		.loc 1 11 5 view .LVU24
+ 140 0064 0020     		movs	r0, #0
+ 141              	.LVL15:
+  21:PAL/Vendor/ST/Src/pal_clock.c ****         default:              return RCC_SYSCLK_DIV1;
+  22:PAL/Vendor/ST/Src/pal_clock.c ****     }
+  23:PAL/Vendor/ST/Src/pal_clock.c **** }
+ 142              		.loc 1 23 1 view .LVU25
+ 143 0066 7047     		bx	lr
+ 144              		.cfi_endproc
+ 145              	.LFE130:
+ 147              		.section	.text.map_apb_div,"ax",%progbits
+ 148              		.align	1
+ 149              		.syntax unified
+ 150              		.thumb
+ 151              		.thumb_func
+ 153              	map_apb_div:
+ 154              	.LVL16:
+ 155              	.LFB131:
+  24:PAL/Vendor/ST/Src/pal_clock.c **** static uint32_t map_apb_div(pal_apb_div_t d) {
+ 156              		.loc 1 24 46 is_stmt 1 view -0
+ 157              		.cfi_startproc
+ 158              		@ args = 0, pretend = 0, frame = 0
+ 159              		@ frame_needed = 0, uses_anonymous_args = 0
+ 160              		@ link register save eliminated.
+  25:PAL/Vendor/ST/Src/pal_clock.c ****     switch (d) {
+ 161              		.loc 1 25 5 view .LVU27
+ 162 0000 0238     		subs	r0, r0, #2
+ 163              	.LVL17:
+ 164              		.loc 1 25 5 is_stmt 0 view .LVU28
+ 165 0002 0E28     		cmp	r0, #14
+ 166 0004 09D8     		bhi	.L18
+ 167 0006 DFE800F0 		tbb	[pc, r0]
+ 168              	.L20:
+ 169 000a 13       		.byte	(.L24-.L20)/2
+ 170 000b 08       		.byte	(.L18-.L20)/2
+ 171 000c 0A       		.byte	(.L22-.L20)/2
+ 172 000d 08       		.byte	(.L18-.L20)/2
+ 173 000e 08       		.byte	(.L18-.L20)/2
+ 174 000f 08       		.byte	(.L18-.L20)/2
+ 175 0010 0D       		.byte	(.L21-.L20)/2
+ 176 0011 08       		.byte	(.L18-.L20)/2
+ 177 0012 08       		.byte	(.L18-.L20)/2
+ 178 0013 08       		.byte	(.L18-.L20)/2
+ 179 0014 08       		.byte	(.L18-.L20)/2
+ 180 0015 08       		.byte	(.L18-.L20)/2
+ 181 0016 08       		.byte	(.L18-.L20)/2
+ 182 0017 08       		.byte	(.L18-.L20)/2
+ 183 0018 10       		.byte	(.L19-.L20)/2
+ 184 0019 00       		.p2align 1
+ 185              	.L18:
+ 186 001a 0020     		movs	r0, #0
+ 187 001c 7047     		bx	lr
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 5
+
+
+ 188              	.L22:
+  26:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_APB_DIV_1:  return RCC_HCLK_DIV1;
+  27:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_APB_DIV_2:  return RCC_HCLK_DIV2;
+  28:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_APB_DIV_4:  return RCC_HCLK_DIV4;
+ 189              		.loc 1 28 30 is_stmt 1 view .LVU29
+ 190              		.loc 1 28 37 is_stmt 0 view .LVU30
+ 191 001e 4FF4A050 		mov	r0, #5120
+ 192 0022 7047     		bx	lr
+ 193              	.L21:
+  29:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_APB_DIV_8:  return RCC_HCLK_DIV8;
+ 194              		.loc 1 29 30 is_stmt 1 view .LVU31
+ 195              		.loc 1 29 37 is_stmt 0 view .LVU32
+ 196 0024 4FF4C050 		mov	r0, #6144
+ 197 0028 7047     		bx	lr
+ 198              	.L19:
+  30:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_APB_DIV_16: return RCC_HCLK_DIV16;
+ 199              		.loc 1 30 30 is_stmt 1 view .LVU33
+ 200              		.loc 1 30 37 is_stmt 0 view .LVU34
+ 201 002a 4FF4E050 		mov	r0, #7168
+ 202 002e 7047     		bx	lr
+ 203              	.L24:
+  27:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_APB_DIV_4:  return RCC_HCLK_DIV4;
+ 204              		.loc 1 27 37 view .LVU35
+ 205 0030 4FF48050 		mov	r0, #4096
+  31:PAL/Vendor/ST/Src/pal_clock.c ****         default:             return RCC_HCLK_DIV1;
+  32:PAL/Vendor/ST/Src/pal_clock.c ****     }
+  33:PAL/Vendor/ST/Src/pal_clock.c **** }
+ 206              		.loc 1 33 1 view .LVU36
+ 207 0034 7047     		bx	lr
+ 208              		.cfi_endproc
+ 209              	.LFE131:
+ 211              		.section	.text.pal_clock_init,"ax",%progbits
+ 212              		.align	1
+ 213              		.global	pal_clock_init
+ 214              		.syntax unified
+ 215              		.thumb
+ 216              		.thumb_func
+ 218              	pal_clock_init:
+ 219              	.LVL18:
+ 220              	.LFB132:
+  34:PAL/Vendor/ST/Src/pal_clock.c **** 
+  35:PAL/Vendor/ST/Src/pal_clock.c **** int pal_clock_init(const pal_clock_cfg_t *cfg)
+  36:PAL/Vendor/ST/Src/pal_clock.c **** {
+ 221              		.loc 1 36 1 is_stmt 1 view -0
+ 222              		.cfi_startproc
+ 223              		@ args = 0, pretend = 0, frame = 80
+ 224              		@ frame_needed = 0, uses_anonymous_args = 0
+  37:PAL/Vendor/ST/Src/pal_clock.c ****     if (!cfg) return -1;
+ 225              		.loc 1 37 5 view .LVU38
+ 226              		.loc 1 37 8 is_stmt 0 view .LVU39
+ 227 0000 0028     		cmp	r0, #0
+ 228 0002 75D0     		beq	.L33
+  36:PAL/Vendor/ST/Src/pal_clock.c ****     if (!cfg) return -1;
+ 229              		.loc 1 36 1 view .LVU40
+ 230 0004 30B5     		push	{r4, r5, lr}
+ 231              	.LCFI0:
+ 232              		.cfi_def_cfa_offset 12
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 6
+
+
+ 233              		.cfi_offset 4, -12
+ 234              		.cfi_offset 5, -8
+ 235              		.cfi_offset 14, -4
+ 236 0006 95B0     		sub	sp, sp, #84
+ 237              	.LCFI1:
+ 238              		.cfi_def_cfa_offset 96
+ 239 0008 0546     		mov	r5, r0
+  38:PAL/Vendor/ST/Src/pal_clock.c **** 
+  39:PAL/Vendor/ST/Src/pal_clock.c ****     /* PWR clock & voltage scaling when available */
+  40:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(__HAL_RCC_PWR_CLK_ENABLE)
+  41:PAL/Vendor/ST/Src/pal_clock.c ****     __HAL_RCC_PWR_CLK_ENABLE();
+ 240              		.loc 1 41 5 is_stmt 1 view .LVU41
+ 241              	.LBB2:
+ 242              		.loc 1 41 5 view .LVU42
+ 243 000a 0024     		movs	r4, #0
+ 244 000c 0194     		str	r4, [sp, #4]
+ 245              		.loc 1 41 5 view .LVU43
+ 246 000e 404B     		ldr	r3, .L45
+ 247 0010 1A6C     		ldr	r2, [r3, #64]
+ 248 0012 42F08052 		orr	r2, r2, #268435456
+ 249 0016 1A64     		str	r2, [r3, #64]
+ 250              		.loc 1 41 5 view .LVU44
+ 251 0018 1B6C     		ldr	r3, [r3, #64]
+ 252 001a 03F08053 		and	r3, r3, #268435456
+ 253 001e 0193     		str	r3, [sp, #4]
+ 254              		.loc 1 41 5 view .LVU45
+ 255 0020 019B     		ldr	r3, [sp, #4]
+ 256              	.LBE2:
+ 257              		.loc 1 41 5 view .LVU46
+  42:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+  43:PAL/Vendor/ST/Src/pal_clock.c **** 
+  44:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(PWR_REGULATOR_VOLTAGE_SCALE1)
+  45:PAL/Vendor/ST/Src/pal_clock.c ****     /* Default to Scale1 unless you *know* you’re running slow: Scale3 is fine for <= 16 MHz on s
+  46:PAL/Vendor/ST/Src/pal_clock.c ****     HAL_StatusTypeDef ps = HAL_OK;
+ 258              		.loc 1 46 5 view .LVU47
+ 259              	.LVL19:
+  47:PAL/Vendor/ST/Src/pal_clock.c ****     ps = HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1);
+ 260              		.loc 1 47 5 view .LVU48
+ 261              		.loc 1 47 10 is_stmt 0 view .LVU49
+ 262 0022 4FF44040 		mov	r0, #49152
+ 263              	.LVL20:
+ 264              		.loc 1 47 10 view .LVU50
+ 265 0026 FFF7FEFF 		bl	HAL_PWREx_ControlVoltageScaling
+ 266              	.LVL21:
+  48:PAL/Vendor/ST/Src/pal_clock.c ****     if (ps != HAL_OK) { /* Some older families don’t support this API */ }
+ 267              		.loc 1 48 5 is_stmt 1 view .LVU51
+ 268              		.loc 1 48 76 view .LVU52
+  49:PAL/Vendor/ST/Src/pal_clock.c **** #elif defined(__HAL_PWR_VOLTAGESCALING_CONFIG)
+  50:PAL/Vendor/ST/Src/pal_clock.c ****     __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+  51:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+  52:PAL/Vendor/ST/Src/pal_clock.c **** 
+  53:PAL/Vendor/ST/Src/pal_clock.c ****     RCC_OscInitTypeDef osc = {0};
+ 269              		.loc 1 53 5 view .LVU53
+ 270              		.loc 1 53 24 is_stmt 0 view .LVU54
+ 271 002a 3422     		movs	r2, #52
+ 272 002c 2146     		mov	r1, r4
+ 273 002e 07A8     		add	r0, sp, #28
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 7
+
+
+ 274 0030 FFF7FEFF 		bl	memset
+ 275              	.LVL22:
+  54:PAL/Vendor/ST/Src/pal_clock.c ****     RCC_ClkInitTypeDef clk = {0};
+ 276              		.loc 1 54 5 is_stmt 1 view .LVU55
+ 277              		.loc 1 54 24 is_stmt 0 view .LVU56
+ 278 0034 0294     		str	r4, [sp, #8]
+ 279 0036 0394     		str	r4, [sp, #12]
+ 280 0038 0494     		str	r4, [sp, #16]
+ 281 003a 0594     		str	r4, [sp, #20]
+ 282 003c 0694     		str	r4, [sp, #24]
+  55:PAL/Vendor/ST/Src/pal_clock.c **** 
+  56:PAL/Vendor/ST/Src/pal_clock.c ****     /* We’ll always set HCLK/SYSCLK/PCLKs */
+  57:PAL/Vendor/ST/Src/pal_clock.c ****     clk.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1;
+ 283              		.loc 1 57 5 is_stmt 1 view .LVU57
+ 284              		.loc 1 57 19 is_stmt 0 view .LVU58
+ 285 003e 0723     		movs	r3, #7
+ 286 0040 0293     		str	r3, [sp, #8]
+  58:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_CLOCKTYPE_PCLK2)
+  59:PAL/Vendor/ST/Src/pal_clock.c ****     clk.ClockType |= RCC_CLOCKTYPE_PCLK2;
+ 287              		.loc 1 59 5 is_stmt 1 view .LVU59
+ 288              		.loc 1 59 19 is_stmt 0 view .LVU60
+ 289 0042 0F23     		movs	r3, #15
+ 290 0044 0293     		str	r3, [sp, #8]
+  60:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+  61:PAL/Vendor/ST/Src/pal_clock.c **** 
+  62:PAL/Vendor/ST/Src/pal_clock.c ****     /* ——— Oscillator setup ——— */
+  63:PAL/Vendor/ST/Src/pal_clock.c ****     switch (cfg->source) {
+ 291              		.loc 1 63 5 is_stmt 1 view .LVU61
+ 292              		.loc 1 63 16 is_stmt 0 view .LVU62
+ 293 0046 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
+ 294              		.loc 1 63 5 view .LVU63
+ 295 0048 012B     		cmp	r3, #1
+ 296 004a 27D0     		beq	.L27
+ 297 004c 022B     		cmp	r3, #2
+ 298 004e 31D0     		beq	.L28
+ 299 0050 13B1     		cbz	r3, .L44
+ 300 0052 6FF00400 		mvn	r0, #4
+ 301 0056 1FE0     		b	.L25
+ 302              	.L44:
+  64:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_CLK_SRC_HSI:
+  65:PAL/Vendor/ST/Src/pal_clock.c ****             osc.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+ 303              		.loc 1 65 13 is_stmt 1 view .LVU64
+ 304              		.loc 1 65 32 is_stmt 0 view .LVU65
+ 305 0058 0223     		movs	r3, #2
+ 306 005a 0793     		str	r3, [sp, #28]
+  66:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_HSI_ON)
+  67:PAL/Vendor/ST/Src/pal_clock.c ****             osc.HSIState = RCC_HSI_ON;
+ 307              		.loc 1 67 13 is_stmt 1 view .LVU66
+ 308              		.loc 1 67 26 is_stmt 0 view .LVU67
+ 309 005c 0123     		movs	r3, #1
+ 310 005e 0A93     		str	r3, [sp, #40]
+  68:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+  69:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_HSICALIBRATION_DEFAULT)
+  70:PAL/Vendor/ST/Src/pal_clock.c ****             osc.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+ 311              		.loc 1 70 13 is_stmt 1 view .LVU68
+ 312              		.loc 1 70 37 is_stmt 0 view .LVU69
+ 313 0060 1023     		movs	r3, #16
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 8
+
+
+ 314 0062 0B93     		str	r3, [sp, #44]
+  71:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+  72:PAL/Vendor/ST/Src/pal_clock.c ****             osc.PLL.PLLState = RCC_PLL_NONE;
+ 315              		.loc 1 72 13 is_stmt 1 view .LVU70
+  73:PAL/Vendor/ST/Src/pal_clock.c ****             if (HAL_RCC_OscConfig(&osc) != HAL_OK) return -2;
+ 316              		.loc 1 73 13 view .LVU71
+ 317              		.loc 1 73 17 is_stmt 0 view .LVU72
+ 318 0064 07A8     		add	r0, sp, #28
+ 319 0066 FFF7FEFF 		bl	HAL_RCC_OscConfig
+ 320              	.LVL23:
+ 321              		.loc 1 73 16 view .LVU73
+ 322 006a 0028     		cmp	r0, #0
+ 323 006c 43D1     		bne	.L35
+  74:PAL/Vendor/ST/Src/pal_clock.c ****             clk.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+ 324              		.loc 1 74 13 is_stmt 1 view .LVU74
+ 325              		.loc 1 74 30 is_stmt 0 view .LVU75
+ 326 006e 0394     		str	r4, [sp, #12]
+  75:PAL/Vendor/ST/Src/pal_clock.c ****             break;
+ 327              		.loc 1 75 13 is_stmt 1 view .LVU76
+ 328              	.L29:
+  76:PAL/Vendor/ST/Src/pal_clock.c **** 
+  77:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_CLK_SRC_HSE:
+  78:PAL/Vendor/ST/Src/pal_clock.c ****             osc.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  79:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_HSE_ON)
+  80:PAL/Vendor/ST/Src/pal_clock.c ****             osc.HSEState = RCC_HSE_ON;
+  81:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+  82:PAL/Vendor/ST/Src/pal_clock.c ****             osc.PLL.PLLState = RCC_PLL_NONE;
+  83:PAL/Vendor/ST/Src/pal_clock.c ****             if (HAL_RCC_OscConfig(&osc) != HAL_OK) return -3;
+  84:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_SYSCLKSOURCE_HSE)
+  85:PAL/Vendor/ST/Src/pal_clock.c ****             clk.SYSCLKSource = RCC_SYSCLKSOURCE_HSE;
+  86:PAL/Vendor/ST/Src/pal_clock.c **** #else
+  87:PAL/Vendor/ST/Src/pal_clock.c ****             /* Some families do not allow direct HSE SYSCLK without PLL; fall back if needed */
+  88:PAL/Vendor/ST/Src/pal_clock.c ****             return -31;
+  89:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+  90:PAL/Vendor/ST/Src/pal_clock.c ****             break;
+  91:PAL/Vendor/ST/Src/pal_clock.c **** 
+  92:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_CLK_SRC_PLL: {
+  93:PAL/Vendor/ST/Src/pal_clock.c ****             /* First enable the chosen input (HSI/HSE) */
+  94:PAL/Vendor/ST/Src/pal_clock.c ****             if (cfg->pll.use_hse) {
+  95:PAL/Vendor/ST/Src/pal_clock.c ****                 osc.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  96:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_HSE_ON)
+  97:PAL/Vendor/ST/Src/pal_clock.c ****                 osc.HSEState = RCC_HSE_ON;
+  98:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+  99:PAL/Vendor/ST/Src/pal_clock.c ****             } else {
+ 100:PAL/Vendor/ST/Src/pal_clock.c ****                 osc.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+ 101:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_HSI_ON)
+ 102:PAL/Vendor/ST/Src/pal_clock.c ****                 osc.HSIState = RCC_HSI_ON;
+ 103:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+ 104:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_HSICALIBRATION_DEFAULT)
+ 105:PAL/Vendor/ST/Src/pal_clock.c ****                 osc.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+ 106:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+ 107:PAL/Vendor/ST/Src/pal_clock.c ****             }
+ 108:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 109:PAL/Vendor/ST/Src/pal_clock.c ****             /* Family-agnostic PLL field fill (guards where fields exist) */
+ 110:PAL/Vendor/ST/Src/pal_clock.c ****             osc.PLL.PLLState = RCC_PLL_ON;
+ 111:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 112:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_PLLSOURCE_HSE) && defined(RCC_PLLSOURCE_HSI)
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 9
+
+
+ 113:PAL/Vendor/ST/Src/pal_clock.c ****             osc.PLL.PLLSource = cfg->pll.use_hse ? RCC_PLLSOURCE_HSE : RCC_PLLSOURCE_HSI;
+ 114:PAL/Vendor/ST/Src/pal_clock.c **** #elif defined(RCC_PLLSOURCE_HSE)
+ 115:PAL/Vendor/ST/Src/pal_clock.c ****             osc.PLL.PLLSource = RCC_PLLSOURCE_HSE; /* Assume HSE-only families */
+ 116:PAL/Vendor/ST/Src/pal_clock.c **** #elif defined(RCC_PLLSOURCE_HSI)
+ 117:PAL/Vendor/ST/Src/pal_clock.c ****             osc.PLL.PLLSource = RCC_PLLSOURCE_HSI; /* Assume HSI-only families */
+ 118:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+ 119:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 120:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_PLL_M)
+ 121:PAL/Vendor/ST/Src/pal_clock.c ****             osc.PLL.PLLM = cfg->pll.m;
+ 122:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+ 123:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_PLL_N)
+ 124:PAL/Vendor/ST/Src/pal_clock.c ****             osc.PLL.PLLN = cfg->pll.n;
+ 125:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+ 126:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_PLL_P)
+ 127:PAL/Vendor/ST/Src/pal_clock.c ****             /* Some families encode P as divider/2 bits; HAL handles the enum/val mapping */
+ 128:PAL/Vendor/ST/Src/pal_clock.c ****             osc.PLL.PLLP = cfg->pll.p;
+ 129:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+ 130:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_PLL_Q)
+ 131:PAL/Vendor/ST/Src/pal_clock.c ****             osc.PLL.PLLQ = cfg->pll.q;
+ 132:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+ 133:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_PLL_R)
+ 134:PAL/Vendor/ST/Src/pal_clock.c ****             osc.PLL.PLLR = cfg->pll.r;
+ 135:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+ 136:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 137:PAL/Vendor/ST/Src/pal_clock.c ****             if (HAL_RCC_OscConfig(&osc) != HAL_OK) return -4;
+ 138:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 139:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_SYSCLKSOURCE_PLLCLK)
+ 140:PAL/Vendor/ST/Src/pal_clock.c ****             clk.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+ 141:PAL/Vendor/ST/Src/pal_clock.c **** #else
+ 142:PAL/Vendor/ST/Src/pal_clock.c ****             return -32; /* No PLL as SYSCLK on this part */
+ 143:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+ 144:PAL/Vendor/ST/Src/pal_clock.c ****         } break;
+ 145:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 146:PAL/Vendor/ST/Src/pal_clock.c ****         default:
+ 147:PAL/Vendor/ST/Src/pal_clock.c ****             return -5;
+ 148:PAL/Vendor/ST/Src/pal_clock.c ****     }
+ 149:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 150:PAL/Vendor/ST/Src/pal_clock.c ****     /* ——— Bus prescalers ——— */
+ 151:PAL/Vendor/ST/Src/pal_clock.c ****     clk.AHBCLKDivider  = map_ahb_div(cfg->ahb_div);
+ 329              		.loc 1 151 5 view .LVU77
+ 330              		.loc 1 151 26 is_stmt 0 view .LVU78
+ 331 0070 288C     		ldrh	r0, [r5, #32]
+ 332 0072 FFF7FEFF 		bl	map_ahb_div
+ 333              	.LVL24:
+ 334              		.loc 1 151 24 view .LVU79
+ 335 0076 0490     		str	r0, [sp, #16]
+ 152:PAL/Vendor/ST/Src/pal_clock.c ****     clk.APB1CLKDivider = map_apb_div(cfg->apb1_div);
+ 336              		.loc 1 152 5 is_stmt 1 view .LVU80
+ 337              		.loc 1 152 26 is_stmt 0 view .LVU81
+ 338 0078 95F82200 		ldrb	r0, [r5, #34]	@ zero_extendqisi2
+ 339 007c FFF7FEFF 		bl	map_apb_div
+ 340              	.LVL25:
+ 341              		.loc 1 152 24 view .LVU82
+ 342 0080 0590     		str	r0, [sp, #20]
+ 153:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_CLOCKTYPE_PCLK2)
+ 154:PAL/Vendor/ST/Src/pal_clock.c ****     clk.APB2CLKDivider = map_apb_div(cfg->apb2_div);
+ 343              		.loc 1 154 5 is_stmt 1 view .LVU83
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 10
+
+
+ 344              		.loc 1 154 26 is_stmt 0 view .LVU84
+ 345 0082 95F82300 		ldrb	r0, [r5, #35]	@ zero_extendqisi2
+ 346 0086 FFF7FEFF 		bl	map_apb_div
+ 347              	.LVL26:
+ 348              		.loc 1 154 24 view .LVU85
+ 349 008a 0690     		str	r0, [sp, #24]
+ 155:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+ 156:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 157:PAL/Vendor/ST/Src/pal_clock.c ****     /* You supply flash latency in cfg to avoid family-specific tables */
+ 158:PAL/Vendor/ST/Src/pal_clock.c ****     if (HAL_RCC_ClockConfig(&clk, cfg->flash_latency) != HAL_OK) return -6;
+ 350              		.loc 1 158 5 is_stmt 1 view .LVU86
+ 351              		.loc 1 158 9 is_stmt 0 view .LVU87
+ 352 008c 696A     		ldr	r1, [r5, #36]
+ 353 008e 02A8     		add	r0, sp, #8
+ 354 0090 FFF7FEFF 		bl	HAL_RCC_ClockConfig
+ 355              	.LVL27:
+ 356              		.loc 1 158 8 view .LVU88
+ 357 0094 0028     		cmp	r0, #0
+ 358 0096 37D1     		bne	.L39
+ 359              	.L25:
+ 159:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 160:PAL/Vendor/ST/Src/pal_clock.c ****     return 0;
+ 161:PAL/Vendor/ST/Src/pal_clock.c **** }
+ 360              		.loc 1 161 1 view .LVU89
+ 361 0098 15B0     		add	sp, sp, #84
+ 362              	.LCFI2:
+ 363              		.cfi_remember_state
+ 364              		.cfi_def_cfa_offset 12
+ 365              		@ sp needed
+ 366 009a 30BD     		pop	{r4, r5, pc}
+ 367              	.LVL28:
+ 368              	.L27:
+ 369              	.LCFI3:
+ 370              		.cfi_restore_state
+  78:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_HSE_ON)
+ 371              		.loc 1 78 13 is_stmt 1 view .LVU90
+  78:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_HSE_ON)
+ 372              		.loc 1 78 32 is_stmt 0 view .LVU91
+ 373 009c 0123     		movs	r3, #1
+ 374 009e 0793     		str	r3, [sp, #28]
+  80:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+ 375              		.loc 1 80 13 is_stmt 1 view .LVU92
+  80:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+ 376              		.loc 1 80 26 is_stmt 0 view .LVU93
+ 377 00a0 4FF48033 		mov	r3, #65536
+ 378 00a4 0893     		str	r3, [sp, #32]
+  82:PAL/Vendor/ST/Src/pal_clock.c ****             if (HAL_RCC_OscConfig(&osc) != HAL_OK) return -3;
+ 379              		.loc 1 82 13 is_stmt 1 view .LVU94
+  83:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_SYSCLKSOURCE_HSE)
+ 380              		.loc 1 83 13 view .LVU95
+  83:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_SYSCLKSOURCE_HSE)
+ 381              		.loc 1 83 17 is_stmt 0 view .LVU96
+ 382 00a6 07A8     		add	r0, sp, #28
+ 383 00a8 FFF7FEFF 		bl	HAL_RCC_OscConfig
+ 384              	.LVL29:
+  83:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_SYSCLKSOURCE_HSE)
+ 385              		.loc 1 83 16 view .LVU97
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 11
+
+
+ 386 00ac 30BB     		cbnz	r0, .L36
+  85:PAL/Vendor/ST/Src/pal_clock.c **** #else
+ 387              		.loc 1 85 13 is_stmt 1 view .LVU98
+  85:PAL/Vendor/ST/Src/pal_clock.c **** #else
+ 388              		.loc 1 85 30 is_stmt 0 view .LVU99
+ 389 00ae 0123     		movs	r3, #1
+ 390 00b0 0393     		str	r3, [sp, #12]
+  90:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 391              		.loc 1 90 13 is_stmt 1 view .LVU100
+ 392 00b2 DDE7     		b	.L29
+ 393              	.L28:
+  94:PAL/Vendor/ST/Src/pal_clock.c ****                 osc.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+ 394              		.loc 1 94 13 view .LVU101
+  94:PAL/Vendor/ST/Src/pal_clock.c ****                 osc.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+ 395              		.loc 1 94 25 is_stmt 0 view .LVU102
+ 396 00b4 2B79     		ldrb	r3, [r5, #4]	@ zero_extendqisi2
+  94:PAL/Vendor/ST/Src/pal_clock.c ****                 osc.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+ 397              		.loc 1 94 16 view .LVU103
+ 398 00b6 93B1     		cbz	r3, .L30
+  95:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_HSE_ON)
+ 399              		.loc 1 95 17 is_stmt 1 view .LVU104
+  95:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_HSE_ON)
+ 400              		.loc 1 95 36 is_stmt 0 view .LVU105
+ 401 00b8 0123     		movs	r3, #1
+ 402 00ba 0793     		str	r3, [sp, #28]
+  97:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+ 403              		.loc 1 97 17 is_stmt 1 view .LVU106
+  97:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+ 404              		.loc 1 97 30 is_stmt 0 view .LVU107
+ 405 00bc 4FF48033 		mov	r3, #65536
+ 406 00c0 0893     		str	r3, [sp, #32]
+ 407              	.L31:
+ 110:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 408              		.loc 1 110 13 is_stmt 1 view .LVU108
+ 110:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 409              		.loc 1 110 30 is_stmt 0 view .LVU109
+ 410 00c2 0223     		movs	r3, #2
+ 411 00c4 0D93     		str	r3, [sp, #52]
+ 113:PAL/Vendor/ST/Src/pal_clock.c **** #elif defined(RCC_PLLSOURCE_HSE)
+ 412              		.loc 1 113 13 is_stmt 1 view .LVU110
+ 113:PAL/Vendor/ST/Src/pal_clock.c **** #elif defined(RCC_PLLSOURCE_HSE)
+ 413              		.loc 1 113 41 is_stmt 0 view .LVU111
+ 414 00c6 2B79     		ldrb	r3, [r5, #4]	@ zero_extendqisi2
+ 113:PAL/Vendor/ST/Src/pal_clock.c **** #elif defined(RCC_PLLSOURCE_HSE)
+ 415              		.loc 1 113 70 view .LVU112
+ 416 00c8 83B1     		cbz	r3, .L37
+ 417 00ca 4FF48003 		mov	r3, #4194304
+ 418              	.L32:
+ 113:PAL/Vendor/ST/Src/pal_clock.c **** #elif defined(RCC_PLLSOURCE_HSE)
+ 419              		.loc 1 113 31 discriminator 4 view .LVU113
+ 420 00ce 0E93     		str	r3, [sp, #56]
+ 137:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 421              		.loc 1 137 13 is_stmt 1 discriminator 4 view .LVU114
+ 137:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 422              		.loc 1 137 17 is_stmt 0 discriminator 4 view .LVU115
+ 423 00d0 07A8     		add	r0, sp, #28
+ 424 00d2 FFF7FEFF 		bl	HAL_RCC_OscConfig
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 12
+
+
+ 425              	.LVL30:
+ 137:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 426              		.loc 1 137 16 discriminator 4 view .LVU116
+ 427 00d6 A0B9     		cbnz	r0, .L38
+ 140:PAL/Vendor/ST/Src/pal_clock.c **** #else
+ 428              		.loc 1 140 13 is_stmt 1 view .LVU117
+ 140:PAL/Vendor/ST/Src/pal_clock.c **** #else
+ 429              		.loc 1 140 30 is_stmt 0 view .LVU118
+ 430 00d8 0223     		movs	r3, #2
+ 431 00da 0393     		str	r3, [sp, #12]
+ 144:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 432              		.loc 1 144 11 is_stmt 1 view .LVU119
+ 144:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 433              		.loc 1 144 9 is_stmt 0 view .LVU120
+ 434 00dc C8E7     		b	.L29
+ 435              	.L30:
+ 100:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_HSI_ON)
+ 436              		.loc 1 100 17 is_stmt 1 view .LVU121
+ 100:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_HSI_ON)
+ 437              		.loc 1 100 36 is_stmt 0 view .LVU122
+ 438 00de 0223     		movs	r3, #2
+ 439 00e0 0793     		str	r3, [sp, #28]
+ 102:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+ 440              		.loc 1 102 17 is_stmt 1 view .LVU123
+ 102:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+ 441              		.loc 1 102 30 is_stmt 0 view .LVU124
+ 442 00e2 0123     		movs	r3, #1
+ 443 00e4 0A93     		str	r3, [sp, #40]
+ 105:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+ 444              		.loc 1 105 17 is_stmt 1 view .LVU125
+ 105:PAL/Vendor/ST/Src/pal_clock.c **** #endif
+ 445              		.loc 1 105 41 is_stmt 0 view .LVU126
+ 446 00e6 1023     		movs	r3, #16
+ 447 00e8 0B93     		str	r3, [sp, #44]
+ 448 00ea EAE7     		b	.L31
+ 449              	.L37:
+ 113:PAL/Vendor/ST/Src/pal_clock.c **** #elif defined(RCC_PLLSOURCE_HSE)
+ 450              		.loc 1 113 70 view .LVU127
+ 451 00ec 0023     		movs	r3, #0
+ 452 00ee EEE7     		b	.L32
+ 453              	.LVL31:
+ 454              	.L33:
+ 455              	.LCFI4:
+ 456              		.cfi_def_cfa_offset 0
+ 457              		.cfi_restore 4
+ 458              		.cfi_restore 5
+ 459              		.cfi_restore 14
+  37:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 460              		.loc 1 37 22 view .LVU128
+ 461 00f0 4FF0FF30 		mov	r0, #-1
+ 462              	.LVL32:
+ 463              		.loc 1 161 1 view .LVU129
+ 464 00f4 7047     		bx	lr
+ 465              	.LVL33:
+ 466              	.L35:
+ 467              	.LCFI5:
+ 468              		.cfi_def_cfa_offset 96
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 13
+
+
+ 469              		.cfi_offset 4, -12
+ 470              		.cfi_offset 5, -8
+ 471              		.cfi_offset 14, -4
+  73:PAL/Vendor/ST/Src/pal_clock.c ****             clk.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+ 472              		.loc 1 73 59 view .LVU130
+ 473 00f6 6FF00100 		mvn	r0, #1
+ 474 00fa CDE7     		b	.L25
+ 475              	.L36:
+  83:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_SYSCLKSOURCE_HSE)
+ 476              		.loc 1 83 59 view .LVU131
+ 477 00fc 6FF00200 		mvn	r0, #2
+ 478 0100 CAE7     		b	.L25
+ 479              	.L38:
+ 137:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 480              		.loc 1 137 59 view .LVU132
+ 481 0102 6FF00300 		mvn	r0, #3
+ 482 0106 C7E7     		b	.L25
+ 483              	.L39:
+ 158:PAL/Vendor/ST/Src/pal_clock.c **** 
+ 484              		.loc 1 158 73 view .LVU133
+ 485 0108 6FF00500 		mvn	r0, #5
+ 486 010c C4E7     		b	.L25
+ 487              	.L46:
+ 488 010e 00BF     		.align	2
+ 489              	.L45:
+ 490 0110 00380240 		.word	1073887232
+ 491              		.cfi_endproc
+ 492              	.LFE132:
+ 494              		.text
+ 495              	.Letext0:
+ 496              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 497              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 498              		.file 4 "PAL/Vendor/common/Inc/pal_clock.h"
+ 499              		.file 5 "CMSIS/Vendor_Device/ST/STM32F4xx/Include/stm32f446xx.h"
+ 500              		.file 6 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 501              		.file 7 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
+ 502              		.file 8 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
+ 503              		.file 9 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h"
+ 504              		.file 10 "<built-in>"
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 14
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 pal_clock.c
+C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:20     .text.map_ahb_div:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:25     .text.map_ahb_div:00000000 map_ahb_div
+C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:49     .text.map_ahb_div:00000018 $d
+C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:148    .text.map_apb_div:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:153    .text.map_apb_div:00000000 map_apb_div
+C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:169    .text.map_apb_div:0000000a $d
+C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:212    .text.pal_clock_init:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:218    .text.pal_clock_init:00000000 pal_clock_init
+C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:490    .text.pal_clock_init:00000110 $d
+C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:64     .text.map_ahb_div:00000027 $d
+C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:64     .text.map_ahb_div:00000028 $t
+C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:184    .text.map_apb_div:00000019 $d
+C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:184    .text.map_apb_div:0000001a $t
+
+UNDEFINED SYMBOLS
+HAL_PWREx_ControlVoltageScaling
+memset
+HAL_RCC_OscConfig
+HAL_RCC_ClockConfig
