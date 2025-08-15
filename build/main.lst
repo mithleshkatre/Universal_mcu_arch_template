@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1mSycY.s 			page 1
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -15,62 +15,69 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1mSycY.s 			page 1
   12              		.eabi_attribute 30, 1
   13              		.eabi_attribute 34, 1
   14              		.eabi_attribute 18, 4
-  15              		.file	"main.c"
+  15              		.file	"main.cpp"
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.section	.text.SystemClock_Config,"ax",%progbits
+  19              		.section	.text._ZL18SystemClock_Configv,"ax",%progbits
   20              		.align	1
   21              		.syntax unified
   22              		.thumb
   23              		.thumb_func
-  25              	SystemClock_Config:
+  25              	_ZL18SystemClock_Configv:
   26              	.LFB1:
-  27              		.file 1 "APP/Src/main.c"
-   1:APP/Src/main.c **** #include "main.h"
-   2:APP/Src/main.c **** #include "pal_clock.h"
-   3:APP/Src/main.c **** #include "pal_gpio.h"
-   4:APP/Src/main.c **** #include "pal_board.h"
-   5:APP/Src/main.c **** 
-   6:APP/Src/main.c **** static void SystemClock_Config(void);
-   7:APP/Src/main.c **** pal_gpio_t LED = { .port = 0, .pin = 5 }; // GPIOA pin 5
-   8:APP/Src/main.c **** 
-   9:APP/Src/main.c **** /**
-  10:APP/Src/main.c ****   * @brief  The application entry point.
-  11:APP/Src/main.c ****   * @retval int
-  12:APP/Src/main.c ****   */
-  13:APP/Src/main.c **** int main(void)
-  14:APP/Src/main.c **** {
-  15:APP/Src/main.c **** 
-  16:APP/Src/main.c ****   /*Board init*/
-  17:APP/Src/main.c ****   pal_board_init();
-  18:APP/Src/main.c **** 
-  19:APP/Src/main.c ****   /* Configure the system clock */
-  20:APP/Src/main.c ****   SystemClock_Config();
-  21:APP/Src/main.c **** 
-  22:APP/Src/main.c ****   pal_gpio_config(LED, PAL_GPIO_OUTPUT, PAL_GPIO_NOPULL, PAL_GPIO_SPEED_VERY_HIGH, 0);
-  23:APP/Src/main.c **** 
-  24:APP/Src/main.c ****   while (1)
-  25:APP/Src/main.c ****   {
-  26:APP/Src/main.c ****         pal_gpio_write(LED, 1);
-  27:APP/Src/main.c ****         pal_delay(200); // 100 ms delay
-  28:APP/Src/main.c ****         pal_gpio_write(LED, 0);
-  29:APP/Src/main.c ****         pal_delay(200);
-  30:APP/Src/main.c **** 
-  31:APP/Src/main.c ****   }
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1mSycY.s 			page 2
+  27              		.file 1 "App/Src/main.cpp"
+   1:App/Src/main.cpp **** #include "main.h"
+   2:App/Src/main.cpp **** #include "pal_clock.h"
+   3:App/Src/main.cpp **** #include "pal_gpio.hpp"
+   4:App/Src/main.cpp **** #include "pal_board.h"
+   5:App/Src/main.cpp **** 
+   6:App/Src/main.cpp **** 
+   7:App/Src/main.cpp **** using namespace pal;
+   8:App/Src/main.cpp **** static void SystemClock_Config(void);
+   9:App/Src/main.cpp **** // pal_gpio_t LED = { .port = 0, .pin = 5 }; // GPIOA pin 5
+  10:App/Src/main.cpp ****  Gpio led(0, 5); // Port A, Pin 5
+  11:App/Src/main.cpp **** 
+  12:App/Src/main.cpp **** /**
+  13:App/Src/main.cpp ****   * @brief  The application entry point.
+  14:App/Src/main.cpp ****   * @retval int
+  15:App/Src/main.cpp ****   */
+  16:App/Src/main.cpp **** int main(void)
+  17:App/Src/main.cpp **** {
+  18:App/Src/main.cpp **** 
+  19:App/Src/main.cpp ****   /*Board init*/
+  20:App/Src/main.cpp ****   pal_board_init();
+  21:App/Src/main.cpp **** 
+  22:App/Src/main.cpp ****   /* Configure the system clock */
+  23:App/Src/main.cpp ****   SystemClock_Config();
+  24:App/Src/main.cpp **** 
+  25:App/Src/main.cpp ****   // pal_gpio_config(LED, PAL_GPIO_OUTPUT, PAL_GPIO_NOPULL, PAL_GPIO_SPEED_VERY_HIGH, 0);
+  26:App/Src/main.cpp ****  
+  27:App/Src/main.cpp ****   led.config(Gpio::Mode::Output, Gpio::Pull::NoPull, Gpio::Speed::High);
+  28:App/Src/main.cpp **** 
+  29:App/Src/main.cpp ****   while (1)
+  30:App/Src/main.cpp ****   {
+  31:App/Src/main.cpp ****         // pal_gpio_write(LED, 1);
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s 			page 2
 
 
-  32:APP/Src/main.c **** 
-  33:APP/Src/main.c **** }
-  34:APP/Src/main.c **** 
-  35:APP/Src/main.c **** /**
-  36:APP/Src/main.c ****   * @brief System Clock Configuration
-  37:APP/Src/main.c ****   * @retval None
-  38:APP/Src/main.c ****   */
-  39:APP/Src/main.c **** static void SystemClock_Config(void)
-  40:APP/Src/main.c **** {
-  28              		.loc 1 40 1 view -0
+  32:App/Src/main.cpp ****         led.write(true);
+  33:App/Src/main.cpp ****         pal_delay(1000); // 100 ms delay
+  34:App/Src/main.cpp ****         // pal_gpio_write(LED, 0);
+  35:App/Src/main.cpp ****         led.write(false);
+  36:App/Src/main.cpp ****         pal_delay(1000);
+  37:App/Src/main.cpp **** 
+  38:App/Src/main.cpp ****   }
+  39:App/Src/main.cpp **** 
+  40:App/Src/main.cpp **** }
+  41:App/Src/main.cpp **** 
+  42:App/Src/main.cpp **** /**
+  43:App/Src/main.cpp ****   * @brief System Clock Configuration
+  44:App/Src/main.cpp ****   * @retval None
+  45:App/Src/main.cpp ****   */
+  46:App/Src/main.cpp **** static void SystemClock_Config(void)
+  47:App/Src/main.cpp **** {
+  28              		.loc 1 47 1 view -0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 40
   31              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -81,9 +88,9 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1mSycY.s 			page 1
   36 0002 8BB0     		sub	sp, sp, #44
   37              	.LCFI1:
   38              		.cfi_def_cfa_offset 48
-  41:APP/Src/main.c ****     pal_clock_cfg_t c = {
-  39              		.loc 1 41 5 view .LVU1
-  40              		.loc 1 41 21 is_stmt 0 view .LVU2
+  48:App/Src/main.cpp ****     pal_clock_cfg_t c = {
+  39              		.loc 1 48 5 view .LVU1
+  40              		.loc 1 48 21 is_stmt 0 view .LVU2
   41 0004 2822     		movs	r2, #40
   42 0006 0021     		movs	r1, #0
   43 0008 6846     		mov	r0, sp
@@ -93,44 +100,44 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1mSycY.s 			page 1
   47 0010 ADF82030 		strh	r3, [sp, #32]	@ movhi
   48 0014 8DF82230 		strb	r3, [sp, #34]
   49 0018 8DF82330 		strb	r3, [sp, #35]
-  42:APP/Src/main.c ****         .source         = PAL_CLK_SRC_HSI,
-  43:APP/Src/main.c ****         .ahb_div        = PAL_AHB_DIV_1,
-  44:APP/Src/main.c ****         .apb1_div       = PAL_APB_DIV_1,
-  45:APP/Src/main.c ****         .apb2_div       = PAL_APB_DIV_1,
-  46:APP/Src/main.c ****         .flash_latency  = 0  /* 16 MHz -> latency 0 on most families; adjust if needed */
-  47:APP/Src/main.c ****     };
-  48:APP/Src/main.c ****     //     pal_clock_cfg_t c = {
-  49:APP/Src/main.c ****     //     .source   = PAL_CLK_SRC_PLL,
-  50:APP/Src/main.c ****     //     .pll = {
-  51:APP/Src/main.c ****     //         .use_hse = 1,
-  52:APP/Src/main.c ****     //         .hse_hz  = 8000000u,
-  53:APP/Src/main.c ****     //         .m = 8,
-  54:APP/Src/main.c ****     //         .n = 336,
-  55:APP/Src/main.c ****     //         .p = 4,
-  56:APP/Src/main.c ****     //         .q = 7,   /* USB 48 MHz (336/7=48) on F4 */
-  57:APP/Src/main.c ****     //         .r = 0
-  58:APP/Src/main.c ****     //     },
-  59:APP/Src/main.c ****     //     .ahb_div       = PAL_AHB_DIV_1,
-  60:APP/Src/main.c ****     //     .apb1_div      = PAL_APB_DIV_2,  /* APB1 max 42 MHz on F4 */
-  61:APP/Src/main.c ****     //     .apb2_div      = PAL_APB_DIV_1,
-  62:APP/Src/main.c ****     //     .flash_latency = 0x00000002U /* 84 MHz on F4 typically needs 2 WS; check your datasheet 
-  63:APP/Src/main.c ****     // };
-  64:APP/Src/main.c ****     if (pal_clock_init(&c) != 0) {
-  50              		.loc 1 64 5 is_stmt 1 view .LVU3
-  51              		.loc 1 64 9 is_stmt 0 view .LVU4
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1mSycY.s 			page 3
+  49:App/Src/main.cpp ****         .source         = PAL_CLK_SRC_HSI,
+  50:App/Src/main.cpp ****         .ahb_div        = PAL_AHB_DIV_1,
+  51:App/Src/main.cpp ****         .apb1_div       = PAL_APB_DIV_1,
+  52:App/Src/main.cpp ****         .apb2_div       = PAL_APB_DIV_1,
+  53:App/Src/main.cpp ****         .flash_latency  = 0  /* 16 MHz -> latency 0 on most families; adjust if needed */
+  54:App/Src/main.cpp ****     };
+  55:App/Src/main.cpp ****     //     pal_clock_cfg_t c = {
+  56:App/Src/main.cpp ****     //     .source   = PAL_CLK_SRC_PLL,
+  57:App/Src/main.cpp ****     //     .pll = {
+  58:App/Src/main.cpp ****     //         .use_hse = 1,
+  59:App/Src/main.cpp ****     //         .hse_hz  = 8000000u,
+  60:App/Src/main.cpp ****     //         .m = 8,
+  61:App/Src/main.cpp ****     //         .n = 336,
+  62:App/Src/main.cpp ****     //         .p = 4,
+  63:App/Src/main.cpp ****     //         .q = 7,   /* USB 48 MHz (336/7=48) on F4 */
+  64:App/Src/main.cpp ****     //         .r = 0
+  65:App/Src/main.cpp ****     //     },
+  66:App/Src/main.cpp ****     //     .ahb_div       = PAL_AHB_DIV_1,
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s 			page 3
 
 
+  67:App/Src/main.cpp ****     //     .apb1_div      = PAL_APB_DIV_2,  /* APB1 max 42 MHz on F4 */
+  68:App/Src/main.cpp ****     //     .apb2_div      = PAL_APB_DIV_1,
+  69:App/Src/main.cpp ****     //     .flash_latency = 0x00000002U /* 84 MHz on F4 typically needs 2 WS; check your datasheet 
+  70:App/Src/main.cpp ****     // };
+  71:App/Src/main.cpp ****     if (pal_clock_init(&c) != 0) {
+  50              		.loc 1 71 5 is_stmt 1 view .LVU3
+  51              		.loc 1 71 23 is_stmt 0 view .LVU4
   52 001c 6846     		mov	r0, sp
   53 001e FFF7FEFF 		bl	pal_clock_init
   54              	.LVL1:
-  55              		.loc 1 64 8 view .LVU5
+  55              		.loc 1 71 5 view .LVU5
   56 0022 10B9     		cbnz	r0, .L4
   57              	.L1:
-  65:APP/Src/main.c ****         Error_Handler();
-  66:APP/Src/main.c ****     }
-  67:APP/Src/main.c **** }
-  58              		.loc 1 67 1 view .LVU6
+  72:App/Src/main.cpp ****         Error_Handler();
+  73:App/Src/main.cpp ****     }
+  74:App/Src/main.cpp **** }
+  58              		.loc 1 74 1 view .LVU6
   59 0024 0BB0     		add	sp, sp, #44
   60              	.LCFI2:
   61              		.cfi_remember_state
@@ -140,127 +147,235 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1mSycY.s 			page 1
   65              	.L4:
   66              	.LCFI3:
   67              		.cfi_restore_state
-  65:APP/Src/main.c ****         Error_Handler();
-  68              		.loc 1 65 9 is_stmt 1 view .LVU7
-  69 002a FFF7FEFF 		bl	Error_Handler
-  70              	.LVL2:
-  71              		.loc 1 67 1 is_stmt 0 view .LVU8
-  72 002e F9E7     		b	.L1
-  73              		.cfi_endproc
-  74              	.LFE1:
-  76              		.section	.text.main,"ax",%progbits
-  77              		.align	1
-  78              		.global	main
+  72:App/Src/main.cpp ****         Error_Handler();
+  68              		.loc 1 72 9 is_stmt 1 view .LVU7
+  72:App/Src/main.cpp ****         Error_Handler();
+  69              		.loc 1 72 22 is_stmt 0 view .LVU8
+  70 002a FFF7FEFF 		bl	Error_Handler
+  71              	.LVL2:
+  72              		.loc 1 74 1 view .LVU9
+  73 002e F9E7     		b	.L1
+  74              		.cfi_endproc
+  75              	.LFE1:
+  77              		.section	.text._Z41__static_initialization_and_destruction_0ii,"ax",%progbits
+  78              		.align	1
   79              		.syntax unified
   80              		.thumb
   81              		.thumb_func
-  83              	main:
-  84              	.LFB0:
-  14:APP/Src/main.c **** 
-  85              		.loc 1 14 1 is_stmt 1 view -0
-  86              		.cfi_startproc
-  87              		@ Volatile: function does not return.
+  83              	_Z41__static_initialization_and_destruction_0ii:
+  84              	.LVL3:
+  85              	.LFB2:
+  86              		.loc 1 74 1 is_stmt 1 view -0
+  87              		.cfi_startproc
   88              		@ args = 0, pretend = 0, frame = 0
   89              		@ frame_needed = 0, uses_anonymous_args = 0
-  90 0000 00B5     		push	{lr}
-  91              	.LCFI4:
-  92              		.cfi_def_cfa_offset 4
-  93              		.cfi_offset 14, -4
-  94 0002 83B0     		sub	sp, sp, #12
-  95              	.LCFI5:
-  96              		.cfi_def_cfa_offset 16
-  17:APP/Src/main.c **** 
-  97              		.loc 1 17 3 view .LVU10
-  98 0004 FFF7FEFF 		bl	pal_board_init
-  99              	.LVL3:
-  20:APP/Src/main.c **** 
- 100              		.loc 1 20 3 view .LVU11
- 101 0008 FFF7FEFF 		bl	SystemClock_Config
- 102              	.LVL4:
-  22:APP/Src/main.c **** 
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1mSycY.s 			page 4
+  90              		.loc 1 74 1 is_stmt 0 view .LVU11
+  91 0000 0128     		cmp	r0, #1
+  92 0002 00D0     		beq	.L11
+  93 0004 7047     		bx	lr
+  94              	.L11:
+  95              		.loc 1 74 1 discriminator 1 view .LVU12
+  96 0006 08B5     		push	{r3, lr}
+  97              	.LCFI4:
+  98              		.cfi_def_cfa_offset 8
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s 			page 4
 
 
- 103              		.loc 1 22 3 view .LVU12
- 104 000c 0022     		movs	r2, #0
- 105 000e 0092     		str	r2, [sp]
- 106 0010 0323     		movs	r3, #3
- 107 0012 0121     		movs	r1, #1
- 108 0014 0948     		ldr	r0, .L8
- 109 0016 0068     		ldr	r0, [r0]
- 110 0018 FFF7FEFF 		bl	pal_gpio_config
- 111              	.LVL5:
- 112              	.L6:
-  24:APP/Src/main.c ****   {
- 113              		.loc 1 24 3 discriminator 1 view .LVU13
-  26:APP/Src/main.c ****         pal_delay(200); // 100 ms delay
- 114              		.loc 1 26 9 discriminator 1 view .LVU14
- 115 001c 074C     		ldr	r4, .L8
- 116 001e 0121     		movs	r1, #1
- 117 0020 2068     		ldr	r0, [r4]
- 118 0022 FFF7FEFF 		bl	pal_gpio_write
- 119              	.LVL6:
-  27:APP/Src/main.c ****         pal_gpio_write(LED, 0);
- 120              		.loc 1 27 9 discriminator 1 view .LVU15
- 121 0026 C820     		movs	r0, #200
- 122 0028 FFF7FEFF 		bl	pal_delay
- 123              	.LVL7:
-  28:APP/Src/main.c ****         pal_delay(200);
- 124              		.loc 1 28 9 discriminator 1 view .LVU16
- 125 002c 0021     		movs	r1, #0
- 126 002e 2068     		ldr	r0, [r4]
- 127 0030 FFF7FEFF 		bl	pal_gpio_write
- 128              	.LVL8:
-  29:APP/Src/main.c **** 
- 129              		.loc 1 29 9 discriminator 1 view .LVU17
- 130 0034 C820     		movs	r0, #200
- 131 0036 FFF7FEFF 		bl	pal_delay
- 132              	.LVL9:
-  24:APP/Src/main.c ****   {
- 133              		.loc 1 24 9 discriminator 1 view .LVU18
- 134 003a EFE7     		b	.L6
- 135              	.L9:
- 136              		.align	2
- 137              	.L8:
- 138 003c 00000000 		.word	.LANCHOR0
- 139              		.cfi_endproc
- 140              	.LFE0:
- 142              		.global	LED
- 143              		.section	.data.LED,"aw"
- 144              		.align	2
- 145              		.set	.LANCHOR0,. + 0
- 148              	LED:
- 149 0000 00       		.byte	0
- 150 0001 05       		.byte	5
- 151              		.text
- 152              	.Letext0:
- 153              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 154              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 155              		.file 4 "PAL/Vendor/common/Inc/pal_clock.h"
- 156              		.file 5 "PAL/Vendor/common/Inc/pal_gpio.h"
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1mSycY.s 			page 5
+  99              		.cfi_offset 3, -8
+ 100              		.cfi_offset 14, -4
+ 101              		.loc 1 74 1 discriminator 1 view .LVU13
+ 102 0008 4FF6FF73 		movw	r3, #65535
+ 103 000c 9942     		cmp	r1, r3
+ 104 000e 00D0     		beq	.L12
+ 105              	.LVL4:
+ 106              	.L5:
+ 107              		.loc 1 74 1 view .LVU14
+ 108 0010 08BD     		pop	{r3, pc}
+ 109              	.LVL5:
+ 110              	.L12:
+  10:App/Src/main.cpp **** 
+ 111              		.loc 1 10 15 view .LVU15
+ 112 0012 0522     		movs	r2, #5
+ 113 0014 0021     		movs	r1, #0
+ 114              	.LVL6:
+  10:App/Src/main.cpp **** 
+ 115              		.loc 1 10 15 view .LVU16
+ 116 0016 0248     		ldr	r0, .L13
+ 117              	.LVL7:
+  10:App/Src/main.cpp **** 
+ 118              		.loc 1 10 15 view .LVU17
+ 119 0018 FFF7FEFF 		bl	_ZN3pal4GpioC1Ehh
+ 120              	.LVL8:
+ 121              		.loc 1 74 1 view .LVU18
+ 122 001c F8E7     		b	.L5
+ 123              	.L14:
+ 124 001e 00BF     		.align	2
+ 125              	.L13:
+ 126 0020 00000000 		.word	.LANCHOR0
+ 127              		.cfi_endproc
+ 128              	.LFE2:
+ 130              		.section	.text.main,"ax",%progbits
+ 131              		.align	1
+ 132              		.global	main
+ 133              		.syntax unified
+ 134              		.thumb
+ 135              		.thumb_func
+ 137              	main:
+ 138              	.LFB0:
+  17:App/Src/main.cpp **** 
+ 139              		.loc 1 17 1 is_stmt 1 view -0
+ 140              		.cfi_startproc
+ 141              		@ Volatile: function does not return.
+ 142              		@ args = 0, pretend = 0, frame = 0
+ 143              		@ frame_needed = 0, uses_anonymous_args = 0
+ 144 0000 00B5     		push	{lr}
+ 145              	.LCFI5:
+ 146              		.cfi_def_cfa_offset 4
+ 147              		.cfi_offset 14, -4
+ 148 0002 83B0     		sub	sp, sp, #12
+ 149              	.LCFI6:
+ 150              		.cfi_def_cfa_offset 16
+  20:App/Src/main.cpp **** 
+ 151              		.loc 1 20 3 view .LVU20
+  20:App/Src/main.cpp **** 
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s 			page 5
 
 
- 157              		.file 6 "PAL/Vendor/common/Inc/pal_board.h"
- 158              		.file 7 "<built-in>"
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1mSycY.s 			page 6
+ 152              		.loc 1 20 17 is_stmt 0 view .LVU21
+ 153 0004 FFF7FEFF 		bl	pal_board_init
+ 154              	.LVL9:
+  23:App/Src/main.cpp **** 
+ 155              		.loc 1 23 3 is_stmt 1 view .LVU22
+  23:App/Src/main.cpp **** 
+ 156              		.loc 1 23 21 is_stmt 0 view .LVU23
+ 157 0008 FFF7FEFF 		bl	_ZL18SystemClock_Configv
+ 158              	.LVL10:
+  27:App/Src/main.cpp **** 
+ 159              		.loc 1 27 3 is_stmt 1 view .LVU24
+  27:App/Src/main.cpp **** 
+ 160              		.loc 1 27 13 is_stmt 0 view .LVU25
+ 161 000c 0022     		movs	r2, #0
+ 162 000e 0092     		str	r2, [sp]
+ 163 0010 0223     		movs	r3, #2
+ 164 0012 0121     		movs	r1, #1
+ 165 0014 0A48     		ldr	r0, .L18
+ 166 0016 FFF7FEFF 		bl	_ZN3pal4Gpio6configENS0_4ModeENS0_4PullENS0_5SpeedEh
+ 167              	.LVL11:
+ 168              	.L16:
+  29:App/Src/main.cpp ****   {
+ 169              		.loc 1 29 3 is_stmt 1 discriminator 1 view .LVU26
+  32:App/Src/main.cpp ****         pal_delay(1000); // 100 ms delay
+ 170              		.loc 1 32 9 discriminator 1 view .LVU27
+  32:App/Src/main.cpp ****         pal_delay(1000); // 100 ms delay
+ 171              		.loc 1 32 18 is_stmt 0 discriminator 1 view .LVU28
+ 172 001a 094C     		ldr	r4, .L18
+ 173 001c 0121     		movs	r1, #1
+ 174 001e 2046     		mov	r0, r4
+ 175 0020 FFF7FEFF 		bl	_ZN3pal4Gpio5writeEb
+ 176              	.LVL12:
+  33:App/Src/main.cpp ****         // pal_gpio_write(LED, 0);
+ 177              		.loc 1 33 9 is_stmt 1 discriminator 1 view .LVU29
+  33:App/Src/main.cpp ****         // pal_gpio_write(LED, 0);
+ 178              		.loc 1 33 18 is_stmt 0 discriminator 1 view .LVU30
+ 179 0024 4FF47A70 		mov	r0, #1000
+ 180 0028 FFF7FEFF 		bl	pal_delay
+ 181              	.LVL13:
+  35:App/Src/main.cpp ****         pal_delay(1000);
+ 182              		.loc 1 35 9 is_stmt 1 discriminator 1 view .LVU31
+  35:App/Src/main.cpp ****         pal_delay(1000);
+ 183              		.loc 1 35 18 is_stmt 0 discriminator 1 view .LVU32
+ 184 002c 0021     		movs	r1, #0
+ 185 002e 2046     		mov	r0, r4
+ 186 0030 FFF7FEFF 		bl	_ZN3pal4Gpio5writeEb
+ 187              	.LVL14:
+  36:App/Src/main.cpp **** 
+ 188              		.loc 1 36 9 is_stmt 1 discriminator 1 view .LVU33
+  36:App/Src/main.cpp **** 
+ 189              		.loc 1 36 18 is_stmt 0 discriminator 1 view .LVU34
+ 190 0034 4FF47A70 		mov	r0, #1000
+ 191 0038 FFF7FEFF 		bl	pal_delay
+ 192              	.LVL15:
+  29:App/Src/main.cpp ****   {
+ 193              		.loc 1 29 3 is_stmt 1 discriminator 1 view .LVU35
+ 194 003c EDE7     		b	.L16
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s 			page 6
+
+
+ 195              	.L19:
+ 196 003e 00BF     		.align	2
+ 197              	.L18:
+ 198 0040 00000000 		.word	.LANCHOR0
+ 199              		.cfi_endproc
+ 200              	.LFE0:
+ 202              		.section	.text._GLOBAL__sub_I_led,"ax",%progbits
+ 203              		.align	1
+ 204              		.syntax unified
+ 205              		.thumb
+ 206              		.thumb_func
+ 208              	_GLOBAL__sub_I_led:
+ 209              	.LFB3:
+ 210              		.loc 1 74 1 view -0
+ 211              		.cfi_startproc
+ 212              		@ args = 0, pretend = 0, frame = 0
+ 213              		@ frame_needed = 0, uses_anonymous_args = 0
+ 214 0000 08B5     		push	{r3, lr}
+ 215              	.LCFI7:
+ 216              		.cfi_def_cfa_offset 8
+ 217              		.cfi_offset 3, -8
+ 218              		.cfi_offset 14, -4
+ 219              		.loc 1 74 1 is_stmt 0 view .LVU37
+ 220 0002 4FF6FF71 		movw	r1, #65535
+ 221 0006 0120     		movs	r0, #1
+ 222 0008 FFF7FEFF 		bl	_Z41__static_initialization_and_destruction_0ii
+ 223              	.LVL16:
+ 224 000c 08BD     		pop	{r3, pc}
+ 225              		.cfi_endproc
+ 226              	.LFE3:
+ 228              		.section	.init_array,"aw",%init_array
+ 229              		.align	2
+ 230 0000 00000000 		.word	_GLOBAL__sub_I_led(target1)
+ 231              		.global	led
+ 232              		.section	.bss.led,"aw",%nobits
+ 233              		.align	2
+ 234              		.set	.LANCHOR0,. + 0
+ 237              	led:
+ 238 0000 0000     		.space	2
+ 239              		.text
+ 240              	.Letext0:
+ 241              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 242              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 243              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 244              		.file 5 "PAL/Vendor/common/Inc/pal_clock.h"
+ 245              		.file 6 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 246              		.file 7 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 247              		.file 8 "PAL/Vendor/common/Inc/pal_gpio.hpp"
+ 248              		.file 9 "PAL/Vendor/common/Inc/pal_board.h"
+ 249              		.file 10 "<built-in>"
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s 			page 7
 
 
 DEFINED SYMBOLS
-                            *ABS*:00000000 main.c
-C:\Users\katre\AppData\Local\Temp\cc1mSycY.s:20     .text.SystemClock_Config:00000000 $t
-C:\Users\katre\AppData\Local\Temp\cc1mSycY.s:25     .text.SystemClock_Config:00000000 SystemClock_Config
-C:\Users\katre\AppData\Local\Temp\cc1mSycY.s:77     .text.main:00000000 $t
-C:\Users\katre\AppData\Local\Temp\cc1mSycY.s:83     .text.main:00000000 main
-C:\Users\katre\AppData\Local\Temp\cc1mSycY.s:138    .text.main:0000003c $d
-C:\Users\katre\AppData\Local\Temp\cc1mSycY.s:148    .data.LED:00000000 LED
-C:\Users\katre\AppData\Local\Temp\cc1mSycY.s:144    .data.LED:00000000 $d
+                            *ABS*:00000000 main.cpp
+C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s:20     .text._ZL18SystemClock_Configv:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s:25     .text._ZL18SystemClock_Configv:00000000 _ZL18SystemClock_Configv
+C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s:78     .text._Z41__static_initialization_and_destruction_0ii:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s:83     .text._Z41__static_initialization_and_destruction_0ii:00000000 _Z41__static_initialization_and_destruction_0ii
+C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s:126    .text._Z41__static_initialization_and_destruction_0ii:00000020 $d
+C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s:131    .text.main:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s:137    .text.main:00000000 main
+C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s:198    .text.main:00000040 $d
+C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s:203    .text._GLOBAL__sub_I_led:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s:208    .text._GLOBAL__sub_I_led:00000000 _GLOBAL__sub_I_led
+C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s:229    .init_array:00000000 $d
+C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s:237    .bss.led:00000000 led
+C:\Users\katre\AppData\Local\Temp\ccfT1mNz.s:233    .bss.led:00000000 $d
 
 UNDEFINED SYMBOLS
 memset
 pal_clock_init
 Error_Handler
+_ZN3pal4GpioC1Ehh
 pal_board_init
-pal_gpio_config
-pal_gpio_write
+_ZN3pal4Gpio6configENS0_4ModeENS0_4PullENS0_5SpeedEh
+_ZN3pal4Gpio5writeEb
 pal_delay

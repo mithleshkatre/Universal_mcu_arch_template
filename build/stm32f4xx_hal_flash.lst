@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
   29:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       (+) 64 cache lines of 128 bits on I-Code
   30:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       (+) 8 cache lines of 128 bits on D-Code
   31:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 2
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 2
 
 
   32:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
   86:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @{
   87:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
   88:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 3
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 3
 
 
   89:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** #ifdef HAL_FLASH_MODULE_ENABLED
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  143:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** @endverbatim
  144:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @{
  145:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 4
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 4
 
 
  146:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  200:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   __HAL_UNLOCK(&pFlash);
  201:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
  202:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   return status;
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 5
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 5
 
 
  203:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  257:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
  258:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief This function handles FLASH interrupt request.
  259:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval None
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 6
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 6
 
 
  260:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  314:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
  315:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         addresstmp = pFlash.Sector;
  316:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         /*Indicate user which sector has been erased*/
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 7
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 7
 
 
  317:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         HAL_FLASH_EndOfOperationCallback(addresstmp);
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  371:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     __HAL_UNLOCK(&pFlash);
  372:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
  373:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 8
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 8
 
 
  374:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  428:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
  429:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
  430:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief  Unlock the FLASH control register access
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 9
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 9
 
 
  431:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval HAL Status
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  485:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
  486:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief  Lock the FLASH Option Control Registers access.
  487:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval HAL Status 
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 10
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 10
 
 
  488:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  542:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
  543:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
  544:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @}
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 11
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 11
 
 
  545:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */    
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  599:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
  600:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
  601:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief  Program a double word (64-bit) at a specified address.
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 12
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 12
 
 
  602:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @note   This function must be used when the device voltage range is from
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  656:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *(__IO uint32_t*)Address = Data;
  657:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
  658:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 13
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 13
 
 
  659:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  713:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** static void FLASH_SetErrorCode(void)
  714:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** { 
   28              		.loc 1 714 1 view -0
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 14
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 14
 
 
   29              		.cfi_startproc
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  729:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
  730:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
  731:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG(FLASH_FLAG_PGPERR) != RESET)
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 15
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 15
 
 
   69              		.loc 1 731 3 view .LVU13
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  107 0068 0D4B     		ldr	r3, .L8
  108 006a DB68     		ldr	r3, [r3, #12]
  109              		.loc 1 747 5 view .LVU27
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 16
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 16
 
 
  110 006c 13F4807F 		tst	r3, #256
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  149              	.LFE146:
  151              		.section	.rodata.FLASH_Program_Byte.str1.4,"aMS",%progbits,1
  152              		.align	2
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 17
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 17
 
 
  153              	.LC0:
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  703:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   FLASH->CR |= FLASH_CR_PG;
  196              		.loc 1 703 13 is_stmt 0 view .LVU44
  197 0028 1A69     		ldr	r2, [r3, #16]
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 18
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 18
 
 
  198 002a 1A61     		str	r2, [r3, #16]
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  244              	.LCFI1:
  245              		.cfi_def_cfa_offset 16
  246              		.cfi_offset 3, -16
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 19
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 19
 
 
  247              		.cfi_offset 4, -12
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  289 0040 0248     		ldr	r0, .L20+4
  290              	.LVL10:
  674:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 20
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 20
 
 
  291              		.loc 1 674 3 discriminator 2 view .LVU67
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  653:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   FLASH->CR |= FLASH_CR_PG;
  342              		.loc 1 653 3 view .LVU73
  653:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   FLASH->CR |= FLASH_CR_PG;
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 21
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 21
 
 
  343              		.loc 1 653 13 is_stmt 0 view .LVU74
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  613:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Check the parameters */
  390              		.loc 1 613 1 is_stmt 0 view .LVU84
  391 0000 70B5     		push	{r4, r5, r6, lr}
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 22
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 22
 
 
  392              	.LCFI3:
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
    3:CMSIS/Core/Include/cmsis_gcc.h ****  * @brief    CMSIS compiler GCC header file
    4:CMSIS/Core/Include/cmsis_gcc.h ****  * @version  V5.0.4
    5:CMSIS/Core/Include/cmsis_gcc.h ****  * @date     09. April 2018
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 23
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 23
 
 
    6:CMSIS/Core/Include/cmsis_gcc.h ****  ******************************************************************************/
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
   60:CMSIS/Core/Include/cmsis_gcc.h **** #endif
   61:CMSIS/Core/Include/cmsis_gcc.h **** #ifndef   __PACKED
   62:CMSIS/Core/Include/cmsis_gcc.h ****   #define __PACKED                               __attribute__((packed, aligned(1)))
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 24
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 24
 
 
   63:CMSIS/Core/Include/cmsis_gcc.h **** #endif
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  117:CMSIS/Core/Include/cmsis_gcc.h **** 
  118:CMSIS/Core/Include/cmsis_gcc.h **** /* ###########################  Core Function Access  ########################### */
  119:CMSIS/Core/Include/cmsis_gcc.h **** /** \ingroup  CMSIS_Core_FunctionInterface
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 25
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 25
 
 
  120:CMSIS/Core/Include/cmsis_gcc.h ****     \defgroup CMSIS_Core_RegAccFunctions CMSIS Core Register Access Functions
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  174:CMSIS/Core/Include/cmsis_gcc.h **** 
  175:CMSIS/Core/Include/cmsis_gcc.h **** 
  176:CMSIS/Core/Include/cmsis_gcc.h **** /**
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 26
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 26
 
 
  177:CMSIS/Core/Include/cmsis_gcc.h ****   \brief   Set Control Register
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  231:CMSIS/Core/Include/cmsis_gcc.h ****   \return               xPSR Register value
  232:CMSIS/Core/Include/cmsis_gcc.h ****  */
  233:CMSIS/Core/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __get_xPSR(void)
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 27
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 27
 
 
  234:CMSIS/Core/Include/cmsis_gcc.h **** {
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  288:CMSIS/Core/Include/cmsis_gcc.h ****  */
  289:CMSIS/Core/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __TZ_set_PSP_NS(uint32_t topOfProcStack)
  290:CMSIS/Core/Include/cmsis_gcc.h **** {
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 28
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 28
 
 
  291:CMSIS/Core/Include/cmsis_gcc.h ****   __ASM volatile ("MSR psp_ns, %0" : : "r" (topOfProcStack) : );
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  345:CMSIS/Core/Include/cmsis_gcc.h ****   __ASM volatile ("MSR msp_ns, %0" : : "r" (topOfMainStack) : );
  346:CMSIS/Core/Include/cmsis_gcc.h **** }
  347:CMSIS/Core/Include/cmsis_gcc.h **** #endif
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 29
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 29
 
 
  348:CMSIS/Core/Include/cmsis_gcc.h **** 
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  402:CMSIS/Core/Include/cmsis_gcc.h ****   return(result);
  403:CMSIS/Core/Include/cmsis_gcc.h **** }
  404:CMSIS/Core/Include/cmsis_gcc.h **** #endif
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 30
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 30
 
 
  405:CMSIS/Core/Include/cmsis_gcc.h **** 
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  459:CMSIS/Core/Include/cmsis_gcc.h ****   \return               Base Priority register value
  460:CMSIS/Core/Include/cmsis_gcc.h ****  */
  461:CMSIS/Core/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __get_BASEPRI(void)
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 31
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 31
 
 
  462:CMSIS/Core/Include/cmsis_gcc.h **** {
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  516:CMSIS/Core/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __set_BASEPRI_MAX(uint32_t basePri)
  517:CMSIS/Core/Include/cmsis_gcc.h **** {
  518:CMSIS/Core/Include/cmsis_gcc.h ****   __ASM volatile ("MSR basepri_max, %0" : : "r" (basePri) : "memory");
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 32
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 32
 
 
  519:CMSIS/Core/Include/cmsis_gcc.h **** }
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  573:CMSIS/Core/Include/cmsis_gcc.h **** #endif
  574:CMSIS/Core/Include/cmsis_gcc.h **** 
  575:CMSIS/Core/Include/cmsis_gcc.h **** #endif /* ((defined (__ARM_ARCH_7M__      ) && (__ARM_ARCH_7M__      == 1)) || \
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 33
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 33
 
 
  576:CMSIS/Core/Include/cmsis_gcc.h ****            (defined (__ARM_ARCH_7EM__     ) && (__ARM_ARCH_7EM__     == 1)) || \
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  630:CMSIS/Core/Include/cmsis_gcc.h ****   Devices without ARMv8-M Main Extensions (i.e. Cortex-M23) lack the non-secure
  631:CMSIS/Core/Include/cmsis_gcc.h ****   Stack Pointer Limit register hence the write is silently ignored in non-secure
  632:CMSIS/Core/Include/cmsis_gcc.h ****   mode.
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 34
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 34
 
 
  633:CMSIS/Core/Include/cmsis_gcc.h ****   
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  687:CMSIS/Core/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, msplim" : "=r" (result) );
  688:CMSIS/Core/Include/cmsis_gcc.h ****   return result;
  689:CMSIS/Core/Include/cmsis_gcc.h **** #endif
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 35
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 35
 
 
  690:CMSIS/Core/Include/cmsis_gcc.h **** }
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  744:CMSIS/Core/Include/cmsis_gcc.h ****   \param [in]    MainStackPtrLimit  Main Stack Pointer value to set
  745:CMSIS/Core/Include/cmsis_gcc.h ****  */
  746:CMSIS/Core/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __TZ_set_MSPLIM_NS(uint32_t MainStackPtrLimit)
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 36
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 36
 
 
  747:CMSIS/Core/Include/cmsis_gcc.h **** {
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  801:CMSIS/Core/Include/cmsis_gcc.h **** #else
  802:CMSIS/Core/Include/cmsis_gcc.h ****   __ASM volatile ("VMSR fpscr, %0" : : "r" (fpscr) : "vfpcc", "memory");
  803:CMSIS/Core/Include/cmsis_gcc.h **** #endif
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 37
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 37
 
 
  804:CMSIS/Core/Include/cmsis_gcc.h **** #else
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  858:CMSIS/Core/Include/cmsis_gcc.h **** 
  859:CMSIS/Core/Include/cmsis_gcc.h **** 
  860:CMSIS/Core/Include/cmsis_gcc.h **** /**
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 38
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 38
 
 
  861:CMSIS/Core/Include/cmsis_gcc.h ****   \brief   Instruction Synchronization Barrier
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  476              	HAL_FLASH_Program_IT:
  477              	.LVL23:
  478              	.LFB131:
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 39
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 39
 
 
  215:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   HAL_StatusTypeDef status = HAL_OK;
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  522              		.loc 1 228 3 view .LVU113
  523 0026 0269     		ldr	r2, [r0, #16]
  524 0028 42F00072 		orr	r2, r2, #33554432
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 40
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 40
 
 
  525 002c 0261     		str	r2, [r0, #16]
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  564              	.LVL31:
  222:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
  565              		.loc 1 222 3 discriminator 1 view .LVU129
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 41
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 41
 
 
  566 0052 FFF7FEFF 		bl	assert_failed
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  613              		.align	1
  614              		.weak	HAL_FLASH_EndOfOperationCallback
  615              		.syntax unified
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 42
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 42
 
 
  616              		.thumb
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  668              	.LCFI5:
  669              		.cfi_def_cfa_offset 8
  670              		.cfi_offset 4, -8
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 43
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 43
 
 
  671              		.cfi_offset 14, -4
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  710              		.loc 1 298 5 view .LVU159
  298:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
  711              		.loc 1 298 29 is_stmt 0 view .LVU160
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 44
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 44
 
 
  712 002e 304B     		ldr	r3, .L66+4
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  753 0062 0022     		movs	r2, #0
  754 0064 1A70     		strb	r2, [r3]
  755              	.L55:
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 45
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 45
 
 
  359:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  796              	.LVL48:
  797              	.L63:
  283:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 46
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 46
 
 
  798              		.loc 1 283 7 is_stmt 1 view .LVU188
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  836              	.LVL53:
  322:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       }
  837              		.loc 1 322 9 is_stmt 1 view .LVU205
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 47
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 47
 
 
  838 00bc 217A     		ldrb	r1, [r4, #8]	@ zero_extendqisi2
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  884              		.syntax unified
  885              		.thumb
  886              		.thumb_func
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 48
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 48
 
 
  888              	HAL_FLASH_Unlock:
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  928              		.loc 1 450 3 is_stmt 1 view .LVU228
  451:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
  929              		.loc 1 451 1 is_stmt 0 view .LVU229
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 49
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 49
 
 
  930 0024 7047     		bx	lr
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  982              		@ frame_needed = 0, uses_anonymous_args = 0
  983              		@ link register save eliminated.
  471:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 50
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 50
 
 
  984              		.loc 1 471 3 view .LVU236
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  1029              		@ frame_needed = 0, uses_anonymous_args = 0
  1030              		@ link register save eliminated.
  492:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 51
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 51
 
 
  1031              		.loc 1 492 3 view .LVU248
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  1082              	FLASH_WaitForLastOperation:
  1083              	.LVL63:
  1084              	.LFB141:
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 52
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 52
 
 
  553:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   uint32_t tickstart = 0U;
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  569:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
  1125              		.loc 1 569 7 is_stmt 1 view .LVU270
  569:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 53
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 53
 
 
  1126              		.loc 1 569 9 is_stmt 0 view .LVU271
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  1166              	.LVL68:
  1167              	.L99:
  591:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     return HAL_ERROR;
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 54
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 54
 
 
  1168              		.loc 1 591 5 is_stmt 1 view .LVU286
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  1216 0008 012A     		cmp	r2, #1
  1217 000a 37D0     		beq	.L110
  1218 000c 0446     		mov	r4, r0
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 55
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 55
 
 
  1219 000e 0D46     		mov	r5, r1
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  1258              	.L107:
  193:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
  1259              		.loc 1 193 5 is_stmt 1 view .LVU310
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 56
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 56
 
 
  193:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  1301 0062 FFF7FEFF 		bl	FLASH_Program_Byte
  1302              	.LVL85:
  1303 0066 E8E7     		b	.L107
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 57
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 57
 
 
  1304              	.LVL86:
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  1353 0000 08B5     		push	{r3, lr}
  1354              	.LCFI8:
  1355              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 58
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 58
 
 
  1356              		.cfi_offset 3, -8
@@ -3468,67 +3468,67 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 1
  1394              		.file 9 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/stm32f4xx_hal_conf.h"
  1395              		.file 10 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
  1396              		.file 11 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h"
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 59
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 59
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_hal_flash.c
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:20     .text.FLASH_SetErrorCode:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:25     .text.FLASH_SetErrorCode:00000000 FLASH_SetErrorCode
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:146    .text.FLASH_SetErrorCode:000000a0 $d
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:152    .rodata.FLASH_Program_Byte.str1.4:00000000 $d
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:157    .text.FLASH_Program_Byte:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:162    .text.FLASH_Program_Byte:00000000 FLASH_Program_Byte
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:224    .text.FLASH_Program_Byte:00000044 $d
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:230    .text.FLASH_Program_HalfWord:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:235    .text.FLASH_Program_HalfWord:00000000 FLASH_Program_HalfWord
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:298    .text.FLASH_Program_HalfWord:00000048 $d
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:304    .text.FLASH_Program_Word:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:309    .text.FLASH_Program_Word:00000000 FLASH_Program_Word
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:372    .text.FLASH_Program_Word:00000048 $d
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:378    .text.FLASH_Program_DoubleWord:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:383    .text.FLASH_Program_DoubleWord:00000000 FLASH_Program_DoubleWord
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:464    .text.FLASH_Program_DoubleWord:00000050 $d
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:470    .text.HAL_FLASH_Program_IT:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:476    .text.HAL_FLASH_Program_IT:00000000 HAL_FLASH_Program_IT
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:606    .text.HAL_FLASH_Program_IT:00000080 $d
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:613    .text.HAL_FLASH_EndOfOperationCallback:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:619    .text.HAL_FLASH_EndOfOperationCallback:00000000 HAL_FLASH_EndOfOperationCallback
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:634    .text.HAL_FLASH_OperationErrorCallback:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:640    .text.HAL_FLASH_OperationErrorCallback:00000000 HAL_FLASH_OperationErrorCallback
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:655    .text.HAL_FLASH_IRQHandler:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:661    .text.HAL_FLASH_IRQHandler:00000000 HAL_FLASH_IRQHandler
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:876    .text.HAL_FLASH_IRQHandler:000000ec $d
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:882    .text.HAL_FLASH_Unlock:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:888    .text.HAL_FLASH_Unlock:00000000 HAL_FLASH_Unlock
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:934    .text.HAL_FLASH_Unlock:00000028 $d
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:940    .text.HAL_FLASH_Lock:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:946    .text.HAL_FLASH_Lock:00000000 HAL_FLASH_Lock
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:966    .text.HAL_FLASH_Lock:00000010 $d
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:971    .text.HAL_FLASH_OB_Unlock:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:977    .text.HAL_FLASH_OB_Unlock:00000000 HAL_FLASH_OB_Unlock
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:1012   .text.HAL_FLASH_OB_Unlock:00000020 $d
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:1018   .text.HAL_FLASH_OB_Lock:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:1024   .text.HAL_FLASH_OB_Lock:00000000 HAL_FLASH_OB_Lock
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:1044   .text.HAL_FLASH_OB_Lock:00000010 $d
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:1049   .text.HAL_FLASH_GetError:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:1055   .text.HAL_FLASH_GetError:00000000 HAL_FLASH_GetError
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:1071   .text.HAL_FLASH_GetError:00000008 $d
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:1076   .text.FLASH_WaitForLastOperation:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:1082   .text.FLASH_WaitForLastOperation:00000000 FLASH_WaitForLastOperation
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:1178   .text.FLASH_WaitForLastOperation:00000058 $d
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:1184   .text.HAL_FLASH_Program:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:1190   .text.HAL_FLASH_Program:00000000 HAL_FLASH_Program
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:1334   .text.HAL_FLASH_Program:00000080 $d
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:1341   .text.HAL_FLASH_OB_Launch:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:1347   .text.HAL_FLASH_OB_Launch:00000000 HAL_FLASH_OB_Launch
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:1374   .text.HAL_FLASH_OB_Launch:00000018 $d
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:1384   .bss.pFlash:00000000 pFlash
-C:\Users\katre\AppData\Local\Temp\ccblQhJF.s:1380   .bss.pFlash:00000000 $d
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:20     .text.FLASH_SetErrorCode:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:25     .text.FLASH_SetErrorCode:00000000 FLASH_SetErrorCode
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:146    .text.FLASH_SetErrorCode:000000a0 $d
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:152    .rodata.FLASH_Program_Byte.str1.4:00000000 $d
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:157    .text.FLASH_Program_Byte:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:162    .text.FLASH_Program_Byte:00000000 FLASH_Program_Byte
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:224    .text.FLASH_Program_Byte:00000044 $d
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:230    .text.FLASH_Program_HalfWord:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:235    .text.FLASH_Program_HalfWord:00000000 FLASH_Program_HalfWord
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:298    .text.FLASH_Program_HalfWord:00000048 $d
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:304    .text.FLASH_Program_Word:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:309    .text.FLASH_Program_Word:00000000 FLASH_Program_Word
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:372    .text.FLASH_Program_Word:00000048 $d
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:378    .text.FLASH_Program_DoubleWord:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:383    .text.FLASH_Program_DoubleWord:00000000 FLASH_Program_DoubleWord
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:464    .text.FLASH_Program_DoubleWord:00000050 $d
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:470    .text.HAL_FLASH_Program_IT:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:476    .text.HAL_FLASH_Program_IT:00000000 HAL_FLASH_Program_IT
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:606    .text.HAL_FLASH_Program_IT:00000080 $d
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:613    .text.HAL_FLASH_EndOfOperationCallback:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:619    .text.HAL_FLASH_EndOfOperationCallback:00000000 HAL_FLASH_EndOfOperationCallback
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:634    .text.HAL_FLASH_OperationErrorCallback:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:640    .text.HAL_FLASH_OperationErrorCallback:00000000 HAL_FLASH_OperationErrorCallback
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:655    .text.HAL_FLASH_IRQHandler:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:661    .text.HAL_FLASH_IRQHandler:00000000 HAL_FLASH_IRQHandler
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:876    .text.HAL_FLASH_IRQHandler:000000ec $d
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:882    .text.HAL_FLASH_Unlock:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:888    .text.HAL_FLASH_Unlock:00000000 HAL_FLASH_Unlock
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:934    .text.HAL_FLASH_Unlock:00000028 $d
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:940    .text.HAL_FLASH_Lock:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:946    .text.HAL_FLASH_Lock:00000000 HAL_FLASH_Lock
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:966    .text.HAL_FLASH_Lock:00000010 $d
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:971    .text.HAL_FLASH_OB_Unlock:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:977    .text.HAL_FLASH_OB_Unlock:00000000 HAL_FLASH_OB_Unlock
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:1012   .text.HAL_FLASH_OB_Unlock:00000020 $d
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:1018   .text.HAL_FLASH_OB_Lock:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:1024   .text.HAL_FLASH_OB_Lock:00000000 HAL_FLASH_OB_Lock
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:1044   .text.HAL_FLASH_OB_Lock:00000010 $d
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:1049   .text.HAL_FLASH_GetError:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:1055   .text.HAL_FLASH_GetError:00000000 HAL_FLASH_GetError
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:1071   .text.HAL_FLASH_GetError:00000008 $d
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:1076   .text.FLASH_WaitForLastOperation:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:1082   .text.FLASH_WaitForLastOperation:00000000 FLASH_WaitForLastOperation
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:1178   .text.FLASH_WaitForLastOperation:00000058 $d
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:1184   .text.HAL_FLASH_Program:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:1190   .text.HAL_FLASH_Program:00000000 HAL_FLASH_Program
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:1334   .text.HAL_FLASH_Program:00000080 $d
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:1341   .text.HAL_FLASH_OB_Launch:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:1347   .text.HAL_FLASH_OB_Launch:00000000 HAL_FLASH_OB_Launch
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:1374   .text.HAL_FLASH_OB_Launch:00000018 $d
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:1384   .bss.pFlash:00000000 pFlash
+C:\Users\katre\AppData\Local\Temp\ccyg67t2.s:1380   .bss.pFlash:00000000 $d
 
 UNDEFINED SYMBOLS
 assert_failed
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccblQhJF.s 			page 60
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccyg67t2.s 			page 60
 
 
 FLASH_Erase_Sector

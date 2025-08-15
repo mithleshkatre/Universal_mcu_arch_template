@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
   16:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****     (+) Each Exti line can be configured within this driver.
   17:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c **** 
   18:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****     (+) Exti line can be configured in 3 different modes
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 2
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 2
 
 
   19:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****         (++) Interrupt
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
   73:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****   * @attention
   74:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****   *
   75:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****   * <h2><center>&copy; Copyright (c) 2018 STMicroelectronics.
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 3
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 3
 
 
   76:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****   * All rights reserved.</center></h2>
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  130:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****               ##### Configuration functions #####
  131:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****  ===============================================================================
  132:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c **** 
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 4
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 4
 
 
  133:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c **** @endverbatim
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
   64 0018 23F01F03 		bic	r3, r3, #31
   65 001c 3BB9     		cbnz	r3, .L3
   66              		.loc 1 156 3 is_stmt 0 discriminator 2 view .LVU9
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 5
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 5
 
 
   67 001e 02F0C063 		and	r3, r2, #100663296
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  113              	.LVL7:
  165:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c **** 
  166:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****   /* Configure triggers for configurable lines */
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 6
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 6
 
 
  167:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****   if ((pExtiConfig->Line & EXTI_CONFIG) != 0x00u)
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  148              	.L13:
  187:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****     }
  188:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****     else
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 7
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 7
 
 
  189:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****     {
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  220:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****   if ((pExtiConfig->Mode & EXTI_MODE_EVENT) != 0x00u)
  172              		.loc 1 220 3 is_stmt 1 view .LVU47
  173              		.loc 1 220 19 is_stmt 0 view .LVU48
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 8
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 8
 
 
  174 00a2 6368     		ldr	r3, [r4, #4]
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  214              	.L12:
  190:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****     }
  215              		.loc 1 190 7 is_stmt 1 view .LVU59
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 9
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 9
 
 
  190:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****     }
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  256              		.loc 1 202 39 view .LVU73
  257 0108 03FA06F6 		lsl	r6, r3, r6
  202:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****       SYSCFG->EXTICR[linepos >> 2u] = regval;
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 10
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 10
 
 
  258              		.loc 1 202 14 view .LVU74
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  302              	.L19:
  303              	.LCFI1:
  304              		.cfi_def_cfa_offset 0
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 11
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 11
 
 
  305              		.cfi_restore 3
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  239:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c **** {
  350              		.loc 1 239 1 is_stmt 1 view -0
  351              		.cfi_startproc
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 12
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 12
 
 
  352              		@ args = 0, pretend = 0, frame = 0
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  393              		.loc 1 251 3 discriminator 7 view .LVU102
  394 002e FFF7FEFF 		bl	assert_failed
  395              	.LVL30:
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 13
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 13
 
 
  396              	.L35:
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  427              		.loc 1 274 6 view .LVU117
  428 004e 1A42     		tst	r2, r3
  429 0050 03D0     		beq	.L38
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 14
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 14
 
 
  275:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****   {
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  464 0076 1A42     		tst	r2, r3
  465 0078 03D0     		beq	.L40
  295:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****     {
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 15
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 15
 
 
  296:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****       pExtiConfig->Trigger |= EXTI_TRIGGER_FALLING;
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  502              	.L41:
  304:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****       pExtiConfig->GPIOSel = ((regval << (SYSCFG_EXTICR1_EXTI1_Pos * (3uL - (linepos & 0x03u)))) >>
  503              		.loc 1 304 7 view .LVU145
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 16
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 16
 
 
  304:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****       pExtiConfig->GPIOSel = ((regval << (SYSCFG_EXTICR1_EXTI1_Pos * (3uL - (linepos & 0x03u)))) >>
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  547              	.LVL43:
  310:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c **** }
  548              		.loc 1 310 1 view .LVU158
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 17
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 17
 
 
  549 00d2 7047     		bx	lr
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  594              		@ args = 0, pretend = 0, frame = 0
  595              		@ frame_needed = 0, uses_anonymous_args = 0
  319:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****   uint32_t regval;
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 18
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 18
 
 
  596              		.loc 1 319 3 view .LVU165
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  635 002e 2668     		ldr	r6, [r4]
  636              		.loc 1 333 11 view .LVU178
  637 0030 06F01F05 		and	r5, r6, #31
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 19
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 19
 
 
  638              	.LVL52:
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  679              		.loc 1 346 30 view .LVU199
  680 005e 1040     		ands	r0, r0, r2
  681              	.LVL55:
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 20
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 20
 
 
  682              		.loc 1 346 16 view .LVU200
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  717              		.loc 1 354 7 is_stmt 1 view .LVU211
  354:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****       SYSCFG->EXTICR[linepos >> 2u] = regval;
  718              		.loc 1 354 80 is_stmt 0 view .LVU212
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 21
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 21
 
 
  719 008c 06F00306 		and	r6, r6, #3
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  764              		.loc 1 359 10 view .LVU222
  765 00b4 0020     		movs	r0, #0
  766              	.LVL67:
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 22
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 22
 
 
  767              	.L55:
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  806              		.loc 1 377 30 is_stmt 0 view .LVU231
  807 0006 5A60     		str	r2, [r3, #4]
  378:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****       break;
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 23
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 23
 
 
  808              		.loc 1 378 7 is_stmt 1 view .LVU232
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  844              		.loc 1 398 3 is_stmt 1 view .LVU238
  845 0006 21F0C063 		bic	r3, r1, #100663296
  846 000a 23F01F03 		bic	r3, r3, #31
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 24
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 24
 
 
  847 000e 3BB9     		cbnz	r3, .L75
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  886              	.L79:
  403:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****   }
  887              		.loc 1 403 12 view .LVU252
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 25
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 25
 
 
  888 003c 0120     		movs	r0, #1
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  918              		.loc 1 438 3 view .LVU256
  439:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c **** 
  440:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****   /* Compute line mask */
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 26
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 26
 
 
  441:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****   maskline = (1uL << (hexti->Line & EXTI_PIN_MASK));
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  957              	.L86:
  958 0020 003C0140 		.word	1073822720
  959              		.cfi_endproc
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 27
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 27
 
 
  960              	.LFE135:
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  998              		.loc 1 474 3 discriminator 3 view .LVU280
  999 001c B3F1C06F 		cmp	r3, #100663296
  1000 0020 15D0     		beq	.L90
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 28
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 28
 
 
  1001              	.L89:
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  1044 004c 38BD     		pop	{r3, r4, r5, pc}
  1045              	.LVL93:
  1046              	.L90:
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 29
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 29
 
 
  474:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****   assert_param(IS_EXTI_CONFIG_LINE(hexti->Line));
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  1088              		@ frame_needed = 0, uses_anonymous_args = 0
  1089              		.loc 1 497 1 is_stmt 0 view .LVU301
  1090 0000 38B5     		push	{r3, r4, r5, lr}
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 30
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 30
 
 
  1091              	.LCFI12:
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  1136 003a 02F01F02 		and	r2, r2, #31
  1137              		.loc 1 506 12 view .LVU314
  1138 003e 0123     		movs	r3, #1
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 31
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 31
 
 
  1139 0040 9340     		lsls	r3, r3, r2
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  512:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c **** /**
  513:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****   * @brief  Generate a software interrupt for a dedicated line.
  514:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****   * @param  hexti Exti handle.
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 32
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 32
 
 
  515:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c ****   * @retval None.
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  1229 0034 02F01F02 		and	r2, r2, #31
  1230              		.loc 1 526 12 view .LVU333
  1231 0038 0123     		movs	r3, #1
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 33
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 33
 
 
  1232 003a 9340     		lsls	r3, r3, r2
@@ -1965,38 +1965,38 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 1
  1268              		.file 5 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
  1269              		.file 6 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h"
  1270              		.file 7 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/stm32f4xx_hal_conf.h"
-ARM GAS  C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s 			page 34
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cccJTR13.s 			page 34
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_hal_exti.c
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:20     .rodata.HAL_EXTI_SetConfigLine.str1.4:00000000 $d
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:25     .text.HAL_EXTI_SetConfigLine:00000000 $t
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:31     .text.HAL_EXTI_SetConfigLine:00000000 HAL_EXTI_SetConfigLine
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:334    .text.HAL_EXTI_SetConfigLine:0000014c $d
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:341    .text.HAL_EXTI_GetConfigLine:00000000 $t
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:347    .text.HAL_EXTI_GetConfigLine:00000000 HAL_EXTI_GetConfigLine
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:576    .text.HAL_EXTI_GetConfigLine:000000dc $d
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:583    .text.HAL_EXTI_ClearConfigLine:00000000 $t
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:589    .text.HAL_EXTI_ClearConfigLine:00000000 HAL_EXTI_ClearConfigLine
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:775    .text.HAL_EXTI_ClearConfigLine:000000b8 $d
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:782    .text.HAL_EXTI_RegisterCallback:00000000 $t
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:788    .text.HAL_EXTI_RegisterCallback:00000000 HAL_EXTI_RegisterCallback
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:821    .text.HAL_EXTI_GetHandle:00000000 $t
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:827    .text.HAL_EXTI_GetHandle:00000000 HAL_EXTI_GetHandle
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:893    .text.HAL_EXTI_GetHandle:00000040 $d
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:898    .text.HAL_EXTI_IRQHandler:00000000 $t
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:904    .text.HAL_EXTI_IRQHandler:00000000 HAL_EXTI_IRQHandler
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:958    .text.HAL_EXTI_IRQHandler:00000020 $d
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:963    .text.HAL_EXTI_GetPending:00000000 $t
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:969    .text.HAL_EXTI_GetPending:00000000 HAL_EXTI_GetPending
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:1070   .text.HAL_EXTI_GetPending:00000070 $d
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:1076   .text.HAL_EXTI_ClearPending:00000000 $t
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:1082   .text.HAL_EXTI_ClearPending:00000000 HAL_EXTI_ClearPending
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:1172   .text.HAL_EXTI_ClearPending:0000006c $d
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:1178   .text.HAL_EXTI_GenerateSWI:00000000 $t
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:1184   .text.HAL_EXTI_GenerateSWI:00000000 HAL_EXTI_GenerateSWI
-C:\Users\katre\AppData\Local\Temp\cc1T4e9R.s:1258   .text.HAL_EXTI_GenerateSWI:00000058 $d
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:20     .rodata.HAL_EXTI_SetConfigLine.str1.4:00000000 $d
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:25     .text.HAL_EXTI_SetConfigLine:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:31     .text.HAL_EXTI_SetConfigLine:00000000 HAL_EXTI_SetConfigLine
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:334    .text.HAL_EXTI_SetConfigLine:0000014c $d
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:341    .text.HAL_EXTI_GetConfigLine:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:347    .text.HAL_EXTI_GetConfigLine:00000000 HAL_EXTI_GetConfigLine
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:576    .text.HAL_EXTI_GetConfigLine:000000dc $d
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:583    .text.HAL_EXTI_ClearConfigLine:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:589    .text.HAL_EXTI_ClearConfigLine:00000000 HAL_EXTI_ClearConfigLine
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:775    .text.HAL_EXTI_ClearConfigLine:000000b8 $d
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:782    .text.HAL_EXTI_RegisterCallback:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:788    .text.HAL_EXTI_RegisterCallback:00000000 HAL_EXTI_RegisterCallback
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:821    .text.HAL_EXTI_GetHandle:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:827    .text.HAL_EXTI_GetHandle:00000000 HAL_EXTI_GetHandle
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:893    .text.HAL_EXTI_GetHandle:00000040 $d
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:898    .text.HAL_EXTI_IRQHandler:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:904    .text.HAL_EXTI_IRQHandler:00000000 HAL_EXTI_IRQHandler
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:958    .text.HAL_EXTI_IRQHandler:00000020 $d
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:963    .text.HAL_EXTI_GetPending:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:969    .text.HAL_EXTI_GetPending:00000000 HAL_EXTI_GetPending
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:1070   .text.HAL_EXTI_GetPending:00000070 $d
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:1076   .text.HAL_EXTI_ClearPending:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:1082   .text.HAL_EXTI_ClearPending:00000000 HAL_EXTI_ClearPending
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:1172   .text.HAL_EXTI_ClearPending:0000006c $d
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:1178   .text.HAL_EXTI_GenerateSWI:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:1184   .text.HAL_EXTI_GenerateSWI:00000000 HAL_EXTI_GenerateSWI
+C:\Users\katre\AppData\Local\Temp\cccJTR13.s:1258   .text.HAL_EXTI_GenerateSWI:00000058 $d
 
 UNDEFINED SYMBOLS
 assert_failed

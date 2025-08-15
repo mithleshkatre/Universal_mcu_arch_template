@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 1
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccK97hDv.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 1
   45 0010 0E28     		cmp	r0, #14
   46 0012 09D8     		bhi	.L4
   47 0014 DFE800F0 		tbb	[pc, r0]
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 2
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccK97hDv.s 			page 2
 
 
   48              	.L6:
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 1
   90              	.L8:
   14:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_8:   return RCC_SYSCLK_DIV8;
   91              		.loc 1 14 31 is_stmt 1 view .LVU9
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 3
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccK97hDv.s 			page 3
 
 
   14:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_8:   return RCC_SYSCLK_DIV8;
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 1
  133 0060 E020     		movs	r0, #224
  134              	.LVL13:
   19:PAL/Vendor/ST/Src/pal_clock.c ****         case PAL_AHB_DIV_512: return RCC_SYSCLK_DIV512;
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 4
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccK97hDv.s 			page 4
 
 
  135              		.loc 1 19 38 view .LVU23
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 1
  185              	.L18:
  186 001a 0020     		movs	r0, #0
  187 001c 7047     		bx	lr
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 5
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccK97hDv.s 			page 5
 
 
  188              	.L22:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 1
  230 0004 30B5     		push	{r4, r5, lr}
  231              	.LCFI0:
  232              		.cfi_def_cfa_offset 12
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 6
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccK97hDv.s 			page 6
 
 
  233              		.cfi_offset 4, -12
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 1
  271 002a 3422     		movs	r2, #52
  272 002c 2146     		mov	r1, r4
  273 002e 07A8     		add	r0, sp, #28
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 7
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccK97hDv.s 			page 7
 
 
  274 0030 FFF7FEFF 		bl	memset
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 1
  311              		.loc 1 70 13 is_stmt 1 view .LVU68
  312              		.loc 1 70 37 is_stmt 0 view .LVU69
  313 0060 1023     		movs	r3, #16
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 8
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccK97hDv.s 			page 8
 
 
  314 0062 0B93     		str	r3, [sp, #44]
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 1
  110:PAL/Vendor/ST/Src/pal_clock.c ****             osc.PLL.PLLState = RCC_PLL_ON;
  111:PAL/Vendor/ST/Src/pal_clock.c **** 
  112:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_PLLSOURCE_HSE) && defined(RCC_PLLSOURCE_HSI)
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 9
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccK97hDv.s 			page 9
 
 
  113:PAL/Vendor/ST/Src/pal_clock.c ****             osc.PLL.PLLSource = cfg->pll.use_hse ? RCC_PLLSOURCE_HSE : RCC_PLLSOURCE_HSI;
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 1
  153:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_CLOCKTYPE_PCLK2)
  154:PAL/Vendor/ST/Src/pal_clock.c ****     clk.APB2CLKDivider = map_apb_div(cfg->apb2_div);
  343              		.loc 1 154 5 is_stmt 1 view .LVU83
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 10
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccK97hDv.s 			page 10
 
 
  344              		.loc 1 154 26 is_stmt 0 view .LVU84
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 1
  384              	.LVL29:
   83:PAL/Vendor/ST/Src/pal_clock.c **** #if defined(RCC_SYSCLKSOURCE_HSE)
  385              		.loc 1 83 16 view .LVU97
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 11
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccK97hDv.s 			page 11
 
 
  386 00ac 30BB     		cbnz	r0, .L36
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 1
  422              		.loc 1 137 17 is_stmt 0 discriminator 4 view .LVU115
  423 00d0 07A8     		add	r0, sp, #28
  424 00d2 FFF7FEFF 		bl	HAL_RCC_OscConfig
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 12
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccK97hDv.s 			page 12
 
 
  425              	.LVL30:
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 1
  466              	.L35:
  467              	.LCFI5:
  468              		.cfi_def_cfa_offset 96
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 13
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccK97hDv.s 			page 13
 
 
  469              		.cfi_offset 4, -12
@@ -760,24 +760,24 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 1
  502              		.file 8 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
  503              		.file 9 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h"
  504              		.file 10 "<built-in>"
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccNB66xh.s 			page 14
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccK97hDv.s 			page 14
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 pal_clock.c
-C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:20     .text.map_ahb_div:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:25     .text.map_ahb_div:00000000 map_ahb_div
-C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:49     .text.map_ahb_div:00000018 $d
-C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:148    .text.map_apb_div:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:153    .text.map_apb_div:00000000 map_apb_div
-C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:169    .text.map_apb_div:0000000a $d
-C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:212    .text.pal_clock_init:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:218    .text.pal_clock_init:00000000 pal_clock_init
-C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:490    .text.pal_clock_init:00000110 $d
-C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:64     .text.map_ahb_div:00000027 $d
-C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:64     .text.map_ahb_div:00000028 $t
-C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:184    .text.map_apb_div:00000019 $d
-C:\Users\katre\AppData\Local\Temp\ccNB66xh.s:184    .text.map_apb_div:0000001a $t
+C:\Users\katre\AppData\Local\Temp\ccK97hDv.s:20     .text.map_ahb_div:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccK97hDv.s:25     .text.map_ahb_div:00000000 map_ahb_div
+C:\Users\katre\AppData\Local\Temp\ccK97hDv.s:49     .text.map_ahb_div:00000018 $d
+C:\Users\katre\AppData\Local\Temp\ccK97hDv.s:148    .text.map_apb_div:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccK97hDv.s:153    .text.map_apb_div:00000000 map_apb_div
+C:\Users\katre\AppData\Local\Temp\ccK97hDv.s:169    .text.map_apb_div:0000000a $d
+C:\Users\katre\AppData\Local\Temp\ccK97hDv.s:212    .text.pal_clock_init:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccK97hDv.s:218    .text.pal_clock_init:00000000 pal_clock_init
+C:\Users\katre\AppData\Local\Temp\ccK97hDv.s:490    .text.pal_clock_init:00000110 $d
+C:\Users\katre\AppData\Local\Temp\ccK97hDv.s:64     .text.map_ahb_div:00000027 $d
+C:\Users\katre\AppData\Local\Temp\ccK97hDv.s:64     .text.map_ahb_div:00000028 $t
+C:\Users\katre\AppData\Local\Temp\ccK97hDv.s:184    .text.map_apb_div:00000019 $d
+C:\Users\katre\AppData\Local\Temp\ccK97hDv.s:184    .text.map_apb_div:0000001a $t
 
 UNDEFINED SYMBOLS
 HAL_PWREx_ControlVoltageScaling

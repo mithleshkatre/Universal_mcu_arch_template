@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
   28:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****   * @{
   29:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****   */
   30:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c **** 
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 2
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 2
 
 
   31:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c **** /** @defgroup PWREx PWREx
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
   85:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****           key, from being accessed. The backup SRAM can be erased only through 
   86:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****           the Flash interface when a protection level change from level 1 to 
   87:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****           level 0 is requested. 
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 3
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 3
 
 
   88:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****       -@- Refer to the description of Read protection (RDP) in the Flash 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  142:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****   */
  143:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c **** HAL_StatusTypeDef HAL_PWREx_EnableBkUpReg(void)
  144:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c **** {
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 4
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 4
 
 
   29              		.loc 1 144 1 view -0
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
   70 0026 0320     		movs	r0, #3
   71 0028 00E0     		b	.L3
   72              	.L7:
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 5
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 5
 
 
  158:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****     } 
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  174:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****   tickstart = HAL_GetTick();
  113              		.loc 1 174 3 is_stmt 1 view .LVU22
  114              		.loc 1 174 15 is_stmt 0 view .LVU23
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 6
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 6
 
 
  115 000a FFF7FEFF 		bl	HAL_GetTick
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  159              		.syntax unified
  160              		.thumb
  161              		.thumb_func
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 7
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 7
 
 
  163              	HAL_PWREx_EnableFlashPowerDown:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  202 0004 5A62     		str	r2, [r3, #36]
  203:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c **** }
  203              		.loc 1 203 1 view .LVU43
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 8
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 8
 
 
  204 0006 7047     		bx	lr
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  244 0033 6C5F7077 		.ascii	"l_pwr_ex.c\000"
  244      725F6578 
  244      2E6300
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 9
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 9
 
 
  245              		.section	.text.HAL_PWREx_ControlVoltageScaling,"ax",%progbits
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  262:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****       defined(STM32F479xx) || defined(STM32F412Zx) || defined(STM32F412Vx) || defined(STM32F412Rx) 
  263:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****       defined(STM32F412Cx) || defined(STM32F413xx) || defined(STM32F423xx)
  264:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c **** /**
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 10
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 10
 
 
  265:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****   * @brief Configures the main internal regulator output voltage.
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  279 0012 B0F5804F 		cmp	r0, #16384
  280 0016 22D1     		bne	.L42
  281              	.LVL12:
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 11
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 11
 
 
  282              	.L29:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  322 0046 234B     		ldr	r3, .L46
  323 0048 1B68     		ldr	r3, [r3]
  324              		.loc 1 308 10 view .LVU69
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 12
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 12
 
 
  325 004a 13F0007F 		tst	r3, #33554432
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  368              		.loc 1 317 5 view .LVU82
  369 0082 019B     		ldr	r3, [sp, #4]
  370              	.LBE3:
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 13
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 13
 
 
  371              		.loc 1 317 5 view .LVU83
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  408 00ac 0446     		mov	r4, r0
  409              	.LVL25:
  335:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****     while((__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY) == RESET))
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 14
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 14
 
 
  410              		.loc 1 335 5 is_stmt 1 view .LVU98
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  449              	.L46:
  450 00d4 00380240 		.word	1073887232
  451 00d8 00004742 		.word	1111949312
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 15
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 15
 
 
  452 00dc 00000000 		.word	.LC0
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  392:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****   * @retval None
  393:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****   */
  394:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c **** void HAL_PWREx_DisableLowRegulatorLowVoltage(void)
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 16
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 16
 
 
  395:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c **** {
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  495 001a 019B     		ldr	r3, [sp, #4]
  496              	.LBE4:
  497              		.loc 1 419 3 view .LVU117
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 17
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 17
 
 
  420:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****   
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  443:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****     if((HAL_GetTick() - tickstart ) > PWR_OVERDRIVE_TIMEOUT_VALUE)
  444:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****     {
  445:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****       return HAL_TIMEOUT;
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 18
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 18
 
 
  446:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****     }
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  445:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****     }
  568              		.loc 1 445 14 view .LVU142
  569 0066 0320     		movs	r0, #3
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 19
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 19
 
 
  570 0068 EAE7     		b	.L50
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  608              	.LBB5:
  609              		.loc 1 466 3 view .LVU147
  610 0004 0021     		movs	r1, #0
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 20
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 20
 
 
  611 0006 0191     		str	r1, [sp, #4]
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  653 003c 0320     		movs	r0, #3
  654              	.L63:
  479:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****     }
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 21
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 21
 
 
  480:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****   } 
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  684 0056 07D0     		beq	.L71
  490:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****     {
  685              		.loc 1 490 5 is_stmt 1 view .LVU172
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 22
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 22
 
 
  490:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****     {
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  515:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****   *                    
  516:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****   * @note   In Stop mode, all I/O pins keep the same state as in Run mode.
  517:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****   *   
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 23
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 23
 
 
  518:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****   * @note   When exiting Stop mode by issuing an interrupt or a wake-up event, 
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  747              		.loc 1 544 3 is_stmt 1 view .LVU183
  748 0016 6B1E     		subs	r3, r5, #1
  749 0018 DBB2     		uxtb	r3, r3
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 24
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 24
 
 
  750 001a 012B     		cmp	r3, #1
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  790              	.LVL50:
  559:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****   
  560:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****   /* Set LPDS, MRLUDS and LPLUDS bits according to PWR_Regulator value */
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 25
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 25
 
 
  561:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c ****   tmpreg1 |= Regulator;
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  822              		.loc 1 583 3 is_stmt 1 view .LVU208
  584:Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c **** }
  823              		.loc 1 584 1 is_stmt 0 view .LVU209
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 26
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 26
 
 
  824 0070 0020     		movs	r0, #0
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  874              		.text
  875              	.Letext0:
  876              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 27
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 27
 
 
  877              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
@@ -1568,39 +1568,39 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 1
  881              		.file 7 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
  882              		.file 8 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/stm32f4xx_hal_conf.h"
  883              		.file 9 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccQg74JR.s 			page 28
+ARM GAS  C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s 			page 28
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_hal_pwr_ex.c
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:20     .text.HAL_PWREx_EnableBkUpReg:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:26     .text.HAL_PWREx_EnableBkUpReg:00000000 HAL_PWREx_EnableBkUpReg
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:83     .text.HAL_PWREx_EnableBkUpReg:00000030 $d
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:89     .text.HAL_PWREx_DisableBkUpReg:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:95     .text.HAL_PWREx_DisableBkUpReg:00000000 HAL_PWREx_DisableBkUpReg
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:151    .text.HAL_PWREx_DisableBkUpReg:00000030 $d
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:157    .text.HAL_PWREx_EnableFlashPowerDown:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:163    .text.HAL_PWREx_EnableFlashPowerDown:00000000 HAL_PWREx_EnableFlashPowerDown
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:180    .text.HAL_PWREx_EnableFlashPowerDown:00000008 $d
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:185    .text.HAL_PWREx_DisableFlashPowerDown:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:191    .text.HAL_PWREx_DisableFlashPowerDown:00000000 HAL_PWREx_DisableFlashPowerDown
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:208    .text.HAL_PWREx_DisableFlashPowerDown:00000008 $d
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:213    .text.HAL_PWREx_GetVoltageRange:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:219    .text.HAL_PWREx_GetVoltageRange:00000000 HAL_PWREx_GetVoltageRange
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:236    .text.HAL_PWREx_GetVoltageRange:0000000c $d
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:241    .rodata.HAL_PWREx_ControlVoltageScaling.str1.4:00000000 $d
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:246    .text.HAL_PWREx_ControlVoltageScaling:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:252    .text.HAL_PWREx_ControlVoltageScaling:00000000 HAL_PWREx_ControlVoltageScaling
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:450    .text.HAL_PWREx_ControlVoltageScaling:000000d4 $d
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:458    .text.HAL_PWREx_EnableOverDrive:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:464    .text.HAL_PWREx_EnableOverDrive:00000000 HAL_PWREx_EnableOverDrive
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:578    .text.HAL_PWREx_EnableOverDrive:00000070 $d
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:585    .text.HAL_PWREx_DisableOverDrive:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:591    .text.HAL_PWREx_DisableOverDrive:00000000 HAL_PWREx_DisableOverDrive
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:704    .text.HAL_PWREx_DisableOverDrive:0000006c $d
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:711    .text.HAL_PWREx_EnterUnderDriveSTOPMode:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:717    .text.HAL_PWREx_EnterUnderDriveSTOPMode:00000000 HAL_PWREx_EnterUnderDriveSTOPMode
-C:\Users\katre\AppData\Local\Temp\ccQg74JR.s:867    .text.HAL_PWREx_EnterUnderDriveSTOPMode:00000094 $d
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:20     .text.HAL_PWREx_EnableBkUpReg:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:26     .text.HAL_PWREx_EnableBkUpReg:00000000 HAL_PWREx_EnableBkUpReg
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:83     .text.HAL_PWREx_EnableBkUpReg:00000030 $d
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:89     .text.HAL_PWREx_DisableBkUpReg:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:95     .text.HAL_PWREx_DisableBkUpReg:00000000 HAL_PWREx_DisableBkUpReg
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:151    .text.HAL_PWREx_DisableBkUpReg:00000030 $d
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:157    .text.HAL_PWREx_EnableFlashPowerDown:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:163    .text.HAL_PWREx_EnableFlashPowerDown:00000000 HAL_PWREx_EnableFlashPowerDown
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:180    .text.HAL_PWREx_EnableFlashPowerDown:00000008 $d
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:185    .text.HAL_PWREx_DisableFlashPowerDown:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:191    .text.HAL_PWREx_DisableFlashPowerDown:00000000 HAL_PWREx_DisableFlashPowerDown
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:208    .text.HAL_PWREx_DisableFlashPowerDown:00000008 $d
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:213    .text.HAL_PWREx_GetVoltageRange:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:219    .text.HAL_PWREx_GetVoltageRange:00000000 HAL_PWREx_GetVoltageRange
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:236    .text.HAL_PWREx_GetVoltageRange:0000000c $d
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:241    .rodata.HAL_PWREx_ControlVoltageScaling.str1.4:00000000 $d
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:246    .text.HAL_PWREx_ControlVoltageScaling:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:252    .text.HAL_PWREx_ControlVoltageScaling:00000000 HAL_PWREx_ControlVoltageScaling
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:450    .text.HAL_PWREx_ControlVoltageScaling:000000d4 $d
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:458    .text.HAL_PWREx_EnableOverDrive:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:464    .text.HAL_PWREx_EnableOverDrive:00000000 HAL_PWREx_EnableOverDrive
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:578    .text.HAL_PWREx_EnableOverDrive:00000070 $d
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:585    .text.HAL_PWREx_DisableOverDrive:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:591    .text.HAL_PWREx_DisableOverDrive:00000000 HAL_PWREx_DisableOverDrive
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:704    .text.HAL_PWREx_DisableOverDrive:0000006c $d
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:711    .text.HAL_PWREx_EnterUnderDriveSTOPMode:00000000 $t
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:717    .text.HAL_PWREx_EnterUnderDriveSTOPMode:00000000 HAL_PWREx_EnterUnderDriveSTOPMode
+C:\Users\katre\AppData\Local\Temp\ccnrBbi1.s:867    .text.HAL_PWREx_EnterUnderDriveSTOPMode:00000094 $d
 
 UNDEFINED SYMBOLS
 HAL_GetTick

@@ -1,10 +1,13 @@
 #include "main.h"
 #include "pal_clock.h"
-#include "pal_gpio.h"
+#include "pal_gpio.hpp"
 #include "pal_board.h"
 
+
+using namespace pal;
 static void SystemClock_Config(void);
-pal_gpio_t LED = { .port = 0, .pin = 5 }; // GPIOA pin 5
+// pal_gpio_t LED = { .port = 0, .pin = 5 }; // GPIOA pin 5
+ Gpio led(0, 5); // Port A, Pin 5
 
 /**
   * @brief  The application entry point.
@@ -19,14 +22,18 @@ int main(void)
   /* Configure the system clock */
   SystemClock_Config();
 
-  pal_gpio_config(LED, PAL_GPIO_OUTPUT, PAL_GPIO_NOPULL, PAL_GPIO_SPEED_VERY_HIGH, 0);
+  // pal_gpio_config(LED, PAL_GPIO_OUTPUT, PAL_GPIO_NOPULL, PAL_GPIO_SPEED_VERY_HIGH, 0);
+ 
+  led.config(Gpio::Mode::Output, Gpio::Pull::NoPull, Gpio::Speed::High);
 
   while (1)
   {
-        pal_gpio_write(LED, 1);
-        pal_delay(200); // 100 ms delay
-        pal_gpio_write(LED, 0);
-        pal_delay(200);
+        // pal_gpio_write(LED, 1);
+        led.write(true);
+        pal_delay(1000); // 100 ms delay
+        // pal_gpio_write(LED, 0);
+        led.write(false);
+        pal_delay(1000);
 
   }
 
