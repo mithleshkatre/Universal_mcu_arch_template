@@ -17,8 +17,8 @@ CPU         = -mcpu=cortex-m4
 FPU         = -mfpu=fpv4-sp-d16
 FLOAT_ABI   = -mfloat-abi=hard
 C_DEFS      = -DUSE_HAL_DRIVER -DSTM32F446xx
-LDSCRIPT    = Vendor_HAL/ST/Configs/stm32f446retx_flash.ld
-ASM_SOURCES = Vendor_HAL/ST/Configs/startup_stm32f446xx.s
+LDSCRIPT    = Vendor_HAL/ST/STM32F4xx_HAL_Driver/stm32f4_flash.ld
+ASM_SOURCES = Vendor_HAL/ST/STM32F4xx_HAL_Driver/startup_stm32f4.s
 endif
 
 ifeq ($(MCU_FAMILY),F7)
@@ -80,6 +80,13 @@ CXXFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 #######################################
 C_SOURCES = \
 App/Src/stm32f4xx_it.c \
+Vendor_HAL/ST/Configs/stm32_hal_msp.c \
+App/Src/sysmem.c \
+APP/Src/syscalls.c 
+
+ifeq ($(MCU_FAMILY),F4)
+C_SOURCES += \
+CMSIS/Vendor_Device/ST/STM32F4xx/Source/system_stm32f4xx.c \
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c \
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c \
@@ -92,11 +99,9 @@ Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c \
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c \
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
-Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
-Vendor_HAL/ST/Configs/stm32f4xx_hal_msp.c \
-CMSIS/Vendor_Device/ST/STM32F4xx/Source/system_stm32f4xx.c \
-App/Src/sysmem.c \
-APP/Src/syscalls.c 
+Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c 
+endif
+
 
 CPP_SOURCES = \
 App/Src/main.cpp \
@@ -111,14 +116,17 @@ ASMM_SOURCES =
 #######################################
 C_INCLUDES = \
 -IApp/Inc \
--IVendor_HAL/ST/STM32F4xx_HAL_Driver/Inc \
--IVendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/Legacy \
--IVendor_HAL/ST/STM32F4xx_HAL_Driver \
 -IVendor_HAL/ST/Configs \
 -ICMSIS/Vendor_Device/ST/STM32F4xx/Include \
 -ICMSIS/Core/Include \
 -IPAL/Vendor/common/Inc
 
+ifeq ($(MCU_FAMILY),F4)
+C_INCLUDES += \
+-IVendor_HAL/ST/STM32F4xx_HAL_Driver/Inc \
+-IVendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/Legacy \
+-IVendor_HAL/ST/STM32F4xx_HAL_Driver 
+endif
 #######################################
 # Linker
 #######################################

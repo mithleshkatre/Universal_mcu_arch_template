@@ -1,7 +1,7 @@
 Output/main.o: App/Src/main.cpp App/Inc/main.h \
  PAL/Vendor/common/Inc/pal_clock.hpp \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
- Vendor_HAL/ST/Configs/stm32f4xx_hal_conf.h \
+ Vendor_HAL/ST/Configs/stm32_hal_conf.h \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
  CMSIS/Vendor_Device/ST/STM32F4xx/Include/stm32f4xx.h \
@@ -27,7 +27,7 @@ Output/main.o: App/Src/main.cpp App/Inc/main.h \
 App/Inc/main.h:
 PAL/Vendor/common/Inc/pal_clock.hpp:
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
-Vendor_HAL/ST/Configs/stm32f4xx_hal_conf.h:
+Vendor_HAL/ST/Configs/stm32_hal_conf.h:
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:
 CMSIS/Vendor_Device/ST/STM32F4xx/Include/stm32f4xx.h:

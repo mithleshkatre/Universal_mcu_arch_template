@@ -1,6 +1,6 @@
-Output/stm32f4xx_hal_msp.o: Vendor_HAL/ST/Configs/stm32f4xx_hal_msp.c \
+Output/stm32_hal_msp.o: Vendor_HAL/ST/Configs/stm32_hal_msp.c \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
- Vendor_HAL/ST/Configs/stm32f4xx_hal_conf.h \
+ Vendor_HAL/ST/Configs/stm32_hal_conf.h \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
  CMSIS/Vendor_Device/ST/STM32F4xx/Include/stm32f4xx.h \
@@ -23,7 +23,7 @@ Output/stm32f4xx_hal_msp.o: Vendor_HAL/ST/Configs/stm32f4xx_hal_msp.c \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
-Vendor_HAL/ST/Configs/stm32f4xx_hal_conf.h:
+Vendor_HAL/ST/Configs/stm32_hal_conf.h:
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:
 CMSIS/Vendor_Device/ST/STM32F4xx/Include/stm32f4xx.h:

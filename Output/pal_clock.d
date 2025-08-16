@@ -1,7 +1,7 @@
 Output/pal_clock.o: PAL/Vendor/ST/Src/pal_clock.cpp \
- PAL/Vendor/common/Inc/Pal_clock.hpp \
+ PAL/Vendor/common/Inc/pal_clock.hpp \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
- Vendor_HAL/ST/Configs/stm32f4xx_hal_conf.h \
+ Vendor_HAL/ST/Configs/stm32_hal_conf.h \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
  CMSIS/Vendor_Device/ST/STM32F4xx/Include/stm32f4xx.h \
@@ -23,9 +23,9 @@ Output/pal_clock.o: PAL/Vendor/ST/Src/pal_clock.cpp \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
-PAL/Vendor/common/Inc/Pal_clock.hpp:
+PAL/Vendor/common/Inc/pal_clock.hpp:
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
-Vendor_HAL/ST/Configs/stm32f4xx_hal_conf.h:
+Vendor_HAL/ST/Configs/stm32_hal_conf.h:
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:
 CMSIS/Vendor_Device/ST/STM32F4xx/Include/stm32f4xx.h:

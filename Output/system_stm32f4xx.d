@@ -7,7 +7,7 @@ Output/system_stm32f4xx.o: \
  CMSIS/Core/Include/mpu_armv7.h \
  CMSIS/Vendor_Device/ST/STM32F4xx/Include/system_stm32f4xx.h \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
- Vendor_HAL/ST/Configs/stm32f4xx_hal_conf.h \
+ Vendor_HAL/ST/Configs/stm32_hal_conf.h \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
@@ -32,7 +32,7 @@ CMSIS/Core/Include/cmsis_gcc.h:
 CMSIS/Core/Include/mpu_armv7.h:
 CMSIS/Vendor_Device/ST/STM32F4xx/Include/system_stm32f4xx.h:
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
-Vendor_HAL/ST/Configs/stm32f4xx_hal_conf.h:
+Vendor_HAL/ST/Configs/stm32_hal_conf.h:
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h:
