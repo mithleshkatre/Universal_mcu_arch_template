@@ -2,40 +2,40 @@
 # Enhanced Makefile for STM32 all family support
 ##########################################################################################################################
 
-TARGET = Bootloader
+TARGET = final
 DEBUG = 1
 OPT = -Og
-BUILD_DIR = build
+BUILD_DIR = Output
 
 #######################################
-# Select MCU Family via `make MCU_FAMILY=F4`
+# Select MCU Family (default = F4)
 #######################################
-MCU_FAMILY ?= F4   # Default = F4
+MCU_FAMILY ?= F4
 
 ifeq ($(MCU_FAMILY),F4)
-CPU = -mcpu=cortex-m4
-FPU = -mfpu=fpv4-sp-d16
-FLOAT-ABI = -mfloat-abi=hard
-C_DEFS = -DUSE_HAL_DRIVER -DSTM32F446xx
-LDSCRIPT = stm32f446retx_flash.ld
-ASM_SOURCES = startup_stm32f446xx.s
+CPU         = -mcpu=cortex-m4
+FPU         = -mfpu=fpv4-sp-d16
+FLOAT_ABI   = -mfloat-abi=hard
+C_DEFS      = -DUSE_HAL_DRIVER -DSTM32F446xx
+LDSCRIPT    = Vendor_HAL/ST/Configs/stm32f446retx_flash.ld
+ASM_SOURCES = Vendor_HAL/ST/Configs/startup_stm32f446xx.s
 endif
 
 ifeq ($(MCU_FAMILY),F7)
-CPU = -mcpu=cortex-m7
-FPU = -mfpu=fpv5-sp-d16
-FLOAT-ABI = -mfloat-abi=hard
-C_DEFS = -DUSE_HAL_DRIVER -DSTM32F767xx
-LDSCRIPT = stm32f767zi_flash.ld
+CPU         = -mcpu=cortex-m7
+FPU         = -mfpu=fpv5-sp-d16
+FLOAT_ABI   = -mfloat-abi=hard
+C_DEFS      = -DUSE_HAL_DRIVER -DSTM32F767xx
+LDSCRIPT    = stm32f767zi_flash.ld
 ASM_SOURCES = startup_stm32f767xx.s
 endif
 
 ifeq ($(MCU_FAMILY),H7)
-CPU = -mcpu=cortex-m7
-FPU = -mfpu=fpv5-d16
-FLOAT-ABI = -mfloat-abi=hard
-C_DEFS = -DUSE_HAL_DRIVER -DSTM32H743xx
-LDSCRIPT = stm32h743zi_flash.ld
+CPU         = -mcpu=cortex-m7
+FPU         = -mfpu=fpv5-d16
+FLOAT_ABI   = -mfloat-abi=hard
+C_DEFS      = -DUSE_HAL_DRIVER -DSTM32H743xx
+LDSCRIPT    = stm32h743zi_flash.ld
 ASM_SOURCES = startup_stm32h743xx.s
 endif
 
@@ -74,6 +74,7 @@ endif
 CFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 CXXFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 
+
 #######################################
 # Sources
 #######################################
@@ -92,7 +93,7 @@ Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c \
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
-Vendor_HAL/ST/STM32F4xx_HAL_Driver/stm32f4xx_hal_msp.c \
+Vendor_HAL/ST/Configs/stm32f4xx_hal_msp.c \
 CMSIS/Vendor_Device/ST/STM32F4xx/Source/system_stm32f4xx.c \
 App/Src/sysmem.c \
 APP/Src/syscalls.c 
@@ -113,6 +114,7 @@ C_INCLUDES = \
 -IVendor_HAL/ST/STM32F4xx_HAL_Driver/Inc \
 -IVendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/Legacy \
 -IVendor_HAL/ST/STM32F4xx_HAL_Driver \
+-IVendor_HAL/ST/Configs \
 -ICMSIS/Vendor_Device/ST/STM32F4xx/Include \
 -ICMSIS/Core/Include \
 -IPAL/Vendor/common/Inc
@@ -164,3 +166,13 @@ clean:
 	-rm -fR $(BUILD_DIR)
 
 -include $(wildcard $(BUILD_DIR)/*.d)
+
+$(info ===== Build Configuration =====)
+$(info MCU_FAMILY = $(MCU_FAMILY))
+$(info CPU        = $(CPU))
+$(info FPU        = $(FPU))
+$(info FLOAT-ABI  = $(FLOAT-ABI))
+$(info C_DEFS     = $(C_DEFS))
+$(info LDSCRIPT   = $(LDSCRIPT))
+$(info ASM_SOURCES= $(ASM_SOURCES))
+$(info ===============================)

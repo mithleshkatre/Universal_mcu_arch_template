@@ -30,9 +30,9 @@ int main(void)
   {
 
         led.write(true);
-        pal::Board::delay(100);
+        pal::Board::delay(1000);
         led.write(false);
-        pal::Board::delay(100);
+        pal::Board::delay(1000);
 
   }
 
