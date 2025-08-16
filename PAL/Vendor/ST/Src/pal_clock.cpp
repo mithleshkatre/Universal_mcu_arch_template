@@ -1,4 +1,4 @@
-#include "Pal_clock.hpp"
+#include "pal_clock.hpp"
 
 PalClock::PalClock(const ClockConfig& cfg) : cfg_(cfg) {}
 
