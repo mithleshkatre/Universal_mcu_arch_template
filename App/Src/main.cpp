@@ -1,7 +1,7 @@
 #include "main.h"
-#include "pal_clock.h"
+#include "pal_clock.hpp"
 #include "pal_gpio.hpp"
-#include "pal_board.h"
+#include "pal_board.hpp"
 
 
 using namespace pal;
@@ -17,7 +17,7 @@ int main(void)
 {
 
   /*Board init*/
-  pal_board_init();
+   pal::Board::init();
 
   /* Configure the system clock */
   SystemClock_Config();
@@ -28,12 +28,11 @@ int main(void)
 
   while (1)
   {
-        // pal_gpio_write(LED, 1);
+
         led.write(true);
-        pal_delay(1000); // 100 ms delay
-        // pal_gpio_write(LED, 0);
+        pal::Board::delay(100);
         led.write(false);
-        pal_delay(1000);
+        pal::Board::delay(100);
 
   }
 
@@ -45,31 +44,17 @@ int main(void)
   */
 static void SystemClock_Config(void)
 {
-    pal_clock_cfg_t c = {
-        .source         = PAL_CLK_SRC_HSI,
-        .ahb_div        = PAL_AHB_DIV_1,
-        .apb1_div       = PAL_APB_DIV_1,
-        .apb2_div       = PAL_APB_DIV_1,
-        .flash_latency  = 0  /* 16 MHz -> latency 0 on most families; adjust if needed */
-    };
-    //     pal_clock_cfg_t c = {
-    //     .source   = PAL_CLK_SRC_PLL,
-    //     .pll = {
-    //         .use_hse = 1,
-    //         .hse_hz  = 8000000u,
-    //         .m = 8,
-    //         .n = 336,
-    //         .p = 4,
-    //         .q = 7,   /* USB 48 MHz (336/7=48) on F4 */
-    //         .r = 0
-    //     },
-    //     .ahb_div       = PAL_AHB_DIV_1,
-    //     .apb1_div      = PAL_APB_DIV_2,  /* APB1 max 42 MHz on F4 */
-    //     .apb2_div      = PAL_APB_DIV_1,
-    //     .flash_latency = 0x00000002U /* 84 MHz on F4 typically needs 2 WS; check your datasheet */
-    // };
-    if (pal_clock_init(&c) != 0) {
-        Error_Handler();
+    ClockConfig cfg;
+    cfg.source = ClockSource::HSE;
+    cfg.ahb_div = AhbDiv::DIV_1;
+    cfg.apb1_div = ApbDiv::DIV_1;
+    cfg.apb2_div = ApbDiv::DIV_1;
+    cfg.flash_latency = 0;
+
+    PalClock clock(cfg);
+    if (!clock.init()) {
+        // handle error
+        while (1);
     }
 }
 

@@ -1,5 +1,5 @@
-build/pal_board.o: PAL/Vendor/ST/Src/pal_board.c \
- PAL/Vendor/common/Inc/pal_board.h \
+build/pal_board.o: PAL/Vendor/ST/Src/pal_board.cpp \
+ PAL/Vendor/common/Inc/pal_board.hpp \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/stm32f4xx_hal_conf.h \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -23,7 +23,7 @@ build/pal_board.o: PAL/Vendor/ST/Src/pal_board.c \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
  Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
-PAL/Vendor/common/Inc/pal_board.h:
+PAL/Vendor/common/Inc/pal_board.hpp:
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/stm32f4xx_hal_conf.h:
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 1
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cci94Cm4.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 1
   41 0004 11D8     		bhi	.L1
   42 0006 DFE800F0 		tbb	[pc, r0]
   43              	.L4:
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 2
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cci94Cm4.s 			page 2
 
 
   44 000a 04       		.byte	(.L11-.L4)/2
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 1
   86              		.cfi_restore_state
   87              	.LBB13:
   88              	.LBB12:
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 3
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cci94Cm4.s 			page 3
 
 
   18:PAL/Vendor/ST/Src/pal_gpio.cpp ****         case 1: __HAL_RCC_GPIOB_CLK_ENABLE(); break;
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 1
  129 0060 E3E7     		b	.L1
  130              	.L8:
   20:PAL/Vendor/ST/Src/pal_gpio.cpp ****         case 4: __HAL_RCC_GPIOE_CLK_ENABLE(); break;
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 4
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cci94Cm4.s 			page 4
 
 
  131              		.loc 1 20 9 view .LVU25
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 1
  172              	.L6:
   22:PAL/Vendor/ST/Src/pal_gpio.cpp ****         case 6: __HAL_RCC_GPIOG_CLK_ENABLE(); break;
  173              		.loc 1 22 9 view .LVU39
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 5
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cci94Cm4.s 			page 5
 
 
   22:PAL/Vendor/ST/Src/pal_gpio.cpp ****         case 6: __HAL_RCC_GPIOG_CLK_ENABLE(); break;
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 1
   24:PAL/Vendor/ST/Src/pal_gpio.cpp ****         default: break;
  215              		.loc 1 24 9 view .LVU53
   24:PAL/Vendor/ST/Src/pal_gpio.cpp ****         default: break;
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 6
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cci94Cm4.s 			page 6
 
 
  216              		.loc 1 24 17 view .LVU54
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 1
  264              	.LBE14:
   31:PAL/Vendor/ST/Src/pal_gpio.cpp **** {
   32:PAL/Vendor/ST/Src/pal_gpio.cpp **** }
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 7
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cci94Cm4.s 			page 7
 
 
  265              		.loc 1 32 1 view .LVU63
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 1
   44:PAL/Vendor/ST/Src/pal_gpio.cpp ****     switch (mode)
   45:PAL/Vendor/ST/Src/pal_gpio.cpp ****     {
   46:PAL/Vendor/ST/Src/pal_gpio.cpp ****         case Mode::Output:    cfg.Mode = GPIO_MODE_OUTPUT_PP; break;
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 8
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cci94Cm4.s 			page 8
 
 
   47:PAL/Vendor/ST/Src/pal_gpio.cpp ****         case Mode::Input:     cfg.Mode = GPIO_MODE_INPUT; break;
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 1
   42:PAL/Vendor/ST/Src/pal_gpio.cpp **** 
  340              		.loc 1 42 19 view .LVU78
  341 002a 0123     		movs	r3, #1
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 9
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cci94Cm4.s 			page 9
 
 
  342 002c 9340     		lsls	r3, r3, r2
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 1
   46:PAL/Vendor/ST/Src/pal_gpio.cpp ****         case Mode::Input:     cfg.Mode = GPIO_MODE_INPUT; break;
  382              		.loc 1 46 31 view .LVU93
   46:PAL/Vendor/ST/Src/pal_gpio.cpp ****         case Mode::Input:     cfg.Mode = GPIO_MODE_INPUT; break;
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 10
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cci94Cm4.s 			page 10
 
 
  383              		.loc 1 46 40 is_stmt 0 view .LVU94
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 1
  420              	.L29:
  421              		.align	2
  422              	.L28:
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 11
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cci94Cm4.s 			page 11
 
 
  423 007c 00000000 		.word	.LANCHOR0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 1
  473              		.loc 1 70 1 discriminator 4 view .LVU123
  474 001e 08BD     		pop	{r3, pc}
  475              	.LVL13:
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 12
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cci94Cm4.s 			page 12
 
 
  476              	.L32:
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 1
  526 001a 0020     		movne	r0, #0
  527 001c 0120     		moveq	r0, #1
  528 001e 08BD     		pop	{r3, pc}
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 13
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cci94Cm4.s 			page 13
 
 
  529              	.L39:
@@ -752,30 +752,30 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 1
  560              		.file 10 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
  561              		.file 11 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
  562              		.file 12 "<built-in>"
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s 			page 14
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cci94Cm4.s 			page 14
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 pal_gpio.cpp
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:20     .text._ZN3palL15gpioClockEnableEh:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:25     .text._ZN3palL15gpioClockEnableEh:00000000 _ZN3palL15gpioClockEnableEh
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:44     .text._ZN3palL15gpioClockEnableEh:0000000a $d
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:52     .text._ZN3palL15gpioClockEnableEh:00000012 $t
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:241    .text._ZN3palL15gpioClockEnableEh:000000e4 $d
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:246    .text._ZN3pal4GpioC2Ehh:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:252    .text._ZN3pal4GpioC2Ehh:00000000 _ZN3pal4GpioC2Ehh
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:252    .text._ZN3pal4GpioC2Ehh:00000000 _ZN3pal4GpioC1Ehh
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:273    .text._ZN3pal4Gpio6configENS0_4ModeENS0_4PullENS0_5SpeedEh:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:279    .text._ZN3pal4Gpio6configENS0_4ModeENS0_4PullENS0_5SpeedEh:00000000 _ZN3pal4Gpio6configENS0_4ModeENS0_4PullENS0_5SpeedEh
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:423    .text._ZN3pal4Gpio6configENS0_4ModeENS0_4PullENS0_5SpeedEh:0000007c $d
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:428    .text._ZN3pal4Gpio5writeEb:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:434    .text._ZN3pal4Gpio5writeEb:00000000 _ZN3pal4Gpio5writeEb
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:483    .text._ZN3pal4Gpio5writeEb:00000024 $d
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:488    .text._ZNK3pal4Gpio4readEv:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:494    .text._ZNK3pal4Gpio4readEv:00000000 _ZNK3pal4Gpio4readEv
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:532    .text._ZNK3pal4Gpio4readEv:00000020 $d
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:537    .rodata._ZN3palL9portTableE:00000000 $d
-C:\Users\katre\AppData\Local\Temp\ccGBCE9a.s:541    .rodata._ZN3palL9portTableE:00000000 _ZN3palL9portTableE
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:20     .text._ZN3palL15gpioClockEnableEh:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:25     .text._ZN3palL15gpioClockEnableEh:00000000 _ZN3palL15gpioClockEnableEh
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:44     .text._ZN3palL15gpioClockEnableEh:0000000a $d
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:52     .text._ZN3palL15gpioClockEnableEh:00000012 $t
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:241    .text._ZN3palL15gpioClockEnableEh:000000e4 $d
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:246    .text._ZN3pal4GpioC2Ehh:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:252    .text._ZN3pal4GpioC2Ehh:00000000 _ZN3pal4GpioC2Ehh
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:252    .text._ZN3pal4GpioC2Ehh:00000000 _ZN3pal4GpioC1Ehh
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:273    .text._ZN3pal4Gpio6configENS0_4ModeENS0_4PullENS0_5SpeedEh:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:279    .text._ZN3pal4Gpio6configENS0_4ModeENS0_4PullENS0_5SpeedEh:00000000 _ZN3pal4Gpio6configENS0_4ModeENS0_4PullENS0_5SpeedEh
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:423    .text._ZN3pal4Gpio6configENS0_4ModeENS0_4PullENS0_5SpeedEh:0000007c $d
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:428    .text._ZN3pal4Gpio5writeEb:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:434    .text._ZN3pal4Gpio5writeEb:00000000 _ZN3pal4Gpio5writeEb
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:483    .text._ZN3pal4Gpio5writeEb:00000024 $d
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:488    .text._ZNK3pal4Gpio4readEv:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:494    .text._ZNK3pal4Gpio4readEv:00000000 _ZNK3pal4Gpio4readEv
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:532    .text._ZNK3pal4Gpio4readEv:00000020 $d
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:537    .rodata._ZN3palL9portTableE:00000000 $d
+C:\Users\katre\AppData\Local\Temp\cci94Cm4.s:541    .rodata._ZN3palL9portTableE:00000000 _ZN3palL9portTableE
 
 UNDEFINED SYMBOLS
 HAL_GPIO_Init

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s 			page 1
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cc7URf2n.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -15,25 +15,25 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s 			page 1
   12              		.eabi_attribute 30, 1
   13              		.eabi_attribute 34, 1
   14              		.eabi_attribute 18, 4
-  15              		.file	"pal_board.c"
+  15              		.file	"pal_board.cpp"
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.section	.text.pal_board_init,"ax",%progbits
+  19              		.section	.text._ZN3pal5Board4initEv,"ax",%progbits
   20              		.align	1
-  21              		.global	pal_board_init
+  21              		.global	_ZN3pal5Board4initEv
   22              		.syntax unified
   23              		.thumb
   24              		.thumb_func
-  26              	pal_board_init:
+  26              	_ZN3pal5Board4initEv:
   27              	.LFB130:
-  28              		.file 1 "PAL/Vendor/ST/Src/pal_board.c"
-   1:PAL/Vendor/ST/Src/pal_board.c **** #include"pal_board.h"
-   2:PAL/Vendor/ST/Src/pal_board.c **** #include "stm32f4xx_hal.h"
-   3:PAL/Vendor/ST/Src/pal_board.c **** 
-   4:PAL/Vendor/ST/Src/pal_board.c **** void pal_board_init(void)
-   5:PAL/Vendor/ST/Src/pal_board.c **** {
-  29              		.loc 1 5 1 view -0
+  28              		.file 1 "PAL/Vendor/ST/Src/pal_board.cpp"
+   1:PAL/Vendor/ST/Src/pal_board.cpp **** #include "pal_board.hpp"
+   2:PAL/Vendor/ST/Src/pal_board.cpp **** 
+   3:PAL/Vendor/ST/Src/pal_board.cpp **** namespace pal {
+   4:PAL/Vendor/ST/Src/pal_board.cpp **** 
+   5:PAL/Vendor/ST/Src/pal_board.cpp **** void Board::init() {
+  29              		.loc 1 5 20 view -0
   30              		.cfi_startproc
   31              		@ args = 0, pretend = 0, frame = 0
   32              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -42,110 +42,104 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s 			page 1
   35              		.cfi_def_cfa_offset 8
   36              		.cfi_offset 3, -8
   37              		.cfi_offset 14, -4
-   6:PAL/Vendor/ST/Src/pal_board.c ****   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-   7:PAL/Vendor/ST/Src/pal_board.c ****   HAL_Init();
-  38              		.loc 1 7 3 view .LVU1
-  39 0002 FFF7FEFF 		bl	HAL_Init
-  40              	.LVL0:
-   8:PAL/Vendor/ST/Src/pal_board.c **** 
-   9:PAL/Vendor/ST/Src/pal_board.c **** }
-  41              		.loc 1 9 1 is_stmt 0 view .LVU2
-  42 0006 08BD     		pop	{r3, pc}
-  43              		.cfi_endproc
-  44              	.LFE130:
-  46              		.section	.text.pal_msp_init,"ax",%progbits
-  47              		.align	1
-  48              		.global	pal_msp_init
-  49              		.syntax unified
-  50              		.thumb
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s 			page 2
+   6:PAL/Vendor/ST/Src/pal_board.cpp ****     // Reset all peripherals, init Flash interface & SysTick
+   7:PAL/Vendor/ST/Src/pal_board.cpp ****     HAL_Init();
+  38              		.loc 1 7 5 view .LVU1
+  39              		.loc 1 7 13 is_stmt 0 view .LVU2
+  40 0002 FFF7FEFF 		bl	HAL_Init
+  41              	.LVL0:
+   8:PAL/Vendor/ST/Src/pal_board.cpp **** }
+  42              		.loc 1 8 1 view .LVU3
+  43 0006 08BD     		pop	{r3, pc}
+  44              		.cfi_endproc
+  45              	.LFE130:
+  47              		.section	.text._ZN3pal5Board7mspInitEv,"ax",%progbits
+  48              		.align	1
+  49              		.global	_ZN3pal5Board7mspInitEv
+  50              		.syntax unified
+  51              		.thumb
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cc7URf2n.s 			page 2
 
 
-  51              		.thumb_func
-  53              	pal_msp_init:
-  54              	.LFB131:
-  10:PAL/Vendor/ST/Src/pal_board.c **** 
-  11:PAL/Vendor/ST/Src/pal_board.c **** void pal_msp_init(void)
-  12:PAL/Vendor/ST/Src/pal_board.c **** {
-  55              		.loc 1 12 1 is_stmt 1 view -0
-  56              		.cfi_startproc
-  57              		@ args = 0, pretend = 0, frame = 0
-  58              		@ frame_needed = 0, uses_anonymous_args = 0
-  59 0000 08B5     		push	{r3, lr}
-  60              	.LCFI1:
-  61              		.cfi_def_cfa_offset 8
-  62              		.cfi_offset 3, -8
-  63              		.cfi_offset 14, -4
-  13:PAL/Vendor/ST/Src/pal_board.c ****   HAL_MspInit();
-  64              		.loc 1 13 3 view .LVU4
-  65 0002 FFF7FEFF 		bl	HAL_MspInit
-  66              	.LVL1:
-  14:PAL/Vendor/ST/Src/pal_board.c **** }
-  67              		.loc 1 14 1 is_stmt 0 view .LVU5
-  68 0006 08BD     		pop	{r3, pc}
-  69              		.cfi_endproc
-  70              	.LFE131:
-  72              		.section	.text.pal_delay,"ax",%progbits
-  73              		.align	1
-  74              		.global	pal_delay
-  75              		.syntax unified
-  76              		.thumb
-  77              		.thumb_func
-  79              	pal_delay:
-  80              	.LVL2:
-  81              	.LFB132:
-  15:PAL/Vendor/ST/Src/pal_board.c **** 
-  16:PAL/Vendor/ST/Src/pal_board.c **** void pal_delay(uint32_t delay_ms)
-  17:PAL/Vendor/ST/Src/pal_board.c **** {
-  82              		.loc 1 17 1 is_stmt 1 view -0
-  83              		.cfi_startproc
-  84              		@ args = 0, pretend = 0, frame = 0
-  85              		@ frame_needed = 0, uses_anonymous_args = 0
-  86              		.loc 1 17 1 is_stmt 0 view .LVU7
-  87 0000 08B5     		push	{r3, lr}
-  88              	.LCFI2:
-  89              		.cfi_def_cfa_offset 8
-  90              		.cfi_offset 3, -8
-  91              		.cfi_offset 14, -4
-  18:PAL/Vendor/ST/Src/pal_board.c ****   /* Delay function using HAL library */
-  19:PAL/Vendor/ST/Src/pal_board.c ****   HAL_Delay(delay_ms);
-  92              		.loc 1 19 3 is_stmt 1 view .LVU8
-  93 0002 FFF7FEFF 		bl	HAL_Delay
-  94              	.LVL3:
-  20:PAL/Vendor/ST/Src/pal_board.c **** }
-  95              		.loc 1 20 1 is_stmt 0 view .LVU9
-  96 0006 08BD     		pop	{r3, pc}
-  97              		.cfi_endproc
-  98              	.LFE132:
- 100              		.section	.text.Error_Handler,"ax",%progbits
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s 			page 3
+  52              		.thumb_func
+  54              	_ZN3pal5Board7mspInitEv:
+  55              	.LFB131:
+   9:PAL/Vendor/ST/Src/pal_board.cpp **** 
+  10:PAL/Vendor/ST/Src/pal_board.cpp **** void Board::mspInit() {
+  56              		.loc 1 10 23 is_stmt 1 view -0
+  57              		.cfi_startproc
+  58              		@ args = 0, pretend = 0, frame = 0
+  59              		@ frame_needed = 0, uses_anonymous_args = 0
+  60 0000 08B5     		push	{r3, lr}
+  61              	.LCFI1:
+  62              		.cfi_def_cfa_offset 8
+  63              		.cfi_offset 3, -8
+  64              		.cfi_offset 14, -4
+  11:PAL/Vendor/ST/Src/pal_board.cpp ****     HAL_MspInit();
+  65              		.loc 1 11 5 view .LVU5
+  66              		.loc 1 11 16 is_stmt 0 view .LVU6
+  67 0002 FFF7FEFF 		bl	HAL_MspInit
+  68              	.LVL1:
+  12:PAL/Vendor/ST/Src/pal_board.cpp **** }
+  69              		.loc 1 12 1 view .LVU7
+  70 0006 08BD     		pop	{r3, pc}
+  71              		.cfi_endproc
+  72              	.LFE131:
+  74              		.section	.text._ZN3pal5Board5delayEm,"ax",%progbits
+  75              		.align	1
+  76              		.global	_ZN3pal5Board5delayEm
+  77              		.syntax unified
+  78              		.thumb
+  79              		.thumb_func
+  81              	_ZN3pal5Board5delayEm:
+  82              	.LVL2:
+  83              	.LFB132:
+  13:PAL/Vendor/ST/Src/pal_board.cpp **** 
+  14:PAL/Vendor/ST/Src/pal_board.cpp **** void Board::delay(uint32_t delayMs) {
+  84              		.loc 1 14 37 is_stmt 1 view -0
+  85              		.cfi_startproc
+  86              		@ args = 0, pretend = 0, frame = 0
+  87              		@ frame_needed = 0, uses_anonymous_args = 0
+  88              		.loc 1 14 37 is_stmt 0 view .LVU9
+  89 0000 08B5     		push	{r3, lr}
+  90              	.LCFI2:
+  91              		.cfi_def_cfa_offset 8
+  92              		.cfi_offset 3, -8
+  93              		.cfi_offset 14, -4
+  15:PAL/Vendor/ST/Src/pal_board.cpp ****     HAL_Delay(delayMs);
+  94              		.loc 1 15 5 is_stmt 1 view .LVU10
+  95              		.loc 1 15 14 is_stmt 0 view .LVU11
+  96 0002 FFF7FEFF 		bl	HAL_Delay
+  97              	.LVL3:
+  16:PAL/Vendor/ST/Src/pal_board.cpp **** }
+  98              		.loc 1 16 1 view .LVU12
+  99 0006 08BD     		pop	{r3, pc}
+ 100              		.cfi_endproc
+ 101              	.LFE132:
+ 103              		.section	.text._ZN3pal5Board12errorHandlerEv,"ax",%progbits
+ 104              		.align	1
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cc7URf2n.s 			page 3
 
 
- 101              		.align	1
- 102              		.global	Error_Handler
- 103              		.syntax unified
- 104              		.thumb
- 105              		.thumb_func
- 107              	Error_Handler:
- 108              	.LFB133:
-  21:PAL/Vendor/ST/Src/pal_board.c **** /**
-  22:PAL/Vendor/ST/Src/pal_board.c ****   * @brief  This function is executed in case of error occurrence.
-  23:PAL/Vendor/ST/Src/pal_board.c ****   * @retval None
-  24:PAL/Vendor/ST/Src/pal_board.c ****   */
-  25:PAL/Vendor/ST/Src/pal_board.c **** void Error_Handler(void)
-  26:PAL/Vendor/ST/Src/pal_board.c **** {
- 109              		.loc 1 26 1 is_stmt 1 view -0
- 110              		.cfi_startproc
- 111              		@ Volatile: function does not return.
- 112              		@ args = 0, pretend = 0, frame = 0
- 113              		@ frame_needed = 0, uses_anonymous_args = 0
- 114              		@ link register save eliminated.
-  27:PAL/Vendor/ST/Src/pal_board.c ****   /* User can add his own implementation to report the HAL error return state */
-  28:PAL/Vendor/ST/Src/pal_board.c ****   __disable_irq();
- 115              		.loc 1 28 3 view .LVU11
- 116              	.LBB4:
- 117              	.LBI4:
- 118              		.file 2 "CMSIS/Core/Include/cmsis_gcc.h"
+ 105              		.global	_ZN3pal5Board12errorHandlerEv
+ 106              		.syntax unified
+ 107              		.thumb
+ 108              		.thumb_func
+ 110              	_ZN3pal5Board12errorHandlerEv:
+ 111              	.LFB133:
+  17:PAL/Vendor/ST/Src/pal_board.cpp **** 
+  18:PAL/Vendor/ST/Src/pal_board.cpp **** void Board::errorHandler() {
+ 112              		.loc 1 18 28 is_stmt 1 view -0
+ 113              		.cfi_startproc
+ 114              		@ Volatile: function does not return.
+ 115              		@ args = 0, pretend = 0, frame = 0
+ 116              		@ frame_needed = 0, uses_anonymous_args = 0
+ 117              		@ link register save eliminated.
+  19:PAL/Vendor/ST/Src/pal_board.cpp ****     __disable_irq();
+ 118              		.loc 1 19 5 view .LVU14
+ 119              	.LBB4:
+ 120              	.LBI4:
+ 121              		.file 2 "CMSIS/Core/Include/cmsis_gcc.h"
    1:CMSIS/Core/Include/cmsis_gcc.h **** /**************************************************************************//**
    2:CMSIS/Core/Include/cmsis_gcc.h ****  * @file     cmsis_gcc.h
    3:CMSIS/Core/Include/cmsis_gcc.h ****  * @brief    CMSIS compiler GCC header file
@@ -178,15 +172,15 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s 			page 1
   30:CMSIS/Core/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wsign-conversion"
   31:CMSIS/Core/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wconversion"
   32:CMSIS/Core/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wunused-parameter"
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s 			page 4
-
-
   33:CMSIS/Core/Include/cmsis_gcc.h **** 
   34:CMSIS/Core/Include/cmsis_gcc.h **** /* Fallback for __has_builtin */
   35:CMSIS/Core/Include/cmsis_gcc.h **** #ifndef __has_builtin
   36:CMSIS/Core/Include/cmsis_gcc.h ****   #define __has_builtin(x) (0)
   37:CMSIS/Core/Include/cmsis_gcc.h **** #endif
   38:CMSIS/Core/Include/cmsis_gcc.h **** 
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cc7URf2n.s 			page 4
+
+
   39:CMSIS/Core/Include/cmsis_gcc.h **** /* CMSIS compiler specific defines */
   40:CMSIS/Core/Include/cmsis_gcc.h **** #ifndef   __ASM
   41:CMSIS/Core/Include/cmsis_gcc.h ****   #define __ASM                                  __asm
@@ -238,15 +232,15 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s 			page 1
   87:CMSIS/Core/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
   88:CMSIS/Core/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
   89:CMSIS/Core/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s 			page 5
-
-
   90:CMSIS/Core/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT16_READ { uint16_t v; };
   91:CMSIS/Core/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
   92:CMSIS/Core/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT16_READ(addr)          (((const struct T_UINT16_READ *)(const void *)(add
   93:CMSIS/Core/Include/cmsis_gcc.h **** #endif
   94:CMSIS/Core/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32_WRITE
   95:CMSIS/Core/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cc7URf2n.s 			page 5
+
+
   96:CMSIS/Core/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
   97:CMSIS/Core/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
   98:CMSIS/Core/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT32_WRITE { uint32_t v; };
@@ -292,91 +286,90 @@ ARM GAS  C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s 			page 1
  138:CMSIS/Core/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
  139:CMSIS/Core/Include/cmsis_gcc.h ****  */
  140:CMSIS/Core/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __disable_irq(void)
- 119              		.loc 2 140 27 view .LVU12
- 120              	.LBB5:
+ 122              		.loc 2 140 27 view .LVU15
+ 123              	.LBB5:
  141:CMSIS/Core/Include/cmsis_gcc.h **** {
  142:CMSIS/Core/Include/cmsis_gcc.h ****   __ASM volatile ("cpsid i" : : : "memory");
- 121              		.loc 2 142 3 view .LVU13
- 122              		.syntax unified
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s 			page 6
+ 124              		.loc 2 142 3 view .LVU16
+ 125              		.syntax unified
+ 126              	@ 142 "CMSIS/Core/Include/cmsis_gcc.h" 1
+ 127 0000 72B6     		cpsid i
+ 128              	@ 0 "" 2
+ 129              		.thumb
+ 130              		.syntax unified
+ 131              	.L8:
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cc7URf2n.s 			page 6
 
 
- 123              	@ 142 "CMSIS/Core/Include/cmsis_gcc.h" 1
- 124 0000 72B6     		cpsid i
- 125              	@ 0 "" 2
- 126              		.thumb
- 127              		.syntax unified
- 128              	.L8:
- 129              	.LBE5:
- 130              	.LBE4:
-  29:PAL/Vendor/ST/Src/pal_board.c ****   while (1)
- 131              		.loc 1 29 3 discriminator 1 view .LVU14
-  30:PAL/Vendor/ST/Src/pal_board.c ****   {
-  31:PAL/Vendor/ST/Src/pal_board.c ****   }
- 132              		.loc 1 31 3 discriminator 1 view .LVU15
-  29:PAL/Vendor/ST/Src/pal_board.c ****   while (1)
- 133              		.loc 1 29 9 discriminator 1 view .LVU16
- 134 0002 FEE7     		b	.L8
- 135              		.cfi_endproc
- 136              	.LFE133:
- 138              		.section	.text.assert_failed,"ax",%progbits
- 139              		.align	1
- 140              		.global	assert_failed
- 141              		.syntax unified
- 142              		.thumb
- 143              		.thumb_func
- 145              	assert_failed:
- 146              	.LVL4:
- 147              	.LFB134:
-  32:PAL/Vendor/ST/Src/pal_board.c **** 
-  33:PAL/Vendor/ST/Src/pal_board.c **** }
-  34:PAL/Vendor/ST/Src/pal_board.c **** #ifdef  USE_FULL_ASSERT
-  35:PAL/Vendor/ST/Src/pal_board.c **** /**
-  36:PAL/Vendor/ST/Src/pal_board.c ****   * @brief  Reports the name of the source file and the source line number
-  37:PAL/Vendor/ST/Src/pal_board.c ****   *         where the assert_param error has occurred.
-  38:PAL/Vendor/ST/Src/pal_board.c ****   * @param  file: pointer to the source file name
-  39:PAL/Vendor/ST/Src/pal_board.c ****   * @param  line: assert_param error line source number
-  40:PAL/Vendor/ST/Src/pal_board.c ****   * @retval None
-  41:PAL/Vendor/ST/Src/pal_board.c ****   */
-  42:PAL/Vendor/ST/Src/pal_board.c **** void assert_failed(uint8_t *file, uint32_t line)
-  43:PAL/Vendor/ST/Src/pal_board.c **** {
- 148              		.loc 1 43 1 view -0
- 149              		.cfi_startproc
- 150              		@ args = 0, pretend = 0, frame = 0
- 151              		@ frame_needed = 0, uses_anonymous_args = 0
- 152              		@ link register save eliminated.
-  44:PAL/Vendor/ST/Src/pal_board.c ****   /* USER CODE BEGIN 6 */
-  45:PAL/Vendor/ST/Src/pal_board.c ****   /* User can add his own implementation to report the file name and line number,
-  46:PAL/Vendor/ST/Src/pal_board.c ****      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-  47:PAL/Vendor/ST/Src/pal_board.c ****   /* USER CODE END 6 */
-  48:PAL/Vendor/ST/Src/pal_board.c **** }
- 153              		.loc 1 48 1 view .LVU18
- 154 0000 7047     		bx	lr
- 155              		.cfi_endproc
- 156              	.LFE134:
- 158              		.text
- 159              	.Letext0:
- 160              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 161              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s 			page 7
-
-
- 162              		.file 5 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s 			page 8
+ 132              	.LBE5:
+ 133              	.LBE4:
+  20:PAL/Vendor/ST/Src/pal_board.cpp ****     while (true) {
+ 134              		.loc 1 20 5 discriminator 1 view .LVU17
+ 135              		.loc 1 20 5 discriminator 1 view .LVU18
+ 136 0002 FEE7     		b	.L8
+ 137              		.cfi_endproc
+ 138              	.LFE133:
+ 140              		.section	.text.assert_failed,"ax",%progbits
+ 141              		.align	1
+ 142              		.global	assert_failed
+ 143              		.syntax unified
+ 144              		.thumb
+ 145              		.thumb_func
+ 147              	assert_failed:
+ 148              	.LFB134:
+  21:PAL/Vendor/ST/Src/pal_board.cpp ****         // Optionally add debug trap or LED blink here
+  22:PAL/Vendor/ST/Src/pal_board.cpp ****     }
+  23:PAL/Vendor/ST/Src/pal_board.cpp **** }
+  24:PAL/Vendor/ST/Src/pal_board.cpp **** 
+  25:PAL/Vendor/ST/Src/pal_board.cpp **** } // namespace pal
+  26:PAL/Vendor/ST/Src/pal_board.cpp **** 
+  27:PAL/Vendor/ST/Src/pal_board.cpp **** // Optional: assert_failed equivalent for debugging
+  28:PAL/Vendor/ST/Src/pal_board.cpp **** #ifdef USE_FULL_ASSERT
+  29:PAL/Vendor/ST/Src/pal_board.cpp **** extern "C" void assert_failed(uint8_t* file, uint32_t line) {
+ 149              		.loc 1 29 61 view -0
+ 150              		.cfi_startproc
+ 151              		@ Volatile: function does not return.
+ 152              		@ args = 0, pretend = 0, frame = 0
+ 153              		@ frame_needed = 0, uses_anonymous_args = 0
+ 154              		@ link register save eliminated.
+ 155              	.LVL4:
+ 156              	.L10:
+  30:PAL/Vendor/ST/Src/pal_board.cpp ****     // User can add logging here
+  31:PAL/Vendor/ST/Src/pal_board.cpp ****     (void)file;
+ 157              		.loc 1 31 5 discriminator 1 view .LVU20
+  32:PAL/Vendor/ST/Src/pal_board.cpp ****     (void)line;
+ 158              		.loc 1 32 5 discriminator 1 view .LVU21
+  33:PAL/Vendor/ST/Src/pal_board.cpp ****     while (true) {}
+ 159              		.loc 1 33 5 discriminator 1 view .LVU22
+ 160              		.loc 1 33 5 discriminator 1 view .LVU23
+ 161 0000 FEE7     		b	.L10
+ 162              		.cfi_endproc
+ 163              	.LFE134:
+ 165              		.text
+ 166              	.Letext0:
+ 167              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 168              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 169              		.file 5 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 170              		.file 6 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 171              		.file 7 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 172              		.file 8 "PAL/Vendor/common/Inc/pal_board.hpp"
+ 173              		.file 9 "Vendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 174              		.file 10 "<built-in>"
+ARM GAS  C:\Users\katre\AppData\Local\Temp\cc7URf2n.s 			page 7
 
 
 DEFINED SYMBOLS
-                            *ABS*:00000000 pal_board.c
-C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s:20     .text.pal_board_init:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s:26     .text.pal_board_init:00000000 pal_board_init
-C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s:47     .text.pal_msp_init:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s:53     .text.pal_msp_init:00000000 pal_msp_init
-C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s:73     .text.pal_delay:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s:79     .text.pal_delay:00000000 pal_delay
-C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s:101    .text.Error_Handler:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s:107    .text.Error_Handler:00000000 Error_Handler
-C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s:139    .text.assert_failed:00000000 $t
-C:\Users\katre\AppData\Local\Temp\ccqnOrWf.s:145    .text.assert_failed:00000000 assert_failed
+                            *ABS*:00000000 pal_board.cpp
+C:\Users\katre\AppData\Local\Temp\cc7URf2n.s:20     .text._ZN3pal5Board4initEv:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cc7URf2n.s:26     .text._ZN3pal5Board4initEv:00000000 _ZN3pal5Board4initEv
+C:\Users\katre\AppData\Local\Temp\cc7URf2n.s:48     .text._ZN3pal5Board7mspInitEv:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cc7URf2n.s:54     .text._ZN3pal5Board7mspInitEv:00000000 _ZN3pal5Board7mspInitEv
+C:\Users\katre\AppData\Local\Temp\cc7URf2n.s:75     .text._ZN3pal5Board5delayEm:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cc7URf2n.s:81     .text._ZN3pal5Board5delayEm:00000000 _ZN3pal5Board5delayEm
+C:\Users\katre\AppData\Local\Temp\cc7URf2n.s:104    .text._ZN3pal5Board12errorHandlerEv:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cc7URf2n.s:110    .text._ZN3pal5Board12errorHandlerEv:00000000 _ZN3pal5Board12errorHandlerEv
+C:\Users\katre\AppData\Local\Temp\cc7URf2n.s:141    .text.assert_failed:00000000 $t
+C:\Users\katre\AppData\Local\Temp\cc7URf2n.s:147    .text.assert_failed:00000000 assert_failed
 
 UNDEFINED SYMBOLS
 HAL_Init

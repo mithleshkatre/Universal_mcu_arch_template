@@ -53,13 +53,13 @@ Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
 Vendor_HAL/ST/STM32F4xx_HAL_Driver/stm32f4xx_hal_msp.c \
 CMSIS/Vendor_Device/ST/STM32F4xx/Source/system_stm32f4xx.c \
 App/Src/sysmem.c \
-APP/Src/syscalls.c \
-PAL/Vendor/ST/Src/pal_board.c \
-PAL/Vendor/ST/Src/pal_clock.c 
+APP/Src/syscalls.c 
 
 CPP_SOURCES = \
 App/Src/main.cpp \
-PAL/Vendor/ST/Src/pal_gpio.cpp
+PAL/Vendor/ST/Src/pal_gpio.cpp \
+PAL/Vendor/ST/Src/pal_board.cpp \
+PAL/Vendor/ST/Src/pal_clock.cpp 
 
 # ASM sources
 ASM_SOURCES =  \
