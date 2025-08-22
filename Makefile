@@ -17,8 +17,8 @@ CPU         = -mcpu=cortex-m4
 FPU         = -mfpu=fpv4-sp-d16
 FLOAT_ABI   = -mfloat-abi=hard
 C_DEFS      = -DUSE_HAL_DRIVER -DSTM32F446xx
-LDSCRIPT    = Vendor_HAL/ST/STM32F4xx_HAL_Driver/stm32f4_flash.ld
-ASM_SOURCES = Vendor_HAL/ST/STM32F4xx_HAL_Driver/startup_stm32f4.s
+LDSCRIPT    = HAL/ST/stm32f4/STM32F4xx_HAL_Driver/stm32f4_flash.ld
+ASM_SOURCES = HAL/ST/stm32f4/STM32F4xx_HAL_Driver/startup_stm32f4.s
 endif
 
 ifeq ($(MCU_FAMILY),F7)
@@ -80,34 +80,42 @@ CXXFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 #######################################
 C_SOURCES = \
 App/Src/stm32f4xx_it.c \
-Vendor_HAL/ST/Configs/stm32_hal_msp.c \
+HAL/ST/stm32f4/Configs/stm32_hal_msp.c \
 App/Src/sysmem.c \
 APP/Src/syscalls.c 
 
 ifeq ($(MCU_FAMILY),F4)
 C_SOURCES += \
 CMSIS/Vendor_Device/ST/STM32F4xx/Source/system_stm32f4xx.c \
-Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c \
-Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
-Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c \
-Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c \
-Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c \
-Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c \
-Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c \
-Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c \
-Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c \
-Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c \
-Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
-Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
-Vendor_HAL/ST/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c 
+HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c \
+HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
+HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c \
+HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c \
+HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c \
+HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c \
+HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c \
+HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c \
+HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c \
+HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c \
+HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
+HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
+HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
+HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c 
 endif
 
 
 CPP_SOURCES = \
 App/Src/main.cpp \
-PAL/Vendor/ST/Src/pal_gpio.cpp \
-PAL/Vendor/ST/Src/pal_board.cpp \
-PAL/Vendor/ST/Src/pal_clock.cpp
+HAL/ST/stm32f4/Configs/stm32_clock.cpp \
+HAL/ST/stm32f4/Configs/stm32_hal_init.cpp \
+HAL/ST/stm32f4/Stm32Dma.cpp \
+HAL/ST/stm32f4/Stm32Uart.cpp \
+PAL/ST/stm32f4/Stm32Pin.cpp \
+PAL/Board/HardwareInit.cpp \
+PAL/PALWrappers/DmaWrapper.cpp \
+PAL/PALWrappers/UartWrapper.cpp \
+PAL/PALWrappers/Pin.cpp
+
 
 ASMM_SOURCES = 
 
@@ -116,16 +124,20 @@ ASMM_SOURCES =
 #######################################
 C_INCLUDES = \
 -IApp/Inc \
--IVendor_HAL/ST/Configs \
 -ICMSIS/Vendor_Device/ST/STM32F4xx/Include \
 -ICMSIS/Core/Include \
--IPAL/Vendor/common/Inc
+-IHAL \
+-IHAL/ST/stm32f4/Configs \
+-IHAL/ST/stm32f4 \
+-IPAL \
+-IPAL/PALWrappers \
+
 
 ifeq ($(MCU_FAMILY),F4)
 C_INCLUDES += \
--IVendor_HAL/ST/STM32F4xx_HAL_Driver/Inc \
--IVendor_HAL/ST/STM32F4xx_HAL_Driver/Inc/Legacy \
--IVendor_HAL/ST/STM32F4xx_HAL_Driver 
+-IHAL/ST/stm32f4/STM32F4xx_HAL_Driver/Inc \
+-IHAL/ST/stm32f4/STM32F4xx_HAL_Driver/Inc/Legacy \
+-IHAL/ST/stm32f4/STM32F4xx_HAL_Driver 
 endif
 #######################################
 # Linker

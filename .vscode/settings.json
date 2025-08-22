@@ -61,6 +61,13 @@
     "stm32f4xx_hal.h": "c",
     "main.h": "c",
     "stm32f4xx_hal_conf.h": "c",
-    "stm32f4xx_hal_rcc.h": "c"
+    "stm32f4xx_hal_rcc.h": "c",
+    "cstdint": "cpp",
+    "unordered_map": "cpp",
+    "fstream": "cpp",
+    "istream": "cpp",
+    "ostream": "cpp",
+    "sstream": "cpp",
+    "memory": "cpp"
   }
 }
