@@ -5,12 +5,12 @@
 #include "Stm32F4Policy.hpp"
 using namespace stm32f4_policy_internal;
 
-class Stm32Pin : public IGpio {
+class Stm32IO : public IGpio {
 public:
-  Stm32Pin() = default;
-  void init(const PinCfg& cfg) override;
-  void set(bool high) override;
-  bool read() override;
+  Stm32IO() = default;
+  void init(const PinCfg& cfg) ;
+  void set(bool high) ;
+  bool read() ;
 private:
   PinCfg cfg_{ {Port::A,0}, PinMode::Input, PinPull::None, PinSpeed::Low, 0 };
 };

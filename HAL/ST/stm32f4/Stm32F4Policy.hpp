@@ -2,9 +2,11 @@
 
 #include "IVendorPolicy.hpp"
 #include "stm32f4xx_hal.h"
+
 namespace stm32f4_policy_internal {
   inline GPIO_TypeDef* gpioBase(Port p){
-    switch(p){ case Port::A: return GPIOA; case Port::B: return GPIOB; case Port::C: return GPIOC;
+    switch(p){ 
+      case Port::A: return GPIOA; case Port::B: return GPIOB; case Port::C: return GPIOC;
       case Port::D: return GPIOD; case Port::E: return GPIOE; case Port::F: return GPIOF; case Port::G: return GPIOG;
       default: return GPIOA;
     }
@@ -40,8 +42,14 @@ namespace stm32f4_policy_internal {
 namespace stm32f4_policy {
 class Stm32F4Policy : public IVendorPolicy {
 public:
-  void enableGpioClock(Port p) override { stm32f4_policy_internal::enableGpioClk(p); }
-  bool isValidAlt(PinID, uint8_t) override { return true; }
+  void enableGpioClock(Port p) override { 
+    stm32f4_policy_internal::enableGpioClk(p); 
+  }
+
+  bool isValidAlt(PinID, uint8_t) override { 
+    return true; 
+  }
+
   void applyPin(const PinCfg& cfg) override {
     GPIO_InitTypeDef init{};
     init.Pin = (uint16_t)(1u << cfg.id.idx);
@@ -51,8 +59,15 @@ public:
     init.Alternate = cfg.alt;
     HAL_GPIO_Init(stm32f4_policy_internal::gpioBase(cfg.id.port), &init);
   }
-  bool supportsUart(UartInst u) override { return stm32f4_policy_internal::uartBase(u) != nullptr; }
-  bool isValidUartAF(UartInst, PinID, uint8_t) override { return true; }
+
+  bool supportsUart(UartInst u) override { 
+    return stm32f4_policy_internal::uartBase(u) != nullptr; 
+  }
+
+  bool isValidUartAF(UartInst, PinID, uint8_t) override { 
+    return true; 
+  }
+
   void enableUartClock(UartInst u) override {
     switch (u) {
       case UartInst::Uart1: __HAL_RCC_USART1_CLK_ENABLE(); break;
@@ -63,12 +78,18 @@ public:
     }
   }
   void enableUartIrq(UartInst u) override {
-    if (u == UartInst::Uart2) { HAL_NVIC_SetPriority(USART2_IRQn, 5, 0); HAL_NVIC_EnableIRQ(USART2_IRQn); }
+    if (u == UartInst::Uart2) { 
+      HAL_NVIC_SetPriority(USART2_IRQn, 5, 0); 
+      HAL_NVIC_EnableIRQ(USART2_IRQn); 
+    }
   }
+
   void enableDmaForUart(UartInst) override {
     __HAL_RCC_DMA1_CLK_ENABLE();
-    HAL_NVIC_SetPriority(DMA1_Stream5_IRQn, 6, 0); HAL_NVIC_EnableIRQ(DMA1_Stream5_IRQn);
-    HAL_NVIC_SetPriority(DMA1_Stream6_IRQn, 6, 0); HAL_NVIC_EnableIRQ(DMA1_Stream6_IRQn);
+    HAL_NVIC_SetPriority(DMA1_Stream5_IRQn, 6, 0); 
+    HAL_NVIC_EnableIRQ(DMA1_Stream5_IRQn);
+    HAL_NVIC_SetPriority(DMA1_Stream6_IRQn, 6, 0); 
+    HAL_NVIC_EnableIRQ(DMA1_Stream6_IRQn);
   }
 };
 } // namespace stm32f4_policy

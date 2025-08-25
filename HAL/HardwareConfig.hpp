@@ -11,15 +11,15 @@ extern "C" {
 
 inline constexpr PinCfg kBoardPins[] = {
   {{Port::A,5}, PinMode::Output, PinPull::None, PinSpeed::Low, 0},
-  {{Port::A,2}, PinMode::Alt, PinPull::Up, PinSpeed::High, 7},
-  {{Port::A,3}, PinMode::Alt, PinPull::Up, PinSpeed::High, 7},
+  {{Port::A,2}, PinMode::Alt, PinPull::Up, PinSpeed::Med, 7},
+  {{Port::A,3}, PinMode::Alt, PinPull::Up, PinSpeed::Med, 7},
 };
 
 inline constexpr UartCfg kBoardUarts[] = {
   { UartInst::Uart2,
-    {{Port::A,2}, PinMode::Alt, PinPull::Up, PinSpeed::High, 7},
-    {{Port::A,3}, PinMode::Alt, PinPull::Up, PinSpeed::High, 7},
-    115200, StopBits::One, Parity::None, true, true }
+    {{Port::A,2}, PinMode::Alt, PinPull::Up, PinSpeed::Med, 7},
+    {{Port::A,3}, PinMode::Alt, PinPull::Up, PinSpeed::Med, 7},
+    115200, StopBits::One, Parity::None, true, false }
 };
 
 

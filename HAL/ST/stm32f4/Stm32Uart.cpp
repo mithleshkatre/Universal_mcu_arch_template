@@ -20,7 +20,7 @@ void Stm32Uart::init(const UartConfig& cfg) {
   huart_.Init.HwFlowCtl = UART_HWCONTROL_NONE;
   huart_.Init.OverSampling = UART_OVERSAMPLING_16;
   HAL_UART_Init(&huart_);
-
+#if 0
   if (txStream_) {
     htx_.Init.Channel = txChannel_;
     htx_.Init.Direction = DMA_MEMORY_TO_PERIPH;
@@ -47,38 +47,91 @@ void Stm32Uart::init(const UartConfig& cfg) {
     HAL_DMA_Init(&hrx_);
     __HAL_LINKDMA(&huart_, hdmarx, hrx_);
   }
+  #endif
 }
 
-void Stm32Uart::transmitBlocking(const uint8_t* data, size_t len) { HAL_UART_Transmit(&huart_, const_cast<uint8_t*>(data), (uint16_t)len, HAL_MAX_DELAY); }
-void Stm32Uart::receiveBlocking(uint8_t* data, size_t len) { HAL_UART_Receive(&huart_, data, (uint16_t)len, HAL_MAX_DELAY); }
+void Stm32Uart::transmitBlocking(const uint8_t* data, size_t len) { 
+  HAL_UART_Transmit(&huart_, const_cast<uint8_t*>(data), (uint16_t)len, HAL_MAX_DELAY); 
+}
 
-void Stm32Uart::transmitIT(const uint8_t* data, size_t len) { HAL_UART_Transmit_IT(&huart_, const_cast<uint8_t*>(data), (uint16_t)len); }
-void Stm32Uart::receiveIT(uint8_t* data, size_t len) { HAL_UART_Receive_IT(&huart_, data, (uint16_t)len); }
+void Stm32Uart::receiveBlocking(uint8_t* data, size_t len) { 
+  HAL_UART_Receive(&huart_, data, (uint16_t)len, HAL_MAX_DELAY); 
+}
 
-void Stm32Uart::transmitDMA(const uint8_t* data, size_t len) { HAL_UART_Transmit_DMA(&huart_, const_cast<uint8_t*>(data), (uint16_t)len); }
-void Stm32Uart::receiveDMA(uint8_t* data, size_t len) { HAL_UART_Receive_DMA(&huart_, data, (uint16_t)len); }
+void Stm32Uart::transmitIT(const uint8_t* data, size_t len) { 
+  HAL_UART_Transmit_IT(&huart_, const_cast<uint8_t*>(data), (uint16_t)len); 
+}
 
-void Stm32Uart::onRxByte(RxByteCb cb) { rxByteCb_ = std::move(cb); }
-void Stm32Uart::onRxBlock(RxBlockCb cb) { rxBlockCb_ = std::move(cb); }
-void Stm32Uart::onTxDone(TxDoneCb cb) { txDoneCb_ = std::move(cb); }
-void Stm32Uart::onError(ErrorCb cb) { errCb_ = std::move(cb); }
+void Stm32Uart::receiveIT(uint8_t* data, size_t len) { 
+    HAL_UART_Receive_IT(&huart_, data, (uint16_t)len); 
+}
+
+void Stm32Uart::transmitDMA(const uint8_t* data, size_t len) { 
+  HAL_UART_Transmit_DMA(&huart_, const_cast<uint8_t*>(data), (uint16_t)len); 
+}
+
+void Stm32Uart::receiveDMA(uint8_t* data, size_t len) { 
+  HAL_UART_Receive_DMA(&huart_, data, (uint16_t)len); 
+}
+
+void Stm32Uart::onRxByte(RxByteCb cb) { 
+  rxByteCb_ = std::move(cb); 
+}
+
+void Stm32Uart::onRxBlock(RxBlockCb cb) { 
+  rxBlockCb_ = std::move(cb); 
+}
+
+void Stm32Uart::onTxDone(TxDoneCb cb) { 
+  txDoneCb_ = std::move(cb); 
+}
+
+void Stm32Uart::onError(ErrorCb cb) { 
+  errCb_ = std::move(cb); 
+}
 
 void Stm32Uart::handleUartIrq() {
-  HAL_UART_IRQHandler(&huart_);
-  if (__HAL_UART_GET_FLAG(&huart_, UART_FLAG_RXNE) && rxByteCb_) {
-    uint8_t b = static_cast<uint8_t>(huart_.Instance->DR & 0xFF);
-    rxByteCb_(b);
-    __HAL_UART_CLEAR_FLAG(&huart_, UART_FLAG_RXNE);
+  UART_HandleTypeDef *huart = &huart_;
+  HAL_UART_IRQHandler(huart);
+  // if (__HAL_UART_GET_FLAG(&huart_, UART_FLAG_RXNE) && rxByteCb_) 
+  // {
+  //   uint8_t b = static_cast<uint8_t>(huart_.Instance->DR & 0xFF);
+  //   rxByteCb_(b);
+  //   __HAL_UART_CLEAR_FLAG(&huart_, UART_FLAG_RXNE);
+  // }
+}
+
+void Stm32Uart::handleDmaTxIrq() { 
+  HAL_DMA_IRQHandler(&htx_); 
+}
+
+void Stm32Uart::handleDmaRxIrq() { 
+  HAL_DMA_IRQHandler(&hrx_); 
+}
+
+void Stm32Uart::onHalTxCplt() { 
+  if (txDoneCb_){
+    txDoneCb_(); 
+  }
+  
+}
+
+void Stm32Uart::onHalRxHalf() { 
+  if (rxBlockCb_ && rxBuf_){ 
+  rxBlockCb_(rxBuf_, rxLen_/2); 
   }
 }
 
-void Stm32Uart::handleDmaTxIrq() { HAL_DMA_IRQHandler(&htx_); }
-void Stm32Uart::handleDmaRxIrq() { HAL_DMA_IRQHandler(&hrx_); }
-
-void Stm32Uart::onHalTxCplt() { if (txDoneCb_) txDoneCb_(); }
-void Stm32Uart::onHalRxHalf() { if (rxBlockCb_ && rxBuf_) rxBlockCb_(rxBuf_, rxLen_/2); }
-void Stm32Uart::onHalRxFull() { if (rxBlockCb_ && rxBuf_) rxBlockCb_(rxBuf_ + rxLen_/2, rxLen_/2); }
-void Stm32Uart::onHalError(uint32_t e) { if (errCb_) errCb_(e); }
+void Stm32Uart::onHalRxFull() { 
+  if (rxBlockCb_ && rxBuf_){ 
+  rxBlockCb_(rxBuf_ + rxLen_/2, rxLen_/2);
+  }
+}
+void Stm32Uart::onHalError(uint32_t e) { 
+  if (errCb_) {
+    errCb_(e); 
+  }
+}
 
 Stm32Uart* Stm32Uart::fromInstance(USART_TypeDef* i) {
   for (auto &r : registry_) if (r.inst==i) return r.self; return nullptr;

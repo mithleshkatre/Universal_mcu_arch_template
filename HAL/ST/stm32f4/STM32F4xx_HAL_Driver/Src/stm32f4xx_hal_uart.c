@@ -2347,6 +2347,7 @@ HAL_StatusTypeDef HAL_UART_AbortReceive_IT(UART_HandleTypeDef *huart)
   return HAL_OK;
 }
 
+volatile uint32_t isrflags;
 /**
   * @brief  This function handles UART interrupt request.
   * @param  huart  Pointer to a UART_HandleTypeDef structure that contains
@@ -2355,7 +2356,7 @@ HAL_StatusTypeDef HAL_UART_AbortReceive_IT(UART_HandleTypeDef *huart)
   */
 void HAL_UART_IRQHandler(UART_HandleTypeDef *huart)
 {
-  uint32_t isrflags   = READ_REG(huart->Instance->SR);
+   isrflags   = READ_REG(huart->Instance->SR);
   uint32_t cr1its     = READ_REG(huart->Instance->CR1);
   uint32_t cr3its     = READ_REG(huart->Instance->CR3);
   uint32_t errorflags = 0x00U;

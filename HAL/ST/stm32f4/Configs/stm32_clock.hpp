@@ -1,7 +1,6 @@
 #pragma once
-#include <cstdint>
 #include "stm32f4xx_hal.h"
-#include "stm32f4xx_hal_rcc.h"
+#include <cstdint>
 
 // Clock source selection
 enum class ClockSource : uint8_t {
@@ -58,8 +57,14 @@ public:
     explicit PalClock(const ClockConfig& cfg);
     bool init();   // returns true on success, false on error
 
+    uint32_t getSysClkHz() const;
+    uint32_t getHclkHz()   const;
+    uint32_t getApb1Hz()   const;
+    uint32_t getApb2Hz()   const;
+
 private:
     ClockConfig cfg_;
+    uint32_t sysclk_hz_ {0};
 
     static uint32_t mapAhbDiv(AhbDiv d);
     static uint32_t mapApbDiv(ApbDiv d);

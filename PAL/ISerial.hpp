@@ -3,10 +3,28 @@
 #include <cstddef>
 #include <functional>
 
-enum class UartMode { Polling, IRQ, DMA };
-struct UartIrqConfig { bool rx_irq{false}; bool tx_irq{false}; };
-struct UartDmaConfig { bool tx_dma{false}; bool rx_dma{false}; };
-struct UartConfig { uint32_t baud{115200}; UartMode mode{UartMode::Polling}; UartIrqConfig irq{}; UartDmaConfig dma{}; };
+enum class UartMode { 
+  Polling, 
+  IRQ, 
+  DMA 
+};
+
+struct UartIrqConfig { 
+  bool rx_irq{false}; 
+  bool tx_irq{false}; 
+};
+
+struct UartDmaConfig { 
+  bool tx_dma{false}; 
+  bool rx_dma{false}; 
+};
+
+struct UartConfig { 
+  uint32_t baud{9600}; 
+  UartMode mode{UartMode::IRQ}; 
+  UartIrqConfig irq{}; 
+  UartDmaConfig dma{}; 
+};
 
 class ISerial {
 public:

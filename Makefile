@@ -65,7 +65,7 @@ BIN = $(CP) -O binary -S
 MCU = $(CPU) -mthumb $(FPU) $(FLOAT-ABI)
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 CFLAGS += $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
-CXXFLAGS = $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -fno-exceptions -fno-rtti
+CXXFLAGS = $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -fno-exceptions -fno-rtti -std=c++17
 
 ifeq ($(DEBUG),1)
 CFLAGS += -g -gdwarf-2
@@ -79,7 +79,6 @@ CXXFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 # Sources
 #######################################
 C_SOURCES = \
-App/Src/stm32f4xx_it.c \
 HAL/ST/stm32f4/Configs/stm32_hal_msp.c \
 App/Src/sysmem.c \
 APP/Src/syscalls.c 
@@ -105,12 +104,13 @@ endif
 
 
 CPP_SOURCES = \
+App/Src/stm32f4xx_it.cpp \
 App/Src/main.cpp \
 HAL/ST/stm32f4/Configs/stm32_clock.cpp \
 HAL/ST/stm32f4/Configs/stm32_hal_init.cpp \
 HAL/ST/stm32f4/Stm32Dma.cpp \
 HAL/ST/stm32f4/Stm32Uart.cpp \
-PAL/ST/stm32f4/Stm32Pin.cpp \
+PAL/ST/stm32f4/Stm32IO.cpp \
 PAL/Board/HardwareInit.cpp \
 PAL/PALWrappers/DmaWrapper.cpp \
 PAL/PALWrappers/UartWrapper.cpp \
