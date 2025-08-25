@@ -2,14 +2,33 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Debug STM32F4 (ST-LINK + OpenOCD)",
+      "type": "cortex-debug",
+      "request": "launch",
+      "servertype": "openocd",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/Output/final.elf",
+      "device": "STM32F446RETx",
+      "configFiles": [
+        "interface/stlink.cfg",
+        "target/stm32f4x.cfg"
+      ],
+      "svdFile": "${workspaceFolder}/SVD/STM32F446.svd",
+      // "svdFile": "${workspaceFolder}/SVD/ARM_Example.svd",
+      "enableSVD": true,
+      "liveWatch": true,
+      "runToMain": true,
+      "showDevDebugOutput": "raw"
+    },
+    {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Mithlesh/STM32/2025/proj_space/Boot/Drivers/STM32F4xx_HAL_Driver/Src",
-      "program": "c:/Mithlesh/STM32/2025/proj_space/Boot/Drivers/STM32F4xx_HAL_Driver/Src/build/Debug/outDebug",
+      "cwd": "c:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/App/Src",
+      "program": "c:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/App/Src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
