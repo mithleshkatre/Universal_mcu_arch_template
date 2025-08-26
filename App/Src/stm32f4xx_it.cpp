@@ -137,3 +137,17 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
         g_uart2->handleRxCallback();
     }
 }
+
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
+    if (huart->Instance == USART2 && g_uart2) {
+        g_uart2->handleTxCallback();
+    }
+}
+
+// Optional error handler
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART2 && g_uart2) {
+        g_uart2->handleUartErrorCallback();
+    }
+}

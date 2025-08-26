@@ -20,7 +20,7 @@ void Stm32Uart::init(const UartConfig& cfg) {
   huart_.Init.HwFlowCtl = UART_HWCONTROL_NONE;
   huart_.Init.OverSampling = UART_OVERSAMPLING_16;
   HAL_UART_Init(&huart_);
-#if 0
+
   if (txStream_) {
     htx_.Init.Channel = txChannel_;
     htx_.Init.Direction = DMA_MEMORY_TO_PERIPH;
@@ -47,7 +47,7 @@ void Stm32Uart::init(const UartConfig& cfg) {
     HAL_DMA_Init(&hrx_);
     __HAL_LINKDMA(&huart_, hdmarx, hrx_);
   }
-  #endif
+  
 }
 
 void Stm32Uart::transmitBlocking(const uint8_t* data, size_t len) { 
@@ -91,24 +91,29 @@ void Stm32Uart::onError(ErrorCb cb) {
 }
 
 void Stm32Uart::handleUartIrq() {
-  // UART_HandleTypeDef *huart = &huart_;
   if(huart_.Instance == USART2)
   {
     HAL_UART_IRQHandler(&huart_);
-  }
- 
-  // if (__HAL_UART_GET_FLAG(&huart_, UART_FLAG_RXNE) && rxByteCb_) 
-  // {
-  //   uint8_t b = static_cast<uint8_t>(huart_.Instance->DR & 0xFF);
-  //   rxByteCb_(b);
-  //   __HAL_UART_CLEAR_FLAG(&huart_, UART_FLAG_RXNE);
-  // }
+  } 
+
 }
 
 void Stm32Uart:: handleRxCallback(){
   if (rxByteCb_) {
     uint8_t b = static_cast<uint8_t>(huart_.Instance->DR & 0xFF);
     rxByteCb_(b);   // Call your application lambda
+  }
+}
+
+void Stm32Uart:: handleTxCallback(){
+  if (txDoneCb_) {
+    txDoneCb_();   // Call your application lambda
+  }
+}
+
+void Stm32Uart:: handleUartErrorCallback(){
+  if (errCb_) {
+    errCb_();   // Call your application lambda
   }
 }
 
@@ -138,9 +143,9 @@ void Stm32Uart::onHalRxFull() {
   rxBlockCb_(rxBuf_ + rxLen_/2, rxLen_/2);
   }
 }
-void Stm32Uart::onHalError(uint32_t e) { 
+void Stm32Uart::onHalError() { 
   if (errCb_) {
-    errCb_(e); 
+    errCb_(); 
   }
 }
 

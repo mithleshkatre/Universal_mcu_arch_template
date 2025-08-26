@@ -31,7 +31,7 @@ public:
   using RxByteCb = std::function<void(uint8_t)>;
   using RxBlockCb = std::function<void(const uint8_t*, size_t)>;
   using TxDoneCb = std::function<void()>;
-  using ErrorCb  = std::function<void(uint32_t)>;
+  using ErrorCb  = std::function<void()>;
   virtual ~ISerial() = default;
 
   virtual void init(const UartConfig& cfg) = 0;

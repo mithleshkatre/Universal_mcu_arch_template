@@ -31,6 +31,16 @@ inline bool uartSendBlocking(UartInst inst, const uint8_t* d, size_t l)
     return false;
 }
 
+inline bool uartSendIT(UartInst inst, const uint8_t* d, size_t l)
+{
+  if (auto* u = Hardware_GetUartWrapper(inst))
+  { 
+    u->sendIT(d,l);
+    return true; 
+  } 
+    return false;
+}
+
 inline bool uartReceiveBlocking(UartInst inst,  uint8_t* d, size_t l)
 {
   if (auto* u = Hardware_GetUartWrapper(inst))
@@ -61,13 +71,41 @@ inline bool setRXByteCb(UartInst inst, UartWrapper::RxByteCb cb)
     return false;
 }
 
+inline bool setTXDoneCb(UartInst inst, UartWrapper::TxDoneCb cb)
+{
+  if (auto* u = Hardware_GetUartWrapper(inst))
+  { 
+    u->setTxDoneCb(cb);
+    return true; 
+  } 
+    return false;
+}
 
+inline bool setUartErrorCb(UartInst inst, UartWrapper::ErrorCb cb)
+{
+  if (auto* u = Hardware_GetUartWrapper(inst))
+  { 
+    u->setErrorCb(cb);
+    return true; 
+  } 
+    return false;
+}
 
 inline bool uartSendDma(UartInst inst, const uint8_t* d, size_t l)
 {
   if (auto* u = Hardware_GetUartWrapper(inst))
   { 
     u->sendDma(d,l);
+    return false;
+  }
+    return false;
+}
+
+inline bool uartRecvDma(UartInst inst,  uint8_t* d, size_t l)
+{
+  if (auto* u = Hardware_GetUartWrapper(inst))
+  { 
+    u->recvDma(d,l);
     return false;
   }
     return false;

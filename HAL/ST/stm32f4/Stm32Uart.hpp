@@ -40,12 +40,14 @@ public:
 
   //STM32 callback handlers
   void handleRxCallback();
+  void handleTxCallback();
+  void handleUartErrorCallback();
 
   // HAL event hooks called from C callbacks
   void onHalTxCplt();
   void onHalRxHalf();
   void onHalRxFull();
-  void onHalError(uint32_t e);
+  void onHalError();
 
   static Stm32Uart* fromInstance(USART_TypeDef* i);
   static Stm32Uart* fromDma(DMA_Stream_TypeDef* s);

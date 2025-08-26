@@ -5,6 +5,10 @@
 #include <cstring>
 #include <cstdio>
 #include <cstdarg>
+extern "C" {
+  #include <string.h>
+  #include <stdio.h>
+}
 
 #include"Pin.hpp"
 #include"Stm32IO.hpp"
@@ -15,6 +19,7 @@
 static void SystemClock_Config(void);
 void uartPrintf(const char* fmt, ...); 
 void onUartByte(uint8_t byte) ;
+void onUartTxByte(void) ;
 
 UART_HandleTypeDef huart2;
 // Message to send to PC
@@ -25,10 +30,15 @@ uint32_t hclk ;
 uint32_t apb1;
 uint32_t apb2;
 
+#define RX_BUFFER_SIZE 64
 uint8_t rxData;          // single byte buffer
-char rxBuffer[100];      // string buffer
-uint8_t rxIndex = 0;
+char rxBuffer[RX_BUFFER_SIZE];   // DMA receive buffer
+uint8_t txBuffer[RX_BUFFER_SIZE];   // DMA transmit buffer
+volatile uint16_t rxIndex = 0;      // current position in buffer
+uint8_t rxByte;                     // temp byte
 stm32f4_policy::Stm32F4Policy policy;
+
+PinID led{Port::A,5};
 
 
 
@@ -84,40 +94,35 @@ int main(void)
 #endif
 
   PAL::initAll();
-
-  PinID led{Port::A,5};
   PAL::pinSet(led, false);
 
-//   const char msg[] = "Hello from STM32!\r\n";
-char buffer[100];
-int len = snprintf(buffer, sizeof(buffer),
-                   "CPU=%lu, HCLK=%lu, APB1=%lu, APB2=%lu\r\n",
-                   cpu, hclk, apb1, apb2);
+  char buffer[100];
+  int len = snprintf(buffer, sizeof(buffer),
+                    "CPU=%lu, HCLK=%lu, APB1=%lu, APB2=%lu\r\n",
+                    cpu, hclk, apb1, apb2);
 
-uartPrintf("System initialized.\r\n");
-uartPrintf("Frequencies: CPU=%lu, HCLK=%lu, APB1=%lu, APB2=%lu\r\n", cpu, hclk, apb1, apb2);
+  uartPrintf("System initialized.\r\n");
+  uartPrintf("Frequencies: CPU=%lu, HCLK=%lu, APB1=%lu, APB2=%lu\r\n", cpu, hclk, apb1, apb2);
 
 
-PAL::setRXByteCb(UartInst::Uart2,onUartByte);
-PAL::uartReceiveIT(UartInst::Uart2,  &rxData, 1);
+  PAL::setRXByteCb(UartInst::Uart2,onUartByte);
+  PAL::setTXDoneCb(UartInst::Uart2,onUartTxByte);
+  PAL::uartReceiveIT(UartInst::Uart2,  &rxData, 1);
  
 while (1)
-{
+  {
 
-    PAL::pinSet(led, true);
-    Board::delay(500);
-    PAL::pinSet(led, false);
-    Board::delay(500);
 
+  }
 }
-}
-
 // Application-level callback
 void onUartByte(uint8_t byte) {
     if (byte == '\r' || byte == '\n' || rxIndex >= sizeof(rxBuffer) - 1) {
         rxBuffer[rxIndex] = '\0';   // null-terminate the string
 
-        uartPrintf("Received: %s\r\n", rxBuffer);  // print received line
+        // uartPrintf("Received: %s\r\n", rxBuffer);  // print received line
+        PAL::uartSendIT(UartInst::Uart2, reinterpret_cast<const uint8_t*>(rxBuffer),
+                          strlen(rxBuffer));
 
         rxIndex = 0;  // reset for next line
     } else {
@@ -128,6 +133,12 @@ void onUartByte(uint8_t byte) {
     PAL::uartReceiveIT(UartInst::Uart2, &rxData, 1);
 }
 
+
+void onUartTxByte(void) {
+
+    PAL::pinSet(led, true);
+    uartPrintf("\r\nTransmission complete.\r\n");
+}
 
 // ---------- Single helper function ----------
 void uartPrintf(const char* fmt, ...) {
@@ -172,13 +183,6 @@ static void SystemClock_Config(void)
     hclk = clock.getHclkHz();
     apb1 = clock.getApb1Hz();
     apb2 = clock.getApb2Hz();
-
-    // Debug: print frequencies (replace with UART printf or debugger)
-    printf("SYSCLK: %lu Hz\n", cpu);
-    printf("HCLK:   %lu Hz\n", hclk);
-    printf("APB1:   %lu Hz\n", apb1);
-    printf("APB2:   %lu Hz\n", apb2);
-
    
 }
 
