@@ -38,6 +38,9 @@ public:
   void handleDmaTxIrq();
   void handleDmaRxIrq();
 
+  //STM32 callback handlers
+  void handleRxCallback();
+
   // HAL event hooks called from C callbacks
   void onHalTxCplt();
   void onHalRxHalf();

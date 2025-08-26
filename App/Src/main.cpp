@@ -14,6 +14,7 @@
 
 static void SystemClock_Config(void);
 void uartPrintf(const char* fmt, ...); 
+void onUartByte(uint8_t byte) ;
 
 UART_HandleTypeDef huart2;
 // Message to send to PC
@@ -97,7 +98,7 @@ uartPrintf("System initialized.\r\n");
 uartPrintf("Frequencies: CPU=%lu, HCLK=%lu, APB1=%lu, APB2=%lu\r\n", cpu, hclk, apb1, apb2);
 
 
-
+PAL::setRXByteCb(UartInst::Uart2,onUartByte);
 PAL::uartReceiveIT(UartInst::Uart2,  &rxData, 1);
  
 while (1)
@@ -111,22 +112,20 @@ while (1)
 }
 }
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
+// Application-level callback
+void onUartByte(uint8_t byte) {
+    if (byte == '\r' || byte == '\n' || rxIndex >= sizeof(rxBuffer) - 1) {
+        rxBuffer[rxIndex] = '\0';   // null-terminate the string
 
-  if(rxData == '\r' || rxData == '\n' || rxIndex >= sizeof(rxBuffer)-1)
-  {
-      rxBuffer[rxIndex] = '\0'; // null-terminate the string
-      uartPrintf("Received: %s\r\n", rxBuffer);
-      rxIndex = 0; // reset index for next message
-  }
-  else
-  {
-      rxBuffer[rxIndex++] = rxData; // store received byte and increment index
-  }
+        uartPrintf("Received: %s\r\n", rxBuffer);  // print received line
 
-  PAL::uartReceiveIT(UartInst::Uart2,  &rxData, 1);
- 
+        rxIndex = 0;  // reset for next line
+    } else {
+        rxBuffer[rxIndex++] = byte; // store received byte
+    }
+
+    // Re-arm reception for next byte
+    PAL::uartReceiveIT(UartInst::Uart2, &rxData, 1);
 }
 
 

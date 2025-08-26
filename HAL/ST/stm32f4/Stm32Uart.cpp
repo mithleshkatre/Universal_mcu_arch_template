@@ -91,14 +91,25 @@ void Stm32Uart::onError(ErrorCb cb) {
 }
 
 void Stm32Uart::handleUartIrq() {
-  UART_HandleTypeDef *huart = &huart_;
-  HAL_UART_IRQHandler(huart);
+  // UART_HandleTypeDef *huart = &huart_;
+  if(huart_.Instance == USART2)
+  {
+    HAL_UART_IRQHandler(&huart_);
+  }
+ 
   // if (__HAL_UART_GET_FLAG(&huart_, UART_FLAG_RXNE) && rxByteCb_) 
   // {
   //   uint8_t b = static_cast<uint8_t>(huart_.Instance->DR & 0xFF);
   //   rxByteCb_(b);
   //   __HAL_UART_CLEAR_FLAG(&huart_, UART_FLAG_RXNE);
   // }
+}
+
+void Stm32Uart:: handleRxCallback(){
+  if (rxByteCb_) {
+    uint8_t b = static_cast<uint8_t>(huart_.Instance->DR & 0xFF);
+    rxByteCb_(b);   // Call your application lambda
+  }
 }
 
 void Stm32Uart::handleDmaTxIrq() { 

@@ -51,6 +51,18 @@ inline bool uartReceiveIT(UartInst inst,  uint8_t* d, size_t l)
     return false;
 }
 
+inline bool setRXByteCb(UartInst inst, UartWrapper::RxByteCb cb)
+{
+  if (auto* u = Hardware_GetUartWrapper(inst))
+  { 
+    u->setRxByteCb(cb);
+    return true; 
+  } 
+    return false;
+}
+
+
+
 inline bool uartSendDma(UartInst inst, const uint8_t* d, size_t l)
 {
   if (auto* u = Hardware_GetUartWrapper(inst))

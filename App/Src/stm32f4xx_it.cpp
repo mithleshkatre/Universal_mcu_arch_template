@@ -131,3 +131,9 @@ void USART2_IRQHandler(void) {
   g_uart2->handleUartIrq();
  
 }
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+    if (huart->Instance == USART2 && g_uart2) {
+        g_uart2->handleRxCallback();
+    }
+}
