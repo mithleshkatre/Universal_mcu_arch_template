@@ -1,4 +1,4 @@
-name: Build and Upload Firmware
+name: Build and Test Firmware
 
 on:
   push:
@@ -14,22 +14,33 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Install ARM GCC
+    - name: Install ARM GCC + GTest deps
       run: |
         sudo apt-get update
-        sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi
+        sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi \
+                               g++ cmake make
 
-    - name: Build firmware
+    - name: Build firmware + tests (default make)
       run: |
         make clean
         make
 
-    - name: Upload build artifacts
+    - name: Upload firmware artifacts
       uses: actions/upload-artifact@v4
       with:
         name: firmware
         path: |
-          Output/**/*.elf
-          Output/**/*.bin
-          Output/**/*.hex
-          Output/**/*.map
+          build/**/*.elf
+          build/**/*.bin
+          build/**/*.hex
+          build/**/*.map
+
+    - name: Upload test binary + logs
+      if: always()   # ensure upload even if tests fail
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-artifacts
+        path: |
+          Tests/Bin/test_uart.exe
+          Tests/uart/*.o
+          Tests/*.o

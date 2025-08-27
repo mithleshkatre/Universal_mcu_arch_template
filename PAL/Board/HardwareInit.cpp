@@ -17,8 +17,6 @@ static std::vector<std::unique_ptr<Pin>> g_pins;
 static std::vector<std::unique_ptr<UartWrapper>> g_uarts;
 static std::array<UartWrapper*, 8> g_uarts_by_inst{};
 
-Stm32Uart* g_uart2 = nullptr;
-
 void Hardware_InitAll(void) {
 
   static stm32f4_policy::Stm32F4Policy policy;
@@ -32,7 +30,7 @@ void Hardware_InitAll(void) {
   for (auto &u : kBoardUarts) {
     auto impl = std::make_unique<Stm32Uart>(u.inst==UartInst::Uart2?USART2:USART1,
                                             DMA1_Stream6, DMA_CHANNEL_4, DMA1_Stream5, DMA_CHANNEL_4);
-    g_uart2 = impl.get();
+                                            
     auto wrap = std::make_unique<UartWrapper>(policy, std::move(impl), u);
     
     wrap->init();

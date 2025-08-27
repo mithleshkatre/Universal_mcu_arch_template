@@ -124,39 +124,42 @@ void SysTick_Handler(void)
 /******************************************************************************/
 #include "Stm32Uart.hpp"
 
-extern Stm32Uart* g_uart2;
 extern char rxBuffer[1024];
+auto g_uart2 = Stm32Uart::fromInstance(USART2);
 
 void USART2_IRQHandler(void) {
 
-  g_uart2->handleUartIrq();
+  if (g_uart2){
+    g_uart2->handleUartIrq();
+  } 
  
 }
 
-
 void DMA1_Stream5_IRQHandler(void)
 {
-  g_uart2->handleDmaRxIrq();
-    
+  if(auto s = Stm32Uart::fromDma(DMA1_Stream5)){
+   s->handleDmaRxIrq();
+   }
 }
 
 
 void DMA1_Stream6_IRQHandler(void)
 {
-  g_uart2->handleDmaTxIrq();
-
+  if(auto s = Stm32Uart::fromDma(DMA1_Stream6)){
+   s->handleDmaTxIrq();
+   }  
 }
 
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
-    if (huart->Instance == USART2 && g_uart2) {
+    if (huart->Instance == USART2) {
         g_uart2->handleRxCallback();
         g_uart2->handleRxBlockCallback(reinterpret_cast<uint8_t*>(rxBuffer), 1024);
     }
 }
 
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
-    if (huart->Instance == USART2 && g_uart2) {
+    if (huart->Instance == USART2) {
         g_uart2->handleTxCallback();
     }
 }
@@ -164,7 +167,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
 // Optional error handler
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 {
-    if (huart->Instance == USART2 && g_uart2) {
+    if (huart->Instance == USART2) {
         g_uart2->handleUartErrorCallback();
     }
 }
