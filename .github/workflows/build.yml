@@ -20,6 +20,17 @@ jobs:
         sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi \
                                g++ cmake make
 
+    - name: Fetch and build googletest
+      run: |
+        mkdir -p external
+        cd external
+        if [ ! -d googletest ]; then
+          git clone https://github.com/google/googletest.git
+        fi
+        cd googletest
+        cmake -S . -B build
+        cmake --build build
+
     - name: Build firmware + tests (default make)
       run: |
         make clean
@@ -36,11 +47,9 @@ jobs:
           build/**/*.map
 
     - name: Upload test binary + logs
-      if: always()   # ensure upload even if tests fail
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: test-artifacts
         path: |
           Tests/Bin/test_uart.exe
-          Tests/uart/*.o
-          Tests/*.o
