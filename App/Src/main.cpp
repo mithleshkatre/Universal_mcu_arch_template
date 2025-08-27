@@ -20,6 +20,8 @@ static void SystemClock_Config(void);
 void uartPrintf(const char* fmt, ...); 
 void onUartByte(uint8_t byte) ;
 void onUartTxByte(void) ;
+void onUartErrorByte(void) ;
+void onUartBlock(const uint8_t* data, size_t len);
 
 UART_HandleTypeDef huart2;
 // Message to send to PC
@@ -30,16 +32,22 @@ uint32_t hclk ;
 uint32_t apb1;
 uint32_t apb2;
 
-#define RX_BUFFER_SIZE 64
+#define RX_BUFFER_SIZE 1024
 uint8_t rxData;          // single byte buffer
-char rxBuffer[RX_BUFFER_SIZE];   // DMA receive buffer
-uint8_t txBuffer[RX_BUFFER_SIZE];   // DMA transmit buffer
+char rxBuffer[RX_BUFFER_SIZE]={};   // DMA receive buffer
+char txBuffer[RX_BUFFER_SIZE]={};   // DMA transmit buffer
 volatile uint16_t rxIndex = 0;      // current position in buffer
 uint8_t rxByte;                     // temp byte
 stm32f4_policy::Stm32F4Policy policy;
 
 PinID led{Port::A,5};
 
+
+uint8_t TxData[512];
+
+int isSent = 1;
+int countloop = 0;
+int countinterrupt = 0;
 
 
 /**
@@ -105,18 +113,36 @@ int main(void)
   uartPrintf("Frequencies: CPU=%lu, HCLK=%lu, APB1=%lu, APB2=%lu\r\n", cpu, hclk, apb1, apb2);
 
 
-  PAL::setRXByteCb(UartInst::Uart2,onUartByte);
+  // PAL::setRXByteCb(UartInst::Uart2,onUartByte);
   PAL::setTXDoneCb(UartInst::Uart2,onUartTxByte);
-  PAL::uartReceiveIT(UartInst::Uart2,  &rxData, 1);
+  // PAL::uartReceiveIT(UartInst::Uart2,  &rxData, 1);
+  PAL::setUartErrorCb(UartInst::Uart2,onUartErrorByte);
+  PAL::setRXBlockCb(UartInst::Uart2,onUartBlock);
+
+  PAL::uartRecvDma(UartInst::Uart2, reinterpret_cast<uint8_t*>(rxBuffer), RX_BUFFER_SIZE);
+  // for (uint32_t i=0; i<512; i++)
+  // {
+	//   TxData[i] = i&(0xff);
+  // }
+
+  // PAL::uartSendDma(UartInst::Uart2, reinterpret_cast<const uint8_t*>(TxData), sizeof(TxData));
+
  
 while (1)
   {
-
+    // Main loop can perform other tasks while UART operates in interrupt/DMA mode
+    // For demonstration, we'll just toggle the LED every second
+    PAL::pinSet(led, true);
+    HAL_Delay(500);
+    PAL::pinSet(led, false);
+    HAL_Delay(500);
+	  countloop++;
 
   }
 }
 // Application-level callback
 void onUartByte(uint8_t byte) {
+#if 0
     if (byte == '\r' || byte == '\n' || rxIndex >= sizeof(rxBuffer) - 1) {
         rxBuffer[rxIndex] = '\0';   // null-terminate the string
 
@@ -131,7 +157,19 @@ void onUartByte(uint8_t byte) {
 
     // Re-arm reception for next byte
     PAL::uartReceiveIT(UartInst::Uart2, &rxData, 1);
+#endif
 }
+
+void onUartBlock(const uint8_t* data, size_t len) {
+
+  uartPrintf("\r\n.........................\r\n");
+  // PAL::uartSendBlocking(UartInst::Uart2, data, len);
+  PAL::uartSendDma(UartInst::Uart2, const_cast<uint8_t*>(data), len);
+  uartPrintf("\r\n##########################\r\n");
+  // PAL::uartRecvDma(UartInst::Uart2, (data), len);
+  // PAL::uartSendDma(UartInst::Uart2, const_cast<uint8_t*>(data), len);
+}
+
 
 
 void onUartTxByte(void) {
@@ -140,6 +178,11 @@ void onUartTxByte(void) {
     uartPrintf("\r\nTransmission complete.\r\n");
 }
 
+void onUartErrorByte(void){
+
+    PAL::pinSet(led, false);
+    uartPrintf("\r\nUART Error occurred.\r\n");
+}
 // ---------- Single helper function ----------
 void uartPrintf(const char* fmt, ...) {
     char buffer[128];   // adjust size if you need longer messages

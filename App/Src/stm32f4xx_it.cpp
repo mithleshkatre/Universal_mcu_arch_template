@@ -125,6 +125,7 @@ void SysTick_Handler(void)
 #include "Stm32Uart.hpp"
 
 extern Stm32Uart* g_uart2;
+extern char rxBuffer[1024];
 
 void USART2_IRQHandler(void) {
 
@@ -132,9 +133,25 @@ void USART2_IRQHandler(void) {
  
 }
 
+
+void DMA1_Stream5_IRQHandler(void)
+{
+  g_uart2->handleDmaRxIrq();
+    
+}
+
+
+void DMA1_Stream6_IRQHandler(void)
+{
+  g_uart2->handleDmaTxIrq();
+
+}
+
+
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
     if (huart->Instance == USART2 && g_uart2) {
         g_uart2->handleRxCallback();
+        g_uart2->handleRxBlockCallback(reinterpret_cast<uint8_t*>(rxBuffer), 1024);
     }
 }
 

@@ -105,6 +105,12 @@ void Stm32Uart:: handleRxCallback(){
   }
 }
 
+void Stm32Uart:: handleRxBlockCallback(const uint8_t* data, size_t len){
+  if (rxBlockCb_) {
+    rxBlockCb_(data,len);   // Call your application lambda
+  }
+}
+
 void Stm32Uart:: handleTxCallback(){
   if (txDoneCb_) {
     txDoneCb_();   // Call your application lambda

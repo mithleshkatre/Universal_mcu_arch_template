@@ -42,6 +42,7 @@ public:
   void handleRxCallback();
   void handleTxCallback();
   void handleUartErrorCallback();
+  void handleRxBlockCallback(const uint8_t* data, size_t len);
 
   // HAL event hooks called from C callbacks
   void onHalTxCplt();

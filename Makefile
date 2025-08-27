@@ -108,11 +108,9 @@ App/Src/stm32f4xx_it.cpp \
 App/Src/main.cpp \
 HAL/ST/stm32f4/Configs/stm32_clock.cpp \
 HAL/ST/stm32f4/Configs/stm32_hal_init.cpp \
-HAL/ST/stm32f4/Stm32Dma.cpp \
 HAL/ST/stm32f4/Stm32Uart.cpp \
 PAL/ST/stm32f4/Stm32IO.cpp \
 PAL/Board/HardwareInit.cpp \
-PAL/PALWrappers/DmaWrapper.cpp \
 PAL/PALWrappers/UartWrapper.cpp \
 PAL/PALWrappers/Pin.cpp
 
