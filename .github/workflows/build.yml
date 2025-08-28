@@ -25,11 +25,10 @@ jobs:
         mkdir -p external
         cd external
         if [ ! -d googletest ]; then
-          git clone --depth 1 https://github.com/google/googletest.git
+          git clone https://github.com/google/googletest.git
         fi
         cd googletest
-        # NOTE: CMakeLists.txt is inside googletest/googletest
-        cmake -S googletest -B build
+        cmake -S . -B build
         cmake --build build
 
     - name: Build firmware + tests
