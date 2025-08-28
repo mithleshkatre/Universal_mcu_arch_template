@@ -21,9 +21,21 @@ BIN_DIR   := Tests/Bin
 TEST_OBJS := $(patsubst %.cpp,$(BUILD_DIR)/%.o,$(TEST_SRCS))
 TEST_BIN  := $(BIN_DIR)/test_uart.exe
 
-# MinGW DLLs
+# MinGW DLLs (Windows only)
 MINGW_BIN := C:/mingw64/bin
 DLLS := libstdc++-6.dll libgcc_s_seh-1.dll libwinpthread-1.dll
+
+# Detect OS
+ifeq ($(OS),Windows_NT)
+    COPY_DLLS_CMD = \
+        for d in $(DLLS); do \
+            echo "Copying $$d..."; \
+            cp $(MINGW_BIN)/$$d $(BIN_DIR) || exit 1; \
+        done
+else
+    COPY_DLLS_CMD = \
+        echo "Skipping DLL copy (not needed on Linux)"
+endif
 
 # Default target
 all: $(TEST_BIN) copy-dlls
@@ -45,10 +57,7 @@ $(BUILD_DIR)/%.o: %.cpp | $(BUILD_DIR)
 
 # Copy required DLLs
 copy-dlls: | $(BIN_DIR)
-	@for d in $(DLLS); do \
-		echo "Copying $$d..."; \
-		cp $(MINGW_BIN)/$$d $(BIN_DIR) || exit 1; \
-	done
+	@$(COPY_DLLS_CMD)
 
 # Run tests
 run: all
