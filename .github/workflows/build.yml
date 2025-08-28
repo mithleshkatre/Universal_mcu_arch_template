@@ -67,4 +67,4 @@ jobs:
       with:
         name: test-artifacts
         path: |
-          Tests/Bin/test_uart
+          Tests/Bin/**/*.exe
