@@ -18,25 +18,27 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi \
-                               g++ cmake make
+                               g++ cmake make libnewlib-arm-none-eabi
 
     - name: Fetch and build googletest
       run: |
         mkdir -p external
         cd external
-        # Clone googletest if not already present
         if [ ! -d googletest ]; then
           git clone --depth 1 https://github.com/google/googletest.git
         fi
         cd googletest
-        cmake -S . -B build
+        # NOTE: CMakeLists.txt is inside googletest/googletest
+        cmake -S googletest -B build
         cmake --build build
 
-
-    - name: Build firmware + tests (default make)
+    - name: Build firmware + tests
       run: |
         make clean
         make
+
+    - name: Run unit tests
+      run: ./Tests/Bin/test_uart || (echo "Unit tests failed" && exit 1)
 
     - name: Upload firmware artifacts
       uses: actions/upload-artifact@v4
@@ -54,4 +56,4 @@ jobs:
       with:
         name: test-artifacts
         path: |
-          Tests/Bin/test_uart.exe
+          Tests/Bin/test_uart
