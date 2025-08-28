@@ -134,7 +134,7 @@ void thread0_entry(ULONG thread_input)
     while (1)
     {
         HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-        tx_thread_sleep(500);  // 100 ticks
+        tx_thread_sleep(100);  // 100 ticks
     }
 }
 

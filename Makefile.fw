@@ -63,7 +63,7 @@ BIN = $(CP) -O binary -S
 #######################################
 # MCU + Flags
 #######################################
-MCU = $(CPU) -mthumb $(FPU) $(FLOAT-ABI)
+MCU = $(CPU) -mthumb $(FPU) $(FLOAT_ABI)
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 CFLAGS += $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 CXXFLAGS = $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -fno-exceptions -fno-rtti -std=c++17
@@ -81,8 +81,8 @@ CXXFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 #######################################
 
 # ThreadX sources
-THREADX_SRC = \
-$(wildcard Middlewares/azure-rtos/threadx/common/src/*.c) 
+#THREADX_SRC = \
+#$(wildcard Middlewares/azure-rtos/threadx/common/src/*.c) 
 
 
 C_SOURCES = \
@@ -111,17 +111,17 @@ PAL/PALWrappers/UartWrapper.cpp \
 PAL/PALWrappers/Pin.cpp
 
 
-ASMM_SOURCES =  \
-Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_schedule.S \
-Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_timer_interrupt.S \
-Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_context_restore.S \
-Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_context_save.S \
-Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_interrupt_control.S \
-Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_interrupt_disable.S \
-Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_stack_build.S \
-Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_system_return.S \
-Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_misra.S \
-Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_initialize_low_level.S 
+#ASMM_SOURCES =  \
+#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_schedule.S \
+#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_timer_interrupt.S \
+#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_context_restore.S \
+#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_context_save.S \
+#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_interrupt_control.S \
+#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_interrupt_disable.S \
+#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_stack_build.S \
+#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_system_return.S \
+#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_misra.S \
+#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_initialize_low_level.S 
 
 #######################################
 # Includes
@@ -145,11 +145,15 @@ C_INCLUDES += \
 -IHAL/ST/stm32f4/STM32F4xx_HAL_Driver/Inc/Legacy \
 -IHAL/ST/stm32f4/STM32F4xx_HAL_Driver 
 endif
+
+
+
 #######################################
 # Linker
 #######################################
 LIBS = -lc -lm -lnosys
-LIBDIR =
+# ThreadX prebuilt library
+LIBDIR = Middlewares/azure-rtos/Output/threadx.a
 LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) \
           -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections
 
