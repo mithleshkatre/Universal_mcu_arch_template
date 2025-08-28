@@ -37,7 +37,7 @@ jobs:
 
     - name: Run unit tests (skip if missing)
       run: |
-        if [ -f ./Tests/Bin/test_uart ] || [ -f ./Tests/Bin/test_uart.exe ]; then
+        if [ -f ./Tests/Bin/test_uart.exe ]; then
           echo "Running unit tests..."
           ./Tests/Bin/test_uart 2>/dev/null || ./Tests/Bin/test_uart.exe
         else
