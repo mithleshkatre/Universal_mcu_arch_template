@@ -44,9 +44,9 @@ jobs:
           echo "No test binary found, skipping test run"
         fi
 
-    - name: List build directory
+    - name: List Output directory
       run: |
-        ls -R build || true
+        ls -R Output || true
         ls -R Debug || true
         ls -R Release || true
 
@@ -55,10 +55,11 @@ jobs:
       with:
         name: firmware
         path: |
-          build/**/*.elf
-          build/**/*.bin
-          build/**/*.hex
-          build/**/*.map
+          Output/**/*.elf
+          Output/**/*.bin
+          Output/**/*.hex
+          Output/**/*.map
+      
 
     - name: Upload test binary + logs
       if: always()
