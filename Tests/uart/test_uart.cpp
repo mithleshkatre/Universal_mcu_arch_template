@@ -8,10 +8,9 @@
 
 #include <thread>
 #include <chrono>
+#include <mutex>
+#include <condition_variable>
 
-// g++ -std=c++17 -Iinclude -Ivendors/mock -I. \
-//     test_uart.cpp -lgtest -lgtest_main -pthread -o test_uart
-// ./test_uart
 
 using namespace std::chrono_literals;
 
@@ -68,6 +67,7 @@ TEST_F(UartTest, ReceiveByteITCallback) {
     std::this_thread::sleep_for(120ms); // allow MockUart thread to generate 'x'
 
     EXPECT_EQ(lastByte, 'x');
+
 }
 
 TEST_F(UartTest, TransmitDMAInvokesTxDone) {
