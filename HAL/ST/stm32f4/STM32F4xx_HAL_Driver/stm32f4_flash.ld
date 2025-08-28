@@ -68,10 +68,12 @@ FLASH (rx)      : ORIGIN = 0x8000000, LENGTH = 512K
 /* Define output sections */
 SECTIONS
 {
+
   /* The startup code goes first into FLASH */
   .isr_vector :
   {
     . = ALIGN(4);
+    _vectors = ORIGIN(FLASH);
     KEEP(*(.isr_vector)) /* Startup code */
     . = ALIGN(4);
   } >FLASH
@@ -173,7 +175,7 @@ SECTIONS
     . = ALIGN(8);
   } >RAM
 
-  
+  __RAM_segment_used_end__ = ORIGIN(RAM) + LENGTH(RAM);
 
   /* Remove information from the standard libraries */
   /DISCARD/ :

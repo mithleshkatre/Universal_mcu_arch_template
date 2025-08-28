@@ -20,6 +20,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f4xx_it.hpp"
+extern "C" {
+#include "tx_api.h"
+}
 
 /******************************************************************************/
 /*           Cortex-M4 Processor Interruption and Exception Handlers          */
@@ -103,18 +106,29 @@ void DebugMon_Handler(void)
 /**
   * @brief This function handles Pendable request for system service.
   */
-void PendSV_Handler(void)
-{
-}
+// void PendSV_Handler(void)
+// {
+// }
 
+// extern "C" void tx_timer_interrupt(void);
 /**
   * @brief This function handles System tick timer.
   */
-void SysTick_Handler(void)
-{
-  HAL_IncTick();
+// void SysTick_Handler(void)
+// {
+//   // HAL_IncTick();
+//   tx_timer_interrupt(); 
 
+// }
+
+extern ULONG _tx_timer_system_clock;
+
+uint32_t HAL_GetTick(void)
+{
+    return (uint32_t)_tx_timer_system_clock;
 }
+
+
 
 /******************************************************************************/
 /* STM32F4xx Peripheral Interrupt Handlers                                    */

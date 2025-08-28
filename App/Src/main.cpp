@@ -9,12 +9,7 @@ extern "C" {
   #include <string.h>
   #include <stdio.h>
 }
-
-#include"Pin.hpp"
-#include"Stm32IO.hpp"
-#include "Stm32F4Policy.hpp"
-#include "Stm32Uart.hpp"
-
+#include"tx_api.h"
 
 static void SystemClock_Config(void);
 void uartPrintf(const char* fmt, ...); 
@@ -24,6 +19,27 @@ void onUartErrorByte(void) ;
 void onUartBlock(const uint8_t* data, size_t len);
 
 UART_HandleTypeDef huart2;
+
+/* ---- External linker symbols for ThreadX heap ---- */
+// extern "C" {
+//     extern char __tx_heap_start__;
+//     extern char __tx_heap_end__;
+// }
+
+/* ThreadX byte pool */
+TX_BYTE_POOL byte_pool_0;
+#define BYTE_POOL_SIZE 16*1024
+UCHAR byte_pool_memory[BYTE_POOL_SIZE];
+
+/* Forward declarations */
+void tx_application_define(void *first_unused_memory);
+void thread0_entry(ULONG thread_input);
+
+/* Thread control block and stack */
+TX_THREAD thread_0;
+UCHAR thread_0_stack[1024];
+
+
 // Message to send to PC
 const char msg[] = "Hello from STM32 Board!\r\n";
 
@@ -38,7 +54,6 @@ char rxBuffer[RX_BUFFER_SIZE]={};   // DMA receive buffer
 char txBuffer[RX_BUFFER_SIZE]={};   // DMA transmit buffer
 volatile uint16_t rxIndex = 0;      // current position in buffer
 uint8_t rxByte;                     // temp byte
-stm32f4_policy::Stm32F4Policy policy;
 
 PinID led{Port::A,5};
 
@@ -63,44 +78,6 @@ int main(void)
   SystemClock_Config();
 
 
-
-#if 0
-  auto ledGpio = std::make_unique<Stm32IO>();
-  PinCfg ledCfg{{Port::A,5}, PinMode::Output, PinPull::None, PinSpeed::Low, 0}; // output, no pull-up
-
-  Pin led(policy, std::move(ledGpio), ledCfg);
-
-  led.init();
-
-  auto tx = std::make_unique<Stm32IO>();
-  PinCfg ledCfgTX{{Port::A,2}, PinMode::Alt, PinPull::Up, PinSpeed::Med, 7}; 
-  Pin Tx(policy, std::move(tx), ledCfgTX);
-  Tx.init();
-  auto rx = std::make_unique<Stm32IO>();
-  PinCfg ledCfgRX {{Port::A,3}, PinMode::Alt, PinPull::Up, PinSpeed::Med, 7}; 
-  Pin Rx(policy, std::move(rx), ledCfgRX);
-  Rx.init();
-
-
-
-  UartCfg uartCfg  { UartInst::Uart2,
-    {{Port::A,2}, PinMode::Alt, PinPull::Up, PinSpeed::Med, 7},
-    {{Port::A,3}, PinMode::Alt, PinPull::Up, PinSpeed::Med, 7},
-    115200, StopBits::One, Parity::None, true, false };
-
-  auto impl = std::make_unique<Stm32Uart>(uartCfg.inst==UartInst::Uart2?USART2:USART1,
-                                             DMA1_Stream6, DMA_CHANNEL_4, DMA1_Stream5, DMA_CHANNEL_4);
-
-    g_uart2 = impl.get();
-    UartWrapper UartWrapper(policy, std::move(impl), uartCfg);
-    UartWrapper.init();
-
-    // UartWrapper.sendBlocking(reinterpret_cast<const uint8_t*>(msg), strlen(msg));
-    UartWrapper.recvIT(&rxData, 1);  
-    // HAL_UART_Receive_IT(&huart2, &rxData, 1);
-    
-#endif
-
   PAL::initAll();
   PAL::pinSet(led, false);
 
@@ -112,7 +89,7 @@ int main(void)
   uartPrintf("System initialized.\r\n");
   uartPrintf("Frequencies: CPU=%lu, HCLK=%lu, APB1=%lu, APB2=%lu\r\n", cpu, hclk, apb1, apb2);
 
-
+#if 0
   // PAL::setRXByteCb(UartInst::Uart2,onUartByte);
   PAL::setTXDoneCb(UartInst::Uart2,onUartTxByte);
   // PAL::uartReceiveIT(UartInst::Uart2,  &rxData, 1);
@@ -126,20 +103,42 @@ int main(void)
   // }
 
   // PAL::uartSendDma(UartInst::Uart2, reinterpret_cast<const uint8_t*>(TxData), sizeof(TxData));
+#endif
 
- 
+  // Initialize ThreadX
+  tx_kernel_enter();
+
 while (1)
   {
-    // Main loop can perform other tasks while UART operates in interrupt/DMA mode
-    // For demonstration, we'll just toggle the LED every second
-    PAL::pinSet(led, true);
-    HAL_Delay(500);
-    PAL::pinSet(led, false);
-    HAL_Delay(500);
-	  countloop++;
 
   }
 }
+
+/* Define application objects */
+void tx_application_define(void *first_unused_memory)
+{
+    /* Create byte pool from linker section if preferred */
+    tx_byte_pool_create(&byte_pool_0, "byte pool 0",
+                        byte_pool_memory, BYTE_POOL_SIZE);
+
+    /* Create a thread */
+    tx_thread_create(&thread_0, "thread 0",
+                     thread0_entry, 0,
+                     thread_0_stack, sizeof(thread_0_stack),
+                     1, 1, TX_NO_TIME_SLICE, TX_AUTO_START);
+}
+
+/* Thread entry */
+void thread0_entry(ULONG thread_input)
+{
+    while (1)
+    {
+        HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+        tx_thread_sleep(500);  // 100 ticks
+    }
+}
+
+
 // Application-level callback
 void onUartByte(uint8_t byte) {
 #if 0
