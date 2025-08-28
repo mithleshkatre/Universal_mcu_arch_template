@@ -11,10 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository (with submodules)
+    - name: Checkout repository
       uses: actions/checkout@v3
-      with:
-        submodules: recursive   # <-- this makes sure googletest is cloned
 
     - name: Install ARM GCC + GTest deps
       run: |
@@ -22,9 +20,13 @@ jobs:
         sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi \
                                g++ cmake make libnewlib-arm-none-eabi
 
-    - name: Build googletest
+    - name: Fetch and build googletest
       run: |
-        cd external/googletest
+        rm -rf external/googletest   # ensure no stale copy
+        mkdir -p external
+        cd external
+        git clone https://github.com/google/googletest.git
+        cd googletest
         cmake -S . -B build
         cmake --build build
 
