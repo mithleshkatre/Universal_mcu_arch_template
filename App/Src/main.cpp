@@ -34,10 +34,18 @@ UCHAR byte_pool_memory[BYTE_POOL_SIZE];
 /* Forward declarations */
 void tx_application_define(void *first_unused_memory);
 void thread0_entry(ULONG thread_input);
+void thread1_entry(ULONG thread_input);
 
 /* Thread control block and stack */
 TX_THREAD thread_0;
-UCHAR thread_0_stack[1024];
+TX_THREAD thread_1;
+UCHAR thread_0_stack[256];
+UCHAR thread_1_stack[512];
+
+// ThreadX queue for UART bytes
+TX_QUEUE uartQueue;
+#define UART_QUEUE_SIZE 16
+uint8_t uartQueueBuffer[UART_QUEUE_SIZE];
 
 
 // Message to send to PC
@@ -58,11 +66,12 @@ uint8_t rxByte;                     // temp byte
 PinID led{Port::A,5};
 
 
-uint8_t TxData[512];
+uint8_t TxData[64];
 
 int isSent = 1;
 int countloop = 0;
 int countinterrupt = 0;
+volatile bool txBusy = false;
 
 
 /**
@@ -89,14 +98,14 @@ int main(void)
   uartPrintf("System initialized.\r\n");
   uartPrintf("Frequencies: CPU=%lu, HCLK=%lu, APB1=%lu, APB2=%lu\r\n", cpu, hclk, apb1, apb2);
 
-#if 0
-  // PAL::setRXByteCb(UartInst::Uart2,onUartByte);
+#if 1
+  PAL::setRXByteCb(UartInst::Uart2,onUartByte);
   PAL::setTXDoneCb(UartInst::Uart2,onUartTxByte);
-  // PAL::uartReceiveIT(UartInst::Uart2,  &rxData, 1);
-  PAL::setUartErrorCb(UartInst::Uart2,onUartErrorByte);
-  PAL::setRXBlockCb(UartInst::Uart2,onUartBlock);
+  PAL::uartReceiveIT(UartInst::Uart2,  &rxData, 1);
+  // PAL::setUartErrorCb(UartInst::Uart2,onUartErrorByte);
+  // PAL::setRXBlockCb(UartInst::Uart2,onUartBlock);
 
-  PAL::uartRecvDma(UartInst::Uart2, reinterpret_cast<uint8_t*>(rxBuffer), RX_BUFFER_SIZE);
+  // PAL::uartRecvDma(UartInst::Uart2, reinterpret_cast<uint8_t*>(rxBuffer), RX_BUFFER_SIZE);
   // for (uint32_t i=0; i<512; i++)
   // {
 	//   TxData[i] = i&(0xff);
@@ -110,6 +119,10 @@ int main(void)
 
 while (1)
   {
+    tx_thread_sleep(500);
+    PAL::pinSet(led, true);
+    tx_thread_sleep(500);
+    PAL::pinSet(led, false);
 
   }
 }
@@ -125,7 +138,17 @@ void tx_application_define(void *first_unused_memory)
     tx_thread_create(&thread_0, "thread 0",
                      thread0_entry, 0,
                      thread_0_stack, sizeof(thread_0_stack),
+                     2, 2, TX_NO_TIME_SLICE, TX_AUTO_START);
+
+        /* Create a thread */
+    tx_thread_create(&thread_1, "thread 1",
+                     thread1_entry, 0,
+                     thread_1_stack, sizeof(thread_1_stack),
                      1, 1, TX_NO_TIME_SLICE, TX_AUTO_START);
+
+        // Create UART queue
+    tx_queue_create(&uartQueue, "UART Queue", 1,
+                    uartQueueBuffer, sizeof(uartQueueBuffer));
 }
 
 /* Thread entry */
@@ -134,7 +157,34 @@ void thread0_entry(ULONG thread_input)
     while (1)
     {
         HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-        tx_thread_sleep(100);  // 100 ticks
+        tx_thread_sleep(500);  // 100 ticks
+    }
+}
+
+void thread1_entry(ULONG thread_input)
+{
+  uint8_t rx;
+  uint8_t msgBuffer[64];      // buffer to collect message
+  uint8_t msgIndex = 0;
+    while (1)
+    {
+        tx_queue_receive(&uartQueue, &rx, TX_WAIT_FOREVER);
+        msgBuffer[msgIndex++] = rx;
+
+        // End of message
+        if (rx == '\r' || msgIndex >= sizeof(msgBuffer)) {
+            // Wait until previous TX finishes
+            while (txBusy) tx_thread_sleep(1);
+
+            // Copy message to TX buffer
+            memcpy(TxData, msgBuffer, msgIndex);
+            txBusy = true;
+
+            // Start interrupt-driven send
+            PAL::uartSendIT(UartInst::Uart2, TxData, msgIndex);
+
+            msgIndex = 0;
+        }
     }
 }
 
@@ -146,8 +196,9 @@ void onUartByte(uint8_t byte) {
         rxBuffer[rxIndex] = '\0';   // null-terminate the string
 
         // uartPrintf("Received: %s\r\n", rxBuffer);  // print received line
-        PAL::uartSendIT(UartInst::Uart2, reinterpret_cast<const uint8_t*>(rxBuffer),
-                          strlen(rxBuffer));
+
+        // PAL::uartSendIT(UartInst::Uart2, reinterpret_cast<const uint8_t*>(rxBuffer),
+                          // strlen(rxBuffer));
 
         rxIndex = 0;  // reset for next line
     } else {
@@ -157,6 +208,11 @@ void onUartByte(uint8_t byte) {
     // Re-arm reception for next byte
     PAL::uartReceiveIT(UartInst::Uart2, &rxData, 1);
 #endif
+        tx_queue_send(&uartQueue, &byte, TX_NO_WAIT);
+
+        // // Restart UART interrupt reception
+         PAL::uartReceiveIT(UartInst::Uart2, &rxData, 1);
+    
 }
 
 void onUartBlock(const uint8_t* data, size_t len) {
@@ -172,9 +228,9 @@ void onUartBlock(const uint8_t* data, size_t len) {
 
 
 void onUartTxByte(void) {
-
-    PAL::pinSet(led, true);
-    uartPrintf("\r\nTransmission complete.\r\n");
+txBusy = false; 
+    // PAL::pinSet(led, true);
+    // uartPrintf("\r\nTransmission complete.\r\n");
 }
 
 void onUartErrorByte(void){
