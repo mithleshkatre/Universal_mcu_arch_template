@@ -138,8 +138,6 @@ uint32_t HAL_GetTick(void)
 /******************************************************************************/
 #include "Stm32Uart.hpp"
 
-extern Stm32Uart *m_uart2;
-
 extern char rxBuffer[1024];
 // auto g_uart2 = Stm32Uart::fromInstance(USART2);
 extern Stm32Uart *g_uart2;

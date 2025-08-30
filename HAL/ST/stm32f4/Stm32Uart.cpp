@@ -156,13 +156,28 @@ void Stm32Uart::onHalError() {
 }
 
 Stm32Uart* Stm32Uart::fromInstance(USART_TypeDef* i) {
-  for (auto &r : registry_) if (r.inst==i) return r.self; return nullptr;
+  for (auto &r : registry_) {
+  if (r.inst == i)
+    return r.self;
+  }
+  return nullptr;
 }
 Stm32Uart* Stm32Uart::fromDma(DMA_Stream_TypeDef* s) {
-  for (auto &r : registry_) if (r.self && (r.self->txStream_==s || r.self->rxStream_==s)) return r.self; return nullptr;
+  for (auto &r : registry_) {
+      if (r.self && (r.self->txStream_ == s || r.self->rxStream_ == s))
+          return r.self;
+  }
+  return nullptr;
 }
 void Stm32Uart::registerInstance(USART_TypeDef* inst, Stm32Uart* self) {
-  for (auto &r : registry_) if (r.inst==inst) { r.self = self; return; }
+  for (auto &r : registry_)
+  {
+  if (r.inst==inst) 
+  { 
+    r.self = self;
+     return; 
+  }
+ }
 }
 
 

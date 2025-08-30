@@ -105,23 +105,11 @@ App/Src/main.cpp \
 HAL/ST/stm32f4/Configs/stm32_clock.cpp \
 HAL/ST/stm32f4/Configs/stm32_hal_init.cpp \
 HAL/ST/stm32f4/Stm32Uart.cpp \
-PAL/ST/stm32f4/Stm32IO.cpp \
+HAL/ST/stm32f4/Stm32IO.cpp \
 PAL/Board/HardwareInit.cpp \
 PAL/PALWrappers/UartWrapper.cpp \
 PAL/PALWrappers/Pin.cpp
 
-
-#ASMM_SOURCES =  \
-#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_schedule.S \
-#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_timer_interrupt.S \
-#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_context_restore.S \
-#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_context_save.S \
-#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_interrupt_control.S \
-#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_interrupt_disable.S \
-#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_stack_build.S \
-#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_thread_system_return.S \
-#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_misra.S \
-#Middlewares/azure-rtos/threadx/ports/cortex_m4/gnu/src/tx_initialize_low_level.S 
 
 #######################################
 # Includes
@@ -160,10 +148,10 @@ LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) \
 #######################################
 # Build
 #######################################
-OBJECTS = $(addprefix $(BUILD_DIR)/,$(notdir $(C_SOURCES:.c=.o)))
-OBJECTS += $(addprefix $(BUILD_DIR)/,$(notdir $(CPP_SOURCES:.cpp=.o)))
-OBJECTS += $(addprefix $(BUILD_DIR)/,$(notdir $(ASM_SOURCES:.s=.o)))
-OBJECTS += $(addprefix $(BUILD_DIR)/,$(notdir $(ASMM_SOURCES:.S=.o)))
+OBJECTS = $(patsubst %, $(BUILD_DIR)/%, $(C_SOURCES:.c=.o))
+OBJECTS += $(patsubst %, $(BUILD_DIR)/%, $(CPP_SOURCES:.cpp=.o))
+OBJECTS += $(patsubst %, $(BUILD_DIR)/%, $(ASM_SOURCES:.s=.o))
+OBJECTS += $(patsubst %, $(BUILD_DIR)/%, $(ASMM_SOURCES:.S=.o))
 
 vpath %.c $(sort $(dir $(C_SOURCES)))
 vpath %.cpp $(sort $(dir $(CPP_SOURCES)))
@@ -172,14 +160,22 @@ vpath %.S $(sort $(dir $(ASMM_SOURCES)))
 
 all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin
 
-$(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR)
+$(BUILD_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
 	$(CC) -c $(CFLAGS) $< -o $@
-$(BUILD_DIR)/%.o: %.cpp Makefile | $(BUILD_DIR)
+
+$(BUILD_DIR)/%.o: %.cpp
+	@mkdir -p $(dir $@)
 	$(CXX) -c $(CXXFLAGS) $< -o $@
-$(BUILD_DIR)/%.o: %.s Makefile | $(BUILD_DIR)
+
+$(BUILD_DIR)/%.o: %.s
+	@mkdir -p $(dir $@)
 	$(AS) -c $(CFLAGS) $< -o $@
-$(BUILD_DIR)/%.o: %.S Makefile | $(BUILD_DIR)
+
+$(BUILD_DIR)/%.o: %.S
+	@mkdir -p $(dir $@)
 	$(AS) -c $(CFLAGS) $< -o $@
+
 
 $(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) Makefile
 	$(CXX) $(OBJECTS) $(LDFLAGS) -o $@
@@ -195,7 +191,7 @@ $(BUILD_DIR):
 clean:
 	-rm -fR $(BUILD_DIR)
 
--include $(wildcard $(BUILD_DIR)/*.d)
+-include $(OBJECTS:.o=.d)
 
 $(info ===== Build Configuration =====)
 $(info MCU_FAMILY = $(MCU_FAMILY))
