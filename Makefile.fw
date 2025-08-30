@@ -88,7 +88,7 @@ CXXFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 C_SOURCES = \
 HAL/ST/stm32f4/Configs/stm32_hal_msp.c \
 App/Src/sysmem.c \
-APP/Src/syscalls.c \
+App/Src/syscalls.c \
 
 C_SOURCES += $(THREADX_SRC)
 
