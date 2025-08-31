@@ -118,7 +118,7 @@ endif
 LIBS = -lc -lm -lnosys
 # ThreadX prebuilt library
 LIBDIR = Middlewares/azure-rtos/Output/threadx.a
-LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) \
+LDFLAGS = $(MCU) -specs=nano.specs -u _printf_float -T$(LDSCRIPT) $(LIBDIR) $(LIBS) \
           -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections
 
 #######################################
