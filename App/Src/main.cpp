@@ -10,6 +10,7 @@ extern "C" {
   #include <stdio.h>
 }
 #include"tx_api.h"
+#include "ei_run_classifier.h"
 
 static void SystemClock_Config(void);
 void uartPrintf(const char* fmt, ...); 
@@ -18,13 +19,6 @@ void onUartTxByte(void) ;
 void onUartErrorByte(void) ;
 void onUartBlock(const uint8_t* data, size_t len);
 
-UART_HandleTypeDef huart2;
-
-/* ---- External linker symbols for ThreadX heap ---- */
-// extern "C" {
-//     extern char __tx_heap_start__;
-//     extern char __tx_heap_end__;
-// }
 
 /* ThreadX byte pool */
 TX_BYTE_POOL byte_pool_0;
@@ -39,14 +33,17 @@ void thread1_entry(ULONG thread_input);
 /* Thread control block and stack */
 TX_THREAD thread_0;
 TX_THREAD thread_1;
-UCHAR thread_0_stack[256];
-UCHAR thread_1_stack[512];
+UCHAR thread_0_stack[2096];
+UCHAR thread_1_stack[2096];
 
 // ThreadX queue for UART bytes
 TX_QUEUE uartQueue;
 #define UART_QUEUE_SIZE 16
 uint8_t uartQueueBuffer[UART_QUEUE_SIZE];
-
+TX_EVENT_FLAGS_GROUP app_events;
+#define EVENT_START_CLASSIFIER   0x01
+TX_SEMAPHORE sem_trigger;
+TX_SEMAPHORE sem_done;
 
 // Message to send to PC
 const char msg[] = "Hello from STM32 Board!\r\n";
@@ -62,17 +59,24 @@ char rxBuffer[RX_BUFFER_SIZE]={};   // DMA receive buffer
 char txBuffer[RX_BUFFER_SIZE]={};   // DMA transmit buffer
 volatile uint16_t rxIndex = 0;      // current position in buffer
 uint8_t rxByte;                     // temp byte
-
 PinID led{Port::A,5};
-
-
 uint8_t TxData[64];
-
 int isSent = 1;
 int countloop = 0;
 int countinterrupt = 0;
 volatile bool txBusy = false;
 
+
+
+// Example raw features (replace with your actual copied raw features)
+static float input_buf[EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE] = {0};
+
+static int get_signal_data(size_t offset, size_t length, float *out_ptr) {
+    for (size_t i = 0; i < length; i++) {
+        out_ptr[i] = (input_buf + offset)[i];
+    }
+    return EIDSP_OK;
+}
 
 /**
   * @brief  The application entry point.
@@ -90,13 +94,8 @@ int main(void)
   PAL::initAll();
   PAL::pinSet(led, false);
 
-  char buffer[100];
-  int len = snprintf(buffer, sizeof(buffer),
-                    "CPU=%lu, HCLK=%lu, APB1=%lu, APB2=%lu\r\n",
-                    cpu, hclk, apb1, apb2);
-
   uartPrintf("System initialized.\r\n");
-  uartPrintf("Frequencies: CPU=%lu, HCLK=%lu, APB1=%lu, APB2=%lu\r\n", cpu, hclk, apb1, apb2);
+
 
 #if 1
   PAL::setRXByteCb(UartInst::Uart2,onUartByte);
@@ -104,13 +103,7 @@ int main(void)
   PAL::uartReceiveIT(UartInst::Uart2,  &rxData, 1);
   // PAL::setUartErrorCb(UartInst::Uart2,onUartErrorByte);
   // PAL::setRXBlockCb(UartInst::Uart2,onUartBlock);
-
   // PAL::uartRecvDma(UartInst::Uart2, reinterpret_cast<uint8_t*>(rxBuffer), RX_BUFFER_SIZE);
-  // for (uint32_t i=0; i<512; i++)
-  // {
-	//   TxData[i] = i&(0xff);
-  // }
-
   // PAL::uartSendDma(UartInst::Uart2, reinterpret_cast<const uint8_t*>(TxData), sizeof(TxData));
 #endif
 
@@ -119,10 +112,7 @@ int main(void)
 
 while (1)
   {
-    tx_thread_sleep(500);
-    PAL::pinSet(led, true);
-    tx_thread_sleep(500);
-    PAL::pinSet(led, false);
+
 
   }
 }
@@ -131,62 +121,99 @@ while (1)
 void tx_application_define(void *first_unused_memory)
 {
     /* Create byte pool from linker section if preferred */
-    tx_byte_pool_create(&byte_pool_0, "byte pool 0",
+    tx_byte_pool_create(&byte_pool_0, (CHAR*)"byte pool 0",
                         byte_pool_memory, BYTE_POOL_SIZE);
 
     /* Create a thread */
-    tx_thread_create(&thread_0, "thread 0",
+    tx_thread_create(&thread_0, (CHAR*)"thread 0",
                      thread0_entry, 0,
                      thread_0_stack, sizeof(thread_0_stack),
                      2, 2, TX_NO_TIME_SLICE, TX_AUTO_START);
 
         /* Create a thread */
-    tx_thread_create(&thread_1, "thread 1",
+    tx_thread_create(&thread_1, (CHAR*)"thread 1",
                      thread1_entry, 0,
                      thread_1_stack, sizeof(thread_1_stack),
                      1, 1, TX_NO_TIME_SLICE, TX_AUTO_START);
 
         // Create UART queue
-    tx_queue_create(&uartQueue, "UART Queue", 1,
+    tx_queue_create(&uartQueue, (CHAR*)"UART Queue", 1,
                     uartQueueBuffer, sizeof(uartQueueBuffer));
+    
+    tx_event_flags_create(&app_events, "App Events");
+
+    tx_semaphore_create(&sem_trigger, "Classifier Sem", 0);
+    tx_semaphore_create(&sem_done, "Done Sem", 0);
 }
 
 /* Thread entry */
 void thread0_entry(ULONG thread_input)
 {
+    signal_t signal;
+    ei_impulse_result_t result;
+
     while (1)
     {
-        HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-        tx_thread_sleep(500);  // 100 ticks
+        // Wait until Thread1 gives a trigger
+        tx_semaphore_get(&sem_trigger, TX_WAIT_FOREVER);
+
+        // === Run classifier ===
+        signal.total_length = EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE;
+        signal.get_data = &get_signal_data;
+
+        EI_IMPULSE_ERROR res = run_classifier(&signal, &result, false);
+        uartPrintf("run_classifier returned: %d\n", res);
+
+        for (uint16_t i = 0; i < EI_CLASSIFIER_LABEL_COUNT; i++) {
+            uartPrintf("  %s: %.5f\n",
+                       ei_classifier_inferencing_categories[i],
+                       result.classification[i].value);
+        }
+
+    #if EI_CLASSIFIER_HAS_ANOMALY == 1
+        uartPrintf("Anomaly: %.3f\n", result.anomaly);
+    #endif
+
+        uartPrintf("Predictions: from Mithlesh Katre\n");
+
+        // Notify Thread1 that we're done
+        tx_semaphore_put(&sem_done);
     }
 }
 
+
 void thread1_entry(ULONG thread_input)
 {
-  uint8_t rx;
-  uint8_t msgBuffer[64];      // buffer to collect message
-  uint8_t msgIndex = 0;
+    uint8_t rx;
+    uint8_t msgBuffer[64];
+    uint8_t msgIndex = 0;
+
     while (1)
     {
         tx_queue_receive(&uartQueue, &rx, TX_WAIT_FOREVER);
         msgBuffer[msgIndex++] = rx;
 
-        // End of message
-        if (rx == '\r' || msgIndex >= sizeof(msgBuffer)) {
-            // Wait until previous TX finishes
-            while (txBusy) tx_thread_sleep(1);
+        // Trigger classifier when 'm' or 'M' received
+        if (rx == 'm' || rx == 'M') {
+        if (tx_semaphore_ceiling_put(&sem_trigger, 1) != TX_SUCCESS) {
+            // Already queued, do nothing
+        }
+        tx_semaphore_get(&sem_done, TX_WAIT_FOREVER);
+        uartPrintf("Classifier finished, ready for next input\n");
+        }
 
-            // Copy message to TX buffer
+        // End of message (your existing UART echo logic)
+        if (rx == '\r' || msgIndex >= sizeof(msgBuffer))
+        {
+            while (txBusy) tx_thread_sleep(1);
             memcpy(TxData, msgBuffer, msgIndex);
             txBusy = true;
-
-            // Start interrupt-driven send
             PAL::uartSendIT(UartInst::Uart2, TxData, msgIndex);
-
             msgIndex = 0;
         }
     }
 }
+
 
 
 // Application-level callback

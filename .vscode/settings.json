@@ -102,6 +102,7 @@
     "streambuf": "cpp",
     "typeinfo": "cpp",
     "thread": "cpp",
-    "chrono": "cpp"
+    "chrono": "cpp",
+    "arm_math.h": "c"
   }
 }

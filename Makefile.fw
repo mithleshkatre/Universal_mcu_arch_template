@@ -7,6 +7,9 @@ DEBUG = 1
 OPT = -Og
 BUILD_DIR = Output
 
+# Response file to hold object list
+OBJLIST := $(BUILD_DIR)/objects.lst
+
 #######################################
 # Select MCU Family (default = F4)
 #######################################
@@ -79,16 +82,11 @@ CXXFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 #######################################
 # Sources
 #######################################
-
 # ThreadX sources
 #THREADX_SRC = \
 #$(wildcard Middlewares/azure-rtos/threadx/common/src/*.c) 
 
-
-C_SOURCES = \
-HAL/ST/stm32f4/Configs/stm32_hal_msp.c \
-App/Src/sysmem.c \
-App/Src/syscalls.c \
+C_SOURCES =
 
 C_SOURCES += $(THREADX_SRC)
 
@@ -98,34 +96,14 @@ CMSIS/Vendor_Device/ST/STM32F4xx/Source/system_stm32f4xx.c \
 $(wildcard HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/*.c)
 endif
 
+CPP_SOURCES = 
 
-CPP_SOURCES = \
-App/Src/stm32f4xx_it.cpp \
-App/Src/main.cpp \
-HAL/ST/stm32f4/Configs/stm32_clock.cpp \
-HAL/ST/stm32f4/Configs/stm32_hal_init.cpp \
-HAL/ST/stm32f4/Stm32Uart.cpp \
-HAL/ST/stm32f4/Stm32IO.cpp \
-PAL/Board/HardwareInit.cpp \
-PAL/PALWrappers/UartWrapper.cpp \
-PAL/PALWrappers/Pin.cpp
-
+CC_SOURCES = 
 
 #######################################
 # Includes
 #######################################
-C_INCLUDES = \
--IApp/Inc \
--ICMSIS/Vendor_Device/ST/STM32F4xx/Include \
--ICMSIS/Core/Include \
--IHAL \
--IHAL/ST/stm32f4/Configs \
--IHAL/ST/stm32f4 \
--IPAL \
--IPAL/PALWrappers \
--IMiddlewares/azure-rtos/threadx/common/inc \
--IMiddlewares/azure-rtos/threadx/ports/cortex_m4/gnu/inc \
-
+C_INCLUDES = 
 
 ifeq ($(MCU_FAMILY),F4)
 C_INCLUDES += \
@@ -133,8 +111,6 @@ C_INCLUDES += \
 -IHAL/ST/stm32f4/STM32F4xx_HAL_Driver/Inc/Legacy \
 -IHAL/ST/stm32f4/STM32F4xx_HAL_Driver 
 endif
-
-
 
 #######################################
 # Linker
@@ -148,17 +124,29 @@ LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) \
 #######################################
 # Build
 #######################################
-OBJECTS = $(patsubst %, $(BUILD_DIR)/%, $(C_SOURCES:.c=.o))
+-include Makefile.files
+
+OBJECTS += $(patsubst %, $(BUILD_DIR)/%, $(C_SOURCES:.c=.o))
 OBJECTS += $(patsubst %, $(BUILD_DIR)/%, $(CPP_SOURCES:.cpp=.o))
+OBJECTS += $(patsubst %, $(BUILD_DIR)/%, $(CC_SOURCES:.cc=.o))
 OBJECTS += $(patsubst %, $(BUILD_DIR)/%, $(ASM_SOURCES:.s=.o))
 OBJECTS += $(patsubst %, $(BUILD_DIR)/%, $(ASMM_SOURCES:.S=.o))
 
+#######################################
+# Virtual paths (auto-discovery)
+#######################################
 vpath %.c $(sort $(dir $(C_SOURCES)))
 vpath %.cpp $(sort $(dir $(CPP_SOURCES)))
+vpath %.cc $(sort $(dir $(CC_SOURCES)))
 vpath %.s $(sort $(dir $(ASM_SOURCES)))
 vpath %.S $(sort $(dir $(ASMM_SOURCES)))
 
+
 all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin
+
+$(OBJLIST): $(OBJECTS)
+	@mkdir -p $(dir $@)
+	@echo $(OBJECTS) > $@
 
 $(BUILD_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
@@ -168,30 +156,36 @@ $(BUILD_DIR)/%.o: %.cpp
 	@mkdir -p $(dir $@)
 	$(CXX) -c $(CXXFLAGS) $< -o $@
 
+$(BUILD_DIR)/%.o: %.cc
+	@mkdir -p $(dir $@)
+	$(CXX) -c $(CXXFLAGS) $< -o $@
+
 $(BUILD_DIR)/%.o: %.s
 	@mkdir -p $(dir $@)
-	$(AS) -c $(CFLAGS) $< -o $@
+	$(AS) -c $(ASFLAGS) $< -o $@
 
 $(BUILD_DIR)/%.o: %.S
 	@mkdir -p $(dir $@)
-	$(AS) -c $(CFLAGS) $< -o $@
+	$(AS) -c $(ASFLAGS) $< -o $@
 
-
-$(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) Makefile
-	$(CXX) $(OBJECTS) $(LDFLAGS) -o $@
+$(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) $(OBJLIST) Makefile
+	$(CXX) @$(OBJLIST) $(LDFLAGS) -o $@
 	$(SZ) $@
 
 $(BUILD_DIR)/%.hex: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
 	$(HEX) $< $@
+
 $(BUILD_DIR)/%.bin: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
 	$(BIN) $< $@
+	
 $(BUILD_DIR):
-	mkdir $@
+	@mkdir -p $@
 
 clean:
 	-rm -fR $(BUILD_DIR)
 
 -include $(OBJECTS:.o=.d)
+
 
 $(info ===== Build Configuration =====)
 $(info MCU_FAMILY = $(MCU_FAMILY))
@@ -202,3 +196,4 @@ $(info C_DEFS     = $(C_DEFS))
 $(info LDSCRIPT   = $(LDSCRIPT))
 $(info ASM_SOURCES= $(ASM_SOURCES))
 $(info ===============================)
+
