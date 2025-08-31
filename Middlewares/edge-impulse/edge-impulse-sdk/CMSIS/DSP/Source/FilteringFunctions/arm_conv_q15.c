@@ -1,15 +1,17 @@
+#include "edge-impulse-sdk/dsp/config.hpp"
+#if EIDSP_LOAD_CMSIS_DSP_SOURCES
 /* ----------------------------------------------------------------------
  * Project:      CMSIS DSP Library
  * Title:        arm_conv_q15.c
  * Description:  Convolution of Q15 sequences
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +28,7 @@
  * limitations under the License.
  */
 
-#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_math.h"
+#include "edge-impulse-sdk/CMSIS/DSP/Include/dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -58,9 +60,9 @@
   @remark
                    Refer to \ref arm_conv_opt_q15() for a faster implementation of this function using scratch buffers.
  */
-#if defined(ARM_MATH_MVEI)
-#include "arm_helium_utils.h"
-#include "arm_vec_filtering.h"
+#if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
+#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_helium_utils.h"
+#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_vec_filtering.h"
 
 void arm_conv_q15(
   const q15_t * pSrcA,
@@ -856,3 +858,5 @@ void arm_conv_q15(
 /**
   @} end of Conv group
  */
+
+#endif // EIDSP_LOAD_CMSIS_DSP_SOURCES

@@ -1,15 +1,17 @@
+#include "edge-impulse-sdk/dsp/config.hpp"
+#if EIDSP_LOAD_CMSIS_DSP_SOURCES
 /* ----------------------------------------------------------------------
  * Project:      CMSIS DSP Library
  * Title:        arm_dot_prod_f16.c
  * Description:  Floating-point dot product
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,24 +28,12 @@
  * limitations under the License.
  */
 
-#include "arm_math_f16.h"
+#include "edge-impulse-sdk/CMSIS/DSP/Include/dsp/basic_math_functions_f16.h"
 
 /**
   @ingroup groupMath
  */
 
-/**
-  @defgroup BasicDotProd Vector Dot Product
-
-  Computes the dot product of two vectors.
-  The vectors are multiplied element-by-element and then summed.
-
-  <pre>
-      sum = pSrcA[0]*pSrcB[0] + pSrcA[1]*pSrcB[1] + ... + pSrcA[blockSize-1]*pSrcB[blockSize-1]
-  </pre>
-
-  There are separate functions for floating-point, Q7, Q15, and Q31 data types.
- */
 
 /**
   @addtogroup BasicDotProd
@@ -59,9 +49,9 @@
   @return        none
  */
 
-#if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
+#if defined(ARM_MATH_MVE_FLOAT16) && !defined(ARM_MATH_AUTOVECTORIZE)
 
-#include "arm_helium_utils.h"
+#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_helium_utils.h"
 
 
 void arm_dot_prod_f16(
@@ -126,7 +116,7 @@ void arm_dot_prod_f16(
         float16_t * result)
 {
         uint32_t blkCnt;                               /* Loop counter */
-        float16_t sum = 0.0f;                          /* Temporary return variable */
+        _Float16 sum = 0.0f;                          /* Temporary return variable */
 
 
 #if defined (ARM_MATH_LOOPUNROLL) && !defined(ARM_MATH_AUTOVECTORIZE)
@@ -141,13 +131,13 @@ void arm_dot_prod_f16(
     /* C = A[0]* B[0] + A[1]* B[1] + A[2]* B[2] + .....+ A[blockSize-1]* B[blockSize-1] */
 
     /* Calculate dot product and store result in a temporary buffer. */
-    sum += (*pSrcA++) * (*pSrcB++);
+    sum += (_Float16)(*pSrcA++) * (_Float16)(*pSrcB++);
 
-    sum += (*pSrcA++) * (*pSrcB++);
+    sum += (_Float16)(*pSrcA++) * (_Float16)(*pSrcB++);
 
-    sum += (*pSrcA++) * (*pSrcB++);
+    sum += (_Float16)(*pSrcA++) * (_Float16)(*pSrcB++);
 
-    sum += (*pSrcA++) * (*pSrcB++);
+    sum += (_Float16)(*pSrcA++) * (_Float16)(*pSrcB++);
 
     /* Decrement loop counter */
     blkCnt--;
@@ -168,7 +158,7 @@ void arm_dot_prod_f16(
     /* C = A[0]* B[0] + A[1]* B[1] + A[2]* B[2] + .....+ A[blockSize-1]* B[blockSize-1] */
 
     /* Calculate dot product and store result in a temporary buffer. */
-    sum += (*pSrcA++) * (*pSrcB++);
+    sum += (_Float16)(*pSrcA++) * (_Float16)(*pSrcB++);
 
     /* Decrement loop counter */
     blkCnt--;
@@ -182,3 +172,5 @@ void arm_dot_prod_f16(
 /**
   @} end of BasicDotProd group
  */
+
+#endif // EIDSP_LOAD_CMSIS_DSP_SOURCES

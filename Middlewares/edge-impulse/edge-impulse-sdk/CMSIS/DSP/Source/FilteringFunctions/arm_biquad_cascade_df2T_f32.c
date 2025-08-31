@@ -1,15 +1,17 @@
+#include "edge-impulse-sdk/dsp/config.hpp"
+#if EIDSP_LOAD_CMSIS_DSP_SOURCES
 /* ----------------------------------------------------------------------
  * Project:      CMSIS DSP Library
  * Title:        arm_biquad_cascade_df2T_f32.c
  * Description:  Processing function for floating-point transposed direct form II Biquad cascade filter
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +28,7 @@
  * limitations under the License.
  */
 
-#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_math.h"
+#include "edge-impulse-sdk/CMSIS/DSP/Include/dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -45,8 +47,8 @@
   @param[in]     blockSize number of samples to process
   @return        none
  */
-#if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
-#include "arm_helium_utils.h"
+#if (defined(ARM_MATH_MVEF) && defined(ARM_MATH_HELIUM_EXPERIMENTAL)) && !defined(ARM_MATH_AUTOVECTORIZE)
+#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_helium_utils.h"
 
 void arm_biquad_cascade_df2T_f32(
   const arm_biquad_cascade_df2T_instance_f32 * S,
@@ -89,8 +91,8 @@ void arm_biquad_cascade_df2T_f32(
 
         /* b1Coeffs = {b0, b1, b2, x} */
         /* b1Coeffs = { x, x, a1, a2} */
-        b1Coeffs = vshlcq_s32(b0Coeffs, &tmp, 32);
-        a1Coeffs = vshlcq_s32(a0Coeffs, &tmp, 32);
+        b1Coeffs = (f32x4_t)vshlcq_s32((int32x4_t)b0Coeffs, &tmp, 32);
+        a1Coeffs = (f32x4_t)vshlcq_s32((int32x4_t)a0Coeffs, &tmp, 32);
 
         sample = blockSize / 2;
 
@@ -343,7 +345,7 @@ void arm_biquad_cascade_df2T_f32(
    }
 }
 #else
-LOW_OPTIMIZATION_ENTER
+
 void arm_biquad_cascade_df2T_f32(
   const arm_biquad_cascade_df2T_instance_f32 * S,
   const float32_t * pSrc,
@@ -643,10 +645,12 @@ void arm_biquad_cascade_df2T_f32(
    } while (stage > 0U);
 
 }
-LOW_OPTIMIZATION_EXIT
+
 #endif /* #if defined(ARM_MATH_NEON) */
 #endif /* defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE) */
 
 /**
   @} end of BiquadCascadeDF2T group
  */
+
+#endif // EIDSP_LOAD_CMSIS_DSP_SOURCES

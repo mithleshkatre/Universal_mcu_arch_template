@@ -1,15 +1,17 @@
+#include "edge-impulse-sdk/dsp/config.hpp"
+#if EIDSP_LOAD_CMSIS_DSP_SOURCES
 /* ----------------------------------------------------------------------
  * Project:      CMSIS DSP Library
  * Title:        arm_not_u32.c
  * Description:  uint32_t bitwise NOT
  *
- * $Date:        14 November 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +28,7 @@
  * limitations under the License.
  */
 
-#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_math.h"
+#include "edge-impulse-sdk/CMSIS/DSP/Include/dsp/basic_math_functions.h"
 
 /**
   @ingroup groupMath
@@ -53,7 +55,7 @@ void arm_not_u32(
     uint32_t blkCnt;      /* Loop counter */
 
 #if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
-    q31x4_t vecSrc;
+    uint32x4_t vecSrc;
 
     /* Compute 8 outputs at a time */
     blkCnt = blockSize >> 2;
@@ -120,3 +122,5 @@ void arm_not_u32(
 /**
   @} end of Not group
  */
+
+#endif // EIDSP_LOAD_CMSIS_DSP_SOURCES

@@ -15,11 +15,10 @@ limitations under the License.
 #ifndef TENSORFLOW_LITE_MICRO_MICRO_OP_RESOLVER_H_
 #define TENSORFLOW_LITE_MICRO_MICRO_OP_RESOLVER_H_
 
-#include "tensorflow/lite/c/common.h"
-#include "tensorflow/lite/core/api/error_reporter.h"
-#include "tensorflow/lite/core/api/flatbuffer_conversions.h"
-#include "tensorflow/lite/core/api/op_resolver.h"
-#include "tensorflow/lite/schema/schema_generated.h"
+#include "edge-impulse-sdk/tensorflow/lite/c/common.h"
+#include "edge-impulse-sdk/tensorflow/lite/micro/flatbuffer_conversions_bridge.h"
+#include "edge-impulse-sdk/tensorflow/lite/micro/op_resolver_bridge.h"
+#include "edge-impulse-sdk/tensorflow/lite/schema/schema_generated.h"
 
 namespace tflite {
 
@@ -32,18 +31,8 @@ namespace tflite {
 // We need an interface class instead of directly using MicroMutableOpResolver
 // because MicroMutableOpResolver is a class template with the number of
 // registered Ops as the template parameter.
-class MicroOpResolver : public OpResolver {
+class MicroOpResolver : public TfLiteBridgeOpResolver {
  public:
-  // TODO(b/149408647): The op_type parameter enables a gradual transfer to
-  // selective registration of the parse function. It should be removed once we
-  // no longer need to use ParseOpData (from flatbuffer_conversions.h) as part
-  // of the MicroMutableOpResolver.
-  typedef TfLiteStatus (*BuiltinParseFunction)(const Operator* op,
-                                               BuiltinOperator op_type,
-                                               ErrorReporter* error_reporter,
-                                               BuiltinDataAllocator* allocator,
-                                               void** builtin_data);
-
   // Returns the Op registration struct corresponding to the enum code from the
   // flatbuffer schema. Returns nullptr if the op is not found or if op ==
   // BuiltinOperator_CUSTOM.
@@ -68,7 +57,8 @@ class MicroOpResolver : public OpResolver {
 
   // Returns the operator specific parsing function for the OpData for a
   // BuiltinOperator (if registered), else nullptr.
-  virtual BuiltinParseFunction GetOpDataParser(BuiltinOperator op) const = 0;
+  virtual TfLiteBridgeBuiltinParseFunction GetOpDataParser(
+      BuiltinOperator op) const = 0;
 
   ~MicroOpResolver() override {}
 };

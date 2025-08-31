@@ -46,7 +46,8 @@ PAL/PALWrappers/Pin.cpp \
 
 # TFLite model
 CPP_SOURCES += \
-    Middlewares/edge-impulse/tflite-model/trained_model_compiled.cpp
+     Middlewares/edge-impulse/tflite-model/tflite_learn_722624_4_compiled.cpp
+#    Middlewares/edge-impulse/tflite-model/trained_model_compiled.cpp
 
 # Minimal TensorFlow Lite C support
 C_SOURCES += \

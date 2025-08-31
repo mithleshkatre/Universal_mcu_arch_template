@@ -13,16 +13,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "tensorflow/lite/kernels/internal/reference/integer_ops/tanh.h"
+#include "edge-impulse-sdk/tensorflow/lite/kernels/internal/reference/integer_ops/tanh.h"
 
-#include "tensorflow/lite/c/builtin_op_data.h"
-#include "tensorflow/lite/c/common.h"
-#include "tensorflow/lite/kernels/internal/common.h"
-#include "tensorflow/lite/kernels/internal/quantization_util.h"
-#include "tensorflow/lite/kernels/internal/reference/tanh.h"
-#include "tensorflow/lite/kernels/internal/tensor_ctypes.h"
-#include "tensorflow/lite/kernels/kernel_util.h"
-#include "tensorflow/lite/kernels/op_macros.h"
+#include "edge-impulse-sdk/tensorflow/lite/c/builtin_op_data.h"
+#include "edge-impulse-sdk/tensorflow/lite/c/common.h"
+#include "edge-impulse-sdk/tensorflow/lite/kernels/internal/common.h"
+#include "edge-impulse-sdk/tensorflow/lite/kernels/internal/quantization_util.h"
+#include "edge-impulse-sdk/tensorflow/lite/kernels/internal/reference/tanh.h"
+#include "edge-impulse-sdk/tensorflow/lite/kernels/internal/tensor_ctypes.h"
+#include "edge-impulse-sdk/tensorflow/lite/kernels/kernel_util.h"
+#include "edge-impulse-sdk/tensorflow/lite/kernels/op_macros.h"
+#include "edge-impulse-sdk/tensorflow/lite/micro/kernels/kernel_util.h"
+#include "edge-impulse-sdk/tensorflow/lite/micro/micro_log.h"
+#include "edge-impulse-sdk/tensorflow/lite/micro/micro_utils.h"
 
 namespace tflite {
 namespace ops {
@@ -39,17 +42,26 @@ struct OpData {
   int input_left_shift;
 };
 
+void* TanhInit(TfLiteContext* context, const char* buffer, size_t length) {
+  TFLITE_DCHECK(context->AllocatePersistentBuffer != nullptr);
+  return context->AllocatePersistentBuffer(context, sizeof(OpData));
+}
+
 TfLiteStatus CalculateArithmeticOpData(TfLiteContext* context, TfLiteNode* node,
                                        OpData* data) {
-  const TfLiteTensor* input = GetInput(context, node, kInputTensor);
-  TfLiteTensor* output = GetOutput(context, node, kOutputTensor);
+  MicroContext* micro_context = GetMicroContext(context);
+  TF_LITE_ENSURE_EQ(context, NumInputs(node), 1);
+  TF_LITE_ENSURE_EQ(context, NumOutputs(node), 1);
+  TfLiteTensor* input =
+      micro_context->AllocateTempInputTensor(node, kInputTensor);
+  TF_LITE_ENSURE(context, input != nullptr);
+  TfLiteTensor* output =
+      micro_context->AllocateTempOutputTensor(node, kOutputTensor);
+  TF_LITE_ENSURE(context, output != nullptr);
 
   TF_LITE_ENSURE_TYPES_EQ(context, input->type, output->type);
-  if (input->type == kTfLiteInt8) {
-    TF_LITE_ENSURE_EQ(context, output->params.zero_point, 0);
 
-    // The number if input integer bits is set to be consistent with the
-    // required value in reference_integer_ops::Tanh
+  if (input->type == kTfLiteInt8) {
     static constexpr int kInputIntegerBits = 4;
     const double input_real_multiplier =
         static_cast<double>(input->params.scale) *
@@ -61,67 +73,131 @@ TfLiteStatus CalculateArithmeticOpData(TfLiteContext* context, TfLiteNode* node,
     data->input_range_radius =
         CalculateInputRadius(kInputIntegerBits, data->input_left_shift, 31);
   }
+
+  if (input->type == kTfLiteInt16) {
+    static constexpr int kInputIntegerBits = 3;
+    static constexpr int kOutputFractionalBits = 15;
+
+    // These operators are implemented in fixed-point arithmetic,
+    // which intrinsically wants symmetric ranges (zero_point==0)
+    // and power-of-two scales (power-of-two is abbreviated below as POT).
+    // While more general support would be possible by means of rescaling,
+    // that would add some overhead and some loss of accuracy and wouldn't
+    // be used at the moment as current quantized LSTM applications are
+    // happy with symmetric, power-of-two-scales quantization. So we just
+    // implement that narrow case only for now.
+
+    TF_LITE_ENSURE_EQ(context, input->params.zero_point, 0);
+    TF_LITE_ENSURE_EQ(context, output->params.zero_point, 0);
+
+    int input_scale_log2_rounded;
+    bool param_scale_pot =
+        CheckedLog2(input->params.scale, &input_scale_log2_rounded);
+
+    data->input_left_shift =
+        (15 - kInputIntegerBits) + input_scale_log2_rounded;
+    param_scale_pot &=
+        (data->input_left_shift == 0 || data->input_left_shift == 1);
+
+    if (param_scale_pot) {
+      data->input_multiplier = 0;
+    } else {
+      // Calculate multiplier to change input scale to 1/(3*4096)
+      // as required by the table lookup.
+      // The number 3.0 in the multiplier comes from here,
+      // because the interval is [-10.7, 10.7] instead of [-8, 8].
+      // So, in this scaling +/-2^17 represents +/-10.7.
+
+      double multiplier =
+          static_cast<double>(input->params.scale) * 4096.0 * 3.0;
+      data->input_left_shift = 0;
+
+      while (multiplier <= 32767.0 / 2.0 && data->input_left_shift <= 30) {
+        data->input_left_shift++;
+        multiplier = multiplier * 2.0;
+      }
+
+      data->input_multiplier = static_cast<int32_t>(multiplier);
+    }
+
+    int output_scale_log2_rounded;
+    TF_LITE_ENSURE(
+        context, CheckedLog2(output->params.scale, &output_scale_log2_rounded));
+    TF_LITE_ENSURE_EQ(context, output_scale_log2_rounded,
+                      -kOutputFractionalBits);
+  }
+
+  micro_context->DeallocateTempTfLiteTensor(input);
+  micro_context->DeallocateTempTfLiteTensor(output);
   return kTfLiteOk;
 }
+
+TfLiteStatus TanhPrepare(TfLiteContext* context, TfLiteNode* node) {
+  TFLITE_DCHECK(node->user_data != nullptr);
+
+  OpData* data = static_cast<OpData*>(node->user_data);
+
+  MicroContext* micro_context = GetMicroContext(context);
+  TfLiteTensor* input =
+      micro_context->AllocateTempInputTensor(node, kInputTensor);
+  TF_LITE_ENSURE(context, input != nullptr);
+  data->input_zero_point = input->params.zero_point;
+  TF_LITE_ENSURE_OK(context, CalculateArithmeticOpData(context, node, data));
+
+  micro_context->DeallocateTempTfLiteTensor(input);
+  return kTfLiteOk;
+}
+
 }  // namespace
 
 TfLiteStatus TanhEval(TfLiteContext* context, TfLiteNode* node) {
-  const TfLiteTensor* input = GetInput(context, node, kInputTensor);
-  TfLiteTensor* output = GetOutput(context, node, kOutputTensor);
-  OpData data;
-  CalculateArithmeticOpData(context, node, &data);
+  const TfLiteEvalTensor* input =
+      tflite::micro::GetEvalInput(context, node, kInputTensor);
+  TfLiteEvalTensor* output =
+      tflite::micro::GetEvalOutput(context, node, kOutputTensor);
 
-  if (input->type == kTfLiteFloat32) {
-    switch (output->type) {
-      case kTfLiteFloat32: {
-        reference_ops::Tanh(GetTensorShape(input), GetTensorData<float>(input),
-                            GetTensorShape(output),
-                            GetTensorData<float>(output));
-        return kTfLiteOk;
-      }
-      default:
-        TF_LITE_KERNEL_LOG(context, "Input %s, output %s not supported.",
-                           TfLiteTypeGetName(input->type),
-                           TfLiteTypeGetName(output->type));
-        return kTfLiteError;
-    }
-  } else if (input->type == kTfLiteInt8) {
-    switch (output->type) {
-      case kTfLiteInt8: {
-        reference_integer_ops::Tanh(
-            input->params.zero_point, data.input_range_radius,
-            data.input_multiplier, data.input_left_shift,
-            NumElements(input->dims), GetTensorData<int8_t>(input),
-            GetTensorData<int8_t>(output));
-        return kTfLiteOk;
-      }
-      default:
-        TF_LITE_KERNEL_LOG(context, "Input %s, output %s not supported.",
-                           TfLiteTypeGetName(input->type),
-                           TfLiteTypeGetName(output->type));
-        return kTfLiteError;
-    }
-  } else {
-    TF_LITE_KERNEL_LOG(context, "Input %s, output %s not supported.",
-                       TfLiteTypeGetName(input->type),
-                       TfLiteTypeGetName(output->type));
-    return kTfLiteError;
+  TFLITE_DCHECK(node->user_data != nullptr);
+  const OpData& data = *(static_cast<const OpData*>(node->user_data));
+
+  switch (input->type) {
+    case kTfLiteFloat32: {
+      reference_ops::Tanh(tflite::micro::GetTensorShape(input),
+                          tflite::micro::GetTensorData<float>(input),
+                          tflite::micro::GetTensorShape(output),
+                          tflite::micro::GetTensorData<float>(output));
+      return kTfLiteOk;
+    } break;
+    case kTfLiteInt16: {
+      reference_integer_ops::Tanh(
+          data.input_multiplier, data.input_left_shift,
+          tflite::micro::GetTensorShape(input),
+          tflite::micro::GetTensorData<int16_t>(input),
+          tflite::micro::GetTensorShape(output),
+          tflite::micro::GetTensorData<int16_t>(output));
+      return kTfLiteOk;
+    } break;
+    case kTfLiteInt8: {
+      reference_integer_ops::Tanh(
+          data.input_zero_point, data.input_range_radius, data.input_multiplier,
+          data.input_left_shift, tflite::micro::GetTensorShape(input),
+          tflite::micro::GetTensorData<int8_t>(input),
+          tflite::micro::GetTensorShape(output),
+          tflite::micro::GetTensorData<int8_t>(output));
+      return kTfLiteOk;
+    } break;
+    default:
+      MicroPrintf("Input %s, output %s not supported.",
+                  TfLiteTypeGetName(input->type),
+                  TfLiteTypeGetName(output->type), context);
+      return kTfLiteError;
   }
-  return kTfLiteOk;
 }
 
 }  // namespace activations
 
-TfLiteRegistration* Register_TANH() {
-  static TfLiteRegistration r = {/*init=*/nullptr,
-                                 /*free=*/nullptr,
-                                 /*prepare=*/nullptr,
-                                 /*invoke=*/activations::TanhEval,
-                                 /*profiling_string=*/nullptr,
-                                 /*builtin_code=*/0,
-                                 /*custom_name=*/nullptr,
-                                 /*version=*/0};
-  return &r;
+TfLiteRegistration Register_TANH() {
+  return tflite::micro::RegisterOp(
+      activations::TanhInit, activations::TanhPrepare, activations::TanhEval);
 }
 }  // namespace micro
 }  // namespace ops

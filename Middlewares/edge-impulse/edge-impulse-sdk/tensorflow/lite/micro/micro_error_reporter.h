@@ -12,16 +12,17 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
-#ifndef TENSORFLOW_LITE_MICRO_MICRO_ERROR_REPORTER_H_
-#define TENSORFLOW_LITE_MICRO_MICRO_ERROR_REPORTER_H_
+#ifndef TENSORFLOW_LITE_MICRO_TFLITE_BRIDGE_MICRO_ERROR_REPORTER_H_
+#define TENSORFLOW_LITE_MICRO_TFLITE_BRIDGE_MICRO_ERROR_REPORTER_H_
 
 #include <cstdarg>
 
-#include "tensorflow/lite/core/api/error_reporter.h"
-#include "tensorflow/lite/micro/compatibility.h"
+#include "edge-impulse-sdk/tensorflow/lite/core/api/error_reporter.h"
+#include "edge-impulse-sdk/tensorflow/lite/micro/compatibility.h"
 
 namespace tflite {
-
+// Get a pointer to a singleton global error reporter.
+ErrorReporter* GetMicroErrorReporter();
 class MicroErrorReporter : public ErrorReporter {
  public:
   ~MicroErrorReporter() override {}
@@ -33,4 +34,4 @@ class MicroErrorReporter : public ErrorReporter {
 
 }  // namespace tflite
 
-#endif  // TENSORFLOW_LITE_MICRO_MICRO_ERROR_REPORTER_H_
+#endif  // TENSORFLOW_LITE_MICRO_TFLITE_BRIDGE_MICRO_ERROR_REPORTER_H_

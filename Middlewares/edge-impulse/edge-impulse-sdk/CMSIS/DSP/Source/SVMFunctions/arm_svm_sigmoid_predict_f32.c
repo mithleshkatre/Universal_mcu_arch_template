@@ -1,13 +1,17 @@
+#include "edge-impulse-sdk/dsp/config.hpp"
+#if EIDSP_LOAD_CMSIS_DSP_SOURCES
 /* ----------------------------------------------------------------------
  * Project:      CMSIS DSP Library
  * Title:        arm_svm_sigmoid_predict_f32.c
  * Description:  SVM Sigmoid Classifier
  *
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -24,12 +28,12 @@
  * limitations under the License.
  */
 
-#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_math.h"
+#include "edge-impulse-sdk/CMSIS/DSP/Include/dsp/svm_functions.h"
 #include <limits.h>
 #include <math.h>
 
 /**
- * @addtogroup groupSVM
+ * @addtogroup sigmoidsvm
  * @{
  */
 
@@ -46,8 +50,8 @@
 
 #if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
 
-#include "arm_helium_utils.h"
-#include "arm_vec_math.h"
+#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_helium_utils.h"
+#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_vec_math.h"
 
 void arm_svm_sigmoid_predict_f32(
     const arm_svm_sigmoid_instance_f32 *S,
@@ -481,5 +485,7 @@ void arm_svm_sigmoid_predict_f32(
 #endif /* defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE) */
 
 /**
- * @} end of groupSVM group
+ * @} end of sigmoidsvm group
  */
+
+#endif // EIDSP_LOAD_CMSIS_DSP_SOURCES

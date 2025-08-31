@@ -1,15 +1,17 @@
+#include "edge-impulse-sdk/dsp/config.hpp"
+#if EIDSP_LOAD_CMSIS_DSP_SOURCES
 /* ----------------------------------------------------------------------
  * Project:      CMSIS DSP Library
  * Title:        arm_correlate_fast_opt_q15.c
  * Description:  Fast Q15 Correlation
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +28,7 @@
  * limitations under the License.
  */
 
-#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_math.h"
+#include "edge-impulse-sdk/CMSIS/DSP/Include/dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -197,7 +199,7 @@ void arm_correlate_fast_opt_q15(
       y1 = read_q15x2_ia ((q15_t **) &pIn2);
       y2 = read_q15x2_ia ((q15_t **) &pIn2);
 
-      /* multiply and accumlate */
+      /* multiply and accumulate */
       acc0 = __SMLAD(x1, y1, acc0);
       acc2 = __SMLAD(x2, y1, acc2);
 
@@ -208,13 +210,13 @@ void arm_correlate_fast_opt_q15(
       x3 = __PKHBT(x1, x2, 0);
 #endif
 
-      /* multiply and accumlate */
+      /* multiply and accumulate */
       acc1 = __SMLADX(x3, y1, acc1);
 
       /* Read next two samples from scratch buffer */
       x1 = read_q15x2_ia (&pScr1);
 
-      /* multiply and accumlate */
+      /* multiply and accumulate */
       acc0 = __SMLAD(x2, y2, acc0);
       acc2 = __SMLAD(x1, y2, acc2);
 
@@ -250,7 +252,7 @@ void arm_correlate_fast_opt_q15(
 
     while (tapCnt > 0U)
     {
-      /* accumlate the results */
+      /* accumulate the results */
       acc0 += (*pScr1++ * *pIn2);
       acc1 += (*pScr1++ * *pIn2);
       acc2 += (*pScr1++ * *pIn2);
@@ -318,7 +320,7 @@ void arm_correlate_fast_opt_q15(
     while (tapCnt > 0U)
     {
 
-      /* accumlate the results */
+      /* accumulate the results */
       acc0 += (*pScr1++ * *pIn2++);
 
       /* Decrement loop counter */
@@ -343,3 +345,5 @@ void arm_correlate_fast_opt_q15(
 /**
   @} end of Corr group
  */
+
+#endif // EIDSP_LOAD_CMSIS_DSP_SOURCES

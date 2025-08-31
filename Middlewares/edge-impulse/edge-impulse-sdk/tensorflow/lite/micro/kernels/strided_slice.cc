@@ -1,4 +1,4 @@
-/* Copyright 2018 The TensorFlow Authors. All Rights Reserved.
+/* Copyright 2023 The TensorFlow Authors. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -12,25 +12,22 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
-#include "tensorflow/lite/kernels/internal/reference/strided_slice.h"
+#include "edge-impulse-sdk/tensorflow/lite/kernels/internal/reference/strided_slice.h"
 
 #include <cmath>
+#include <cstring>
 
-#include "tensorflow/lite/c/builtin_op_data.h"
-#include "tensorflow/lite/c/common.h"
-#include "tensorflow/lite/kernels/internal/tensor_ctypes.h"
-#include "tensorflow/lite/kernels/kernel_util.h"
-#include "tensorflow/lite/kernels/op_macros.h"
+#include "edge-impulse-sdk/tensorflow/lite/c/builtin_op_data.h"
+#include "edge-impulse-sdk/tensorflow/lite/c/common.h"
+#include "edge-impulse-sdk/tensorflow/lite/kernels/internal/tensor_ctypes.h"
+#include "edge-impulse-sdk/tensorflow/lite/kernels/kernel_util.h"
+#include "edge-impulse-sdk/tensorflow/lite/kernels/op_macros.h"
+#include "edge-impulse-sdk/tensorflow/lite/micro/kernels/kernel_util.h"
+#include "edge-impulse-sdk/tensorflow/lite/micro/micro_log.h"
 
 namespace tflite {
-namespace ops {
-namespace micro {
-namespace strided_slice {
 
-enum KernelType {
-  kReference,
-  // TODO(soroosh): add kGenericOptimized
-};
+namespace {
 
 constexpr int kInputTensor = 0;
 constexpr int kBeginTensor = 1;
@@ -41,18 +38,27 @@ constexpr int kOutputTensor = 0;
 struct StridedSliceContext {
   StridedSliceContext(TfLiteContext* context, TfLiteNode* node) {
     params = reinterpret_cast<TfLiteStridedSliceParams*>(node->builtin_data);
-    input = GetInput(context, node, kInputTensor);
-    begin = GetInput(context, node, kBeginTensor);
-    end = GetInput(context, node, kEndTensor);
-    strides = GetInput(context, node, kStridesTensor);
-    output = GetOutput(context, node, kOutputTensor);
+    micro_context = GetMicroContext(context);
+    input = micro_context->AllocateTempInputTensor(node, kInputTensor);
+    begin = micro_context->AllocateTempInputTensor(node, kBeginTensor);
+    end = micro_context->AllocateTempInputTensor(node, kEndTensor);
+    strides = micro_context->AllocateTempInputTensor(node, kStridesTensor);
+    output = micro_context->AllocateTempOutputTensor(node, kOutputTensor);
     dims = NumDimensions(input);
   }
+  ~StridedSliceContext() {
+    micro_context->DeallocateTempTfLiteTensor(input);
+    micro_context->DeallocateTempTfLiteTensor(begin);
+    micro_context->DeallocateTempTfLiteTensor(end);
+    micro_context->DeallocateTempTfLiteTensor(strides);
+    micro_context->DeallocateTempTfLiteTensor(output);
+  }
   const TfLiteStridedSliceParams* params;
-  const TfLiteTensor* input;
-  const TfLiteTensor* begin;
-  const TfLiteTensor* end;
-  const TfLiteTensor* strides;
+  MicroContext* micro_context;
+  TfLiteTensor* input;
+  TfLiteTensor* begin;
+  TfLiteTensor* end;
+  TfLiteTensor* strides;
   TfLiteTensor* output;
   int dims;
 };
@@ -120,66 +126,125 @@ TfLiteStatus CheckOutputSize(TfLiteContext* context,
   return kTfLiteOk;
 }
 
+void* Init(TfLiteContext* context, const char* buffer, size_t length) {
+  TFLITE_DCHECK(context->AllocatePersistentBuffer != nullptr);
+  return context->AllocatePersistentBuffer(context, sizeof(StridedSliceParams));
+}
+
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
+  TFLITE_DCHECK(node->user_data != nullptr);
+  StridedSliceParams* op_params =
+      static_cast<StridedSliceParams*>(node->user_data);
   TF_LITE_ENSURE_EQ(context, NumInputs(node), 4);
   TF_LITE_ENSURE_EQ(context, NumOutputs(node), 1);
   StridedSliceContext op_context(context, node);
   TF_LITE_ENSURE_MSG(context, op_context.dims <= kMaxDim,
                      "input dim should not exceed 4");
+  auto params = BuildStridedSliceParams(&op_context);
+  memcpy(op_params, &params, sizeof(StridedSliceParams));
   return CheckOutputSize(context, &op_context);
 }
 
-template <KernelType kernel_type>
 TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
-  StridedSliceContext op_context(context, node);
-  auto op_params = BuildStridedSliceParams(&op_context);
+  TFLITE_DCHECK(node->user_data != nullptr);
+  const StridedSliceParams& op_params =
+      *(static_cast<const StridedSliceParams*>(node->user_data));
 
-#define TF_LITE_STRIDED_SLICE(kernel_type, data_type)                    \
-  kernel_type::StridedSlice(op_params, GetTensorShape(op_context.input), \
-                            GetTensorData<data_type>(op_context.input),  \
-                            GetTensorShape(op_context.output),           \
-                            GetTensorData<data_type>(op_context.output))
-
-  switch (op_context.input->type) {
+  const TfLiteEvalTensor* input =
+      tflite::micro::GetEvalInput(context, node, kInputTensor);
+  TfLiteEvalTensor* output =
+      tflite::micro::GetEvalOutput(context, node, kOutputTensor);
+  switch (output->type) {
     case kTfLiteFloat32:
-      if (kernel_type == kReference) {
-        TF_LITE_STRIDED_SLICE(reference_ops, float);
-      }
+      #if EI_TFLITE_DISABLE_STRIDED_SLICE_OUT_F32
+      TF_LITE_KERNEL_LOG(context, "Type %s (%d) not supported.",
+                      TfLiteTypeGetName(output->type), output->type);
+      return kTfLiteError;
+      #endif
+
+      reference_ops::StridedSlice(op_params,
+                                  tflite::micro::GetTensorShape(input),
+                                  tflite::micro::GetTensorData<float>(input),
+                                  tflite::micro::GetTensorShape(output),
+                                  tflite::micro::GetTensorData<float>(output));
       break;
     case kTfLiteUInt8:
-      if (kernel_type == kReference) {
-        TF_LITE_STRIDED_SLICE(reference_ops, uint8_t);
-      }
+      #if EI_TFLITE_DISABLE_STRIDED_SLICE_OUT_U8
+      TF_LITE_KERNEL_LOG(context, "Type %s (%d) not supported.",
+                      TfLiteTypeGetName(output->type), output->type);
+      return kTfLiteError;
+      #endif
+
+      reference_ops::StridedSlice(
+          op_params, tflite::micro::GetTensorShape(input),
+          tflite::micro::GetTensorData<uint8_t>(input),
+          tflite::micro::GetTensorShape(output),
+          tflite::micro::GetTensorData<uint8_t>(output));
       break;
     case kTfLiteInt8:
-      if (kernel_type == kReference) {
-        TF_LITE_STRIDED_SLICE(reference_ops, int8_t);
-      }
+      #if EI_TFLITE_DISABLE_STRIDED_SLICE_OUT_I8
+      TF_LITE_KERNEL_LOG(context, "Type %s (%d) not supported.",
+                      TfLiteTypeGetName(output->type), output->type);
+      return kTfLiteError;
+      #endif
+
+      reference_ops::StridedSlice(op_params,
+                                  tflite::micro::GetTensorShape(input),
+                                  tflite::micro::GetTensorData<int8_t>(input),
+                                  tflite::micro::GetTensorShape(output),
+                                  tflite::micro::GetTensorData<int8_t>(output));
+      break;
+    case kTfLiteInt16:
+      #if EI_TFLITE_DISABLE_STRIDED_SLICE_OUT_I16
+      TF_LITE_KERNEL_LOG(context, "Type %s (%d) not supported.",
+                      TfLiteTypeGetName(output->type), output->type);
+      return kTfLiteError;
+      #endif
+
+      reference_ops::StridedSlice(
+          op_params, tflite::micro::GetTensorShape(input),
+          tflite::micro::GetTensorData<int16_t>(input),
+          tflite::micro::GetTensorShape(output),
+          tflite::micro::GetTensorData<int16_t>(output));
+      break;
+    case kTfLiteInt32:
+      #if EI_TFLITE_DISABLE_STRIDED_SLICE_OUT_I32
+      TF_LITE_KERNEL_LOG(context, "Type %s (%d) not supported.",
+                      TfLiteTypeGetName(output->type), output->type);
+      return kTfLiteError;
+      #endif
+
+      reference_ops::StridedSlice(
+          op_params, tflite::micro::GetTensorShape(input),
+          tflite::micro::GetTensorData<int32_t>(input),
+          tflite::micro::GetTensorShape(output),
+          tflite::micro::GetTensorData<int32_t>(output));
+      break;
+    case kTfLiteBool:
+      #if EI_TFLITE_DISABLE_STRIDED_SLICE_OUT_BOOL
+      TF_LITE_KERNEL_LOG(context, "Type %s (%d) not supported.",
+                      TfLiteTypeGetName(output->type), output->type);
+      return kTfLiteError;
+      #endif
+
+      reference_ops::StridedSlice(op_params,
+                                  tflite::micro::GetTensorShape(input),
+                                  tflite::micro::GetTensorData<bool>(input),
+                                  tflite::micro::GetTensorShape(output),
+                                  tflite::micro::GetTensorData<bool>(output));
       break;
     default:
-      TF_LITE_KERNEL_LOG(context, "Type %s (%d) not supported.",
-                         TfLiteTypeGetName(op_context.input->type),
-                         op_context.input->type);
+      MicroPrintf("Type %s (%d) not supported.", TfLiteTypeGetName(input->type),
+                  input->type);
       return kTfLiteError;
   }
-#undef TF_LITE_STRIDED_SLICE
   return kTfLiteOk;
 }
-}  // namespace strided_slice
 
-TfLiteRegistration* Register_STRIDED_SLICE() {
-  static TfLiteRegistration r = {
-      /*init=*/nullptr,
-      /*free=*/nullptr,
-      /*prepare=*/strided_slice::Prepare,
-      /*invoke=*/strided_slice::Eval<strided_slice::kReference>,
-      /*profiling_string=*/nullptr,
-      /*builtin_code=*/0,
-      /*custom_name=*/nullptr,
-      /*version=*/0};
-  return &r;
+}  // namespace
+
+TfLiteRegistration Register_STRIDED_SLICE() {
+  return tflite::micro::RegisterOp(Init, Prepare, Eval);
 }
 
-}  // namespace micro
-}  // namespace ops
 }  // namespace tflite

@@ -1,3 +1,5 @@
+#include "edge-impulse-sdk/classifier/ei_classifier_config.h"
+#if EI_CLASSIFIER_TFLITE_LOAD_CMSIS_NN_SOURCES
 /*
  * Copyright (C) 2010-2019 Arm Limited or its affiliates. All rights reserved.
  *
@@ -21,15 +23,15 @@
  * Title:        arm_relu6_s8.c
  * Description:  Basic s8 version of ReLU6
  *
- * $Date:        Spetember 2019
- * $Revision:    V.1.0.0
+ * $Date:        09. October 2020
+ * $Revision:    V.1.0.1
  *
  * Target Processor:  Cortex-M cores
  *
  * -------------------------------------------------------------------- */
 
-#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_math.h"
 #include "edge-impulse-sdk/CMSIS/NN/Include/arm_nnfunctions.h"
+#include "edge-impulse-sdk/CMSIS/NN/Include/arm_nnsupportfunctions.h"
 
 /**
  *  @ingroup groupNN
@@ -40,12 +42,12 @@
  * @{
  */
 
-  /*
-   *  Basic ReLU6 function
-   *
-   * Refer to header file for details.
-   *
-   */
+/*
+ *  Basic ReLU6 function
+ *
+ * Refer to header file for details.
+ *
+ */
 
 void arm_relu6_s8(q7_t *data, uint16_t size)
 {
@@ -63,3 +65,5 @@ void arm_relu6_s8(q7_t *data, uint16_t size)
 /**
  * @} end of Acti group
  */
+
+#endif // EI_CLASSIFIER_TFLITE_LOAD_CMSIS_NN_SOURCES

@@ -13,11 +13,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "tensorflow/lite/c/builtin_op_data.h"
-#include "tensorflow/lite/c/common.h"
-#include "tensorflow/lite/kernels/internal/tensor_ctypes.h"
-#include "tensorflow/lite/kernels/kernel_util.h"
-#include "tensorflow/lite/kernels/op_macros.h"
+#include <cstring>
+
+#include "edge-impulse-sdk/tensorflow/lite/c/builtin_op_data.h"
+#include "edge-impulse-sdk/tensorflow/lite/c/common.h"
+#include "edge-impulse-sdk/tensorflow/lite/kernels/internal/tensor_ctypes.h"
+#include "edge-impulse-sdk/tensorflow/lite/kernels/kernel_util.h"
+#include "edge-impulse-sdk/tensorflow/lite/kernels/op_macros.h"
+#include "edge-impulse-sdk/tensorflow/lite/micro/kernels/kernel_util.h"
+#include "edge-impulse-sdk/tensorflow/lite/micro/memory_helpers.h"
+#include "edge-impulse-sdk/tensorflow/lite/micro/micro_utils.h"
 
 namespace tflite {
 namespace ops {
@@ -28,8 +33,14 @@ constexpr int kInputTensor = 0;
 constexpr int kOutputTensor = 0;
 
 TfLiteStatus ReshapeOutput(TfLiteContext* context, TfLiteNode* node) {
-  const TfLiteTensor* input = GetInput(context, node, kInputTensor);
-  TfLiteTensor* output = GetOutput(context, node, kOutputTensor);
+  MicroContext* micro_context = GetMicroContext(context);
+
+  TfLiteTensor* input =
+      micro_context->AllocateTempInputTensor(node, kInputTensor);
+  TF_LITE_ENSURE(context, input != nullptr);
+  TfLiteTensor* output =
+      micro_context->AllocateTempOutputTensor(node, kOutputTensor);
+  TF_LITE_ENSURE(context, output != nullptr);
   // Tensorflow's Reshape allows one of the shape components to have the
   // special -1 value, meaning it will be calculated automatically based on the
   // input. Here we calculate what that dimension should be so that the number
@@ -63,6 +74,9 @@ TfLiteStatus ReshapeOutput(TfLiteContext* context, TfLiteNode* node) {
 
   TF_LITE_ENSURE_TYPES_EQ(context, input->type, output->type);
   TF_LITE_ENSURE_EQ(context, num_input_elements, num_output_elements);
+
+  micro_context->DeallocateTempTfLiteTensor(input);
+  micro_context->DeallocateTempTfLiteTensor(output);
   return kTfLiteOk;
 }
 
@@ -74,31 +88,29 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
 }
 
 TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
-  const TfLiteTensor* input = GetInput(context, node, kInputTensor);
-  TfLiteTensor* output = GetOutput(context, node, kOutputTensor);
+  const TfLiteEvalTensor* input =
+      tflite::micro::GetEvalInput(context, node, kInputTensor);
+  TfLiteEvalTensor* output =
+      tflite::micro::GetEvalOutput(context, node, kOutputTensor);
+
+  // TODO(b/162522304): storing input bytes in OpData increases some models
+  // significantly, possibly due to alignment issues.
+  size_t input_bytes;
+  TF_LITE_ENSURE_STATUS(TfLiteTypeSizeOf(input->type, &input_bytes));
+  input_bytes *= ElementCount(*input->dims);
 
   // Do nothing for in-place reshape.
   if (input->data.raw != output->data.raw) {
     // Otherwise perform reshape with copy.
-    for (size_t i = 0; i < input->bytes; ++i) {
-      output->data.raw[i] = input->data.raw[i];
-    }
+    memcpy(output->data.raw, input->data.raw, input_bytes);
   }
   return kTfLiteOk;
 }
 
 }  // namespace reshape
 
-TfLiteRegistration* Register_RESHAPE() {
-  static TfLiteRegistration r = {/*init=*/nullptr,
-                                 /*free=*/nullptr,
-                                 /*prepare=*/reshape::Prepare,
-                                 /*invoke=*/reshape::Eval,
-                                 /*profiling_string=*/nullptr,
-                                 /*builtin_code=*/0,
-                                 /*custom_name=*/nullptr,
-                                 /*version=*/0};
-  return &r;
+TfLiteRegistration Register_RESHAPE() {
+  return tflite::micro::RegisterOp(nullptr, reshape::Prepare, reshape::Eval);
 }
 
 }  // namespace micro

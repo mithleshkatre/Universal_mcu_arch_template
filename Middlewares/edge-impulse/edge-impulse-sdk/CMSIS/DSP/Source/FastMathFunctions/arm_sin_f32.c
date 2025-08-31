@@ -1,15 +1,17 @@
+#include "edge-impulse-sdk/dsp/config.hpp"
+#if EIDSP_LOAD_CMSIS_DSP_SOURCES
 /* ----------------------------------------------------------------------
  * Project:      CMSIS DSP Library
  * Title:        arm_sin_f32.c
  * Description:  Fast sine calculation for floating-point values
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +28,7 @@
  * limitations under the License.
  */
 
-#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_math.h"
+#include "edge-impulse-sdk/CMSIS/DSP/Include/dsp/fast_math_functions.h"
 #include "edge-impulse-sdk/CMSIS/DSP/Include/arm_common_tables.h"
 
 /**
@@ -44,7 +46,7 @@
   [0 +0.9999] mapping to [0 2*pi).  The fixed-point range is chosen so that a
   value of 2*pi wraps around to 0.
 
-  The implementation is based on table lookup using 256 values together with linear interpolation.
+  The implementation is based on table lookup using 512 values together with linear interpolation.
   The steps used are:
    -# Calculation of the nearest integer table index
    -# Compute the fractional portion (fract) of the table index.
@@ -120,3 +122,5 @@ float32_t arm_sin_f32(
 /**
   @} end of sin group
  */
+
+#endif // EIDSP_LOAD_CMSIS_DSP_SOURCES

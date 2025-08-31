@@ -1,3 +1,5 @@
+#include "edge-impulse-sdk/classifier/ei_classifier_config.h"
+#if EI_CLASSIFIER_TFLITE_LOAD_CMSIS_NN_SOURCES
 /*
  * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
  *
@@ -39,10 +41,7 @@
  * @{
  */
 
-void arm_q7_to_q15_with_offset(const q7_t *src,
-                               q15_t *dst,
-                               uint32_t block_size,
-                               q15_t offset)
+void arm_q7_to_q15_with_offset(const q7_t *src, q15_t *dst, uint32_t block_size, q15_t offset)
 {
     int block_cnt;
 
@@ -89,8 +88,8 @@ void arm_q7_to_q15_with_offset(const q7_t *src,
         out_q15x2_2 = __PKHTB(in_q15x2_1, in_q15x2_2, 16);
         out_q15x2_1 = __PKHBT(in_q15x2_2, in_q15x2_1, 16);
 
-        write_q15x2_ia(&dst, out_q15x2_1);
-        write_q15x2_ia(&dst, out_q15x2_2);
+        arm_nn_write_q15x2_ia(&dst, out_q15x2_1);
+        arm_nn_write_q15x2_ia(&dst, out_q15x2_2);
 
         block_cnt--;
     }
@@ -115,3 +114,5 @@ void arm_q7_to_q15_with_offset(const q7_t *src,
 /**
  * @} end of nndata_convert group
  */
+
+#endif // EI_CLASSIFIER_TFLITE_LOAD_CMSIS_NN_SOURCES

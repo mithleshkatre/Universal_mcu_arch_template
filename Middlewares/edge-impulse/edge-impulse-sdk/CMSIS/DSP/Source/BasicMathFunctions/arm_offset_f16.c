@@ -1,13 +1,17 @@
+#include "edge-impulse-sdk/dsp/config.hpp"
+#if EIDSP_LOAD_CMSIS_DSP_SOURCES
 /* ----------------------------------------------------------------------
  * Project:      CMSIS DSP Library
  * Title:        arm_offset_f16.c
  * Description:  Floating-point vector offset
  *
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2020 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -24,24 +28,10 @@
  * limitations under the License.
  */
 
-#include "arm_math_f16.h"
+#include "edge-impulse-sdk/CMSIS/DSP/Include/dsp/basic_math_functions_f16.h"
 
 /**
   @ingroup groupMath
- */
-
-/**
-  @defgroup BasicOffset Vector Offset
-
-  Adds a constant offset to each element of a vector.
-
-  <pre>
-      pDst[n] = pSrc[n] + offset,   0 <= n < blockSize.
-  </pre>
-
-  The functions support in-place computation allowing the source and
-  destination pointers to reference the same memory buffer.
-  There are separate functions for floating-point, Q7, Q15, and Q31 data types.
  */
 
 /**
@@ -58,9 +48,9 @@
   @return        none
  */
 
-#if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
+#if defined(ARM_MATH_MVE_FLOAT16) && !defined(ARM_MATH_AUTOVECTORIZE)
 
-#include "arm_helium_utils.h"
+#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_helium_utils.h"
 
 void arm_offset_f16(
   const float16_t * pSrc,
@@ -126,13 +116,13 @@ void arm_offset_f16(
     /* C = A + offset */
 
     /* Add offset and store result in destination buffer. */
-    *pDst++ = (*pSrc++) + offset;
+    *pDst++ = (_Float16)(*pSrc++) + (_Float16)offset;
 
-    *pDst++ = (*pSrc++) + offset;
+    *pDst++ = (_Float16)(*pSrc++) + (_Float16)offset;
 
-    *pDst++ = (*pSrc++) + offset;
+    *pDst++ = (_Float16)(*pSrc++) + (_Float16)offset;
 
-    *pDst++ = (*pSrc++) + offset;
+    *pDst++ = (_Float16)(*pSrc++) + (_Float16)offset;
 
     /* Decrement loop counter */
     blkCnt--;
@@ -153,7 +143,7 @@ void arm_offset_f16(
     /* C = A + offset */
 
     /* Add offset and store result in destination buffer. */
-    *pDst++ = (*pSrc++) + offset;
+    *pDst++ = (_Float16)(*pSrc++) + (_Float16)offset;
 
     /* Decrement loop counter */
     blkCnt--;
@@ -166,3 +156,5 @@ void arm_offset_f16(
 /**
   @} end of BasicOffset group
  */
+
+#endif // EIDSP_LOAD_CMSIS_DSP_SOURCES

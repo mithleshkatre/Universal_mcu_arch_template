@@ -1,5 +1,7 @@
+#include "edge-impulse-sdk/classifier/ei_classifier_config.h"
+#if EI_CLASSIFIER_TFLITE_LOAD_CMSIS_NN_SOURCES
 /*
- * Copyright (C) 2010-2018 Arm Limited or its affiliates. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright 2010-2022 Arm Limited and/or its affiliates <open-source-office@arm.com>
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -21,49 +23,49 @@
  * Title:        arm_pool_q7_HWC.c
  * Description:  Pooling function implementations
  *
- * $Date:        17. January 2018
- * $Revision:    V.1.0.0
+ * $Date:        4 Aug 2022
+ * $Revision:    V.1.1.2
  *
  * Target Processor:  Cortex-M cores
  *
  * -------------------------------------------------------------------- */
 
-#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_math.h"
 #include "edge-impulse-sdk/CMSIS/NN/Include/arm_nnfunctions.h"
+#include "edge-impulse-sdk/CMSIS/NN/Include/arm_nnsupportfunctions.h"
 
-#if defined (ARM_MATH_DSP)
+#if defined(ARM_MATH_DSP) && !defined(ARM_MATH_MVEI)
 
-/**
- * @brief A few utility functions used by pooling functions
+/*
+ * A few utility functions used by pooling functions
  *
  *
  */
 
-static void buffer_scale_back_q15_to_q7(q15_t * buffer, q7_t * target, uint16_t length, uint16_t scale)
+static void buffer_scale_back_q15_to_q7(q15_t *buffer, q7_t *target, uint16_t length, uint16_t scale)
 {
-    int       i;
+    int i;
 
     for (i = 0; i < length; i++)
     {
-        target[i] = (q7_t) (buffer[i] / scale);
+        target[i] = (q7_t)(buffer[i] / scale);
     }
 }
 
-static void compare_and_replace_if_larger_q7(q7_t * base,   // base data
-                                             const q7_t * target,   // compare target
-                                             const uint16_t length  // data length
-    )
+static void compare_and_replace_if_larger_q7(q7_t *base,           // base data
+                                             const q7_t *target,   // compare target
+                                             const uint16_t length // data length
+)
 {
-    q7_t     *pIn = base;
-    const q7_t     *pCom = target;
+    q7_t *pIn = base;
+    const q7_t *pCom = target;
     union arm_nnword in;
     union arm_nnword com;
-    uint16_t  cnt = length >> 2;
+    uint16_t cnt = length >> 2;
 
     while (cnt > 0u)
     {
-        in.word = arm_nn_read_q7x4((const q7_t*)pIn);
-        com.word = arm_nn_read_q7x4_ia((const q7_t**)&pCom);
+        in.word = arm_nn_read_q7x4((const q7_t *)pIn);
+        com.word = arm_nn_read_q7x4_ia((const q7_t **)&pCom);
 
         // if version
         if (com.bytes[0] > in.bytes[0])
@@ -75,7 +77,7 @@ static void compare_and_replace_if_larger_q7(q7_t * base,   // base data
         if (com.bytes[3] > in.bytes[3])
             in.bytes[3] = com.bytes[3];
 
-        *__SIMD32(pIn)++ = in.word;
+        arm_nn_write_q7x4_ia(&pIn, in.word);
 
         cnt--;
     }
@@ -83,27 +85,27 @@ static void compare_and_replace_if_larger_q7(q7_t * base,   // base data
     cnt = length & 0x3;
     while (cnt > 0u)
     {
-      if (*pCom > *pIn)
-      {
-        *pIn = *pCom;
-      }
-      pIn++;
-      pCom++;
-      cnt--;
+        if (*pCom > *pIn)
+        {
+            *pIn = *pCom;
+        }
+        pIn++;
+        pCom++;
+        cnt--;
     }
 }
 
-static void accumulate_q7_to_q15(q15_t * base, q7_t * target, const uint16_t length)
+static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t length)
 {
-    q15_t    *pCnt = base;
-    q7_t     *pV = target;
-    q31_t     v1, v2, vo1, vo2;
-    uint16_t  cnt = length >> 2;
-    q31_t     in;
+    q15_t *pCnt = base;
+    q7_t *pV = target;
+    q31_t v1, v2, vo1, vo2;
+    uint16_t cnt = length >> 2;
+    q31_t in;
 
     while (cnt > 0u)
     {
-        q31_t     value = arm_nn_read_q7x4_ia((const q7_t**)&pV);
+        q31_t value = arm_nn_read_q7x4_ia((const q7_t **)&pV);
         v1 = __SXTB16(__ROR(value, 8));
         v2 = __SXTB16(value);
 #ifndef ARM_MATH_BIG_ENDIAN
@@ -119,10 +121,10 @@ static void accumulate_q7_to_q15(q15_t * base, q7_t * target, const uint16_t len
 #endif
 
         in = arm_nn_read_q15x2(pCnt);
-        *__SIMD32(pCnt)++ = __QADD16(vo1, in);
+        arm_nn_write_q15x2_ia(&pCnt, __QADD16(vo1, in));
 
         in = arm_nn_read_q15x2(pCnt);
-        *__SIMD32(pCnt)++ = __QADD16(vo2, in);
+        arm_nn_write_q15x2_ia(&pCnt, __QADD16(vo2, in));
 
         cnt--;
     }
@@ -134,7 +136,7 @@ static void accumulate_q7_to_q15(q15_t * base, q7_t * target, const uint16_t len
     }
 }
 
-#endif                          // ARM_MATH_DSP
+#endif // ARM_MATH_DSP
 
 /**
  *  @ingroup groupNN
@@ -145,41 +147,43 @@ static void accumulate_q7_to_q15(q15_t * base, q7_t * target, const uint16_t len
  * @{
  */
 
-  /**
-   * @brief Q7 max pooling function
-   * @param[in, out]  Im_in       pointer to input tensor
-   * @param[in]       dim_im_in   input tensor dimention
-   * @param[in]       ch_im_in    number of input tensor channels
-   * @param[in]       dim_kernel  filter kernel size
-   * @param[in]       padding     padding sizes
-   * @param[in]       stride      convolution stride
-   * @param[in]       dim_im_out  output tensor dimension
-   * @param[in,out]   bufferA     Not used
-   * @param[in,out]   Im_out      pointer to output tensor
-   *
-   * @details
-   *
-   * The pooling function is implemented as split x-pooling then
-   * y-pooling.
-   *
-   * This pooling function is input-destructive. Input data is undefined
-   * after calling this function.
-   *
-   */
+/**
+ * @brief Q7 max pooling function
+ * @param[in, out]  Im_in       pointer to input tensor
+ * @param[in]       dim_im_in   input tensor dimention
+ * @param[in]       ch_im_in    number of input tensor channels
+ * @param[in]       dim_kernel  filter kernel size
+ * @param[in]       padding     padding sizes
+ * @param[in]       stride      convolution stride
+ * @param[in]       dim_im_out  output tensor dimension
+ * @param[in,out]   bufferA     Not used
+ * @param[in,out]   Im_out      pointer to output tensor
+ *
+ * @details
+ *
+ * The pooling function is implemented as split x-pooling then
+ * y-pooling.
+ *
+ * This pooling function is input-destructive. Input data is undefined
+ * after calling this function.
+ *
+ */
 
-void
-arm_maxpool_q7_HWC(q7_t * Im_in,
-                   const uint16_t dim_im_in,
-                   const uint16_t ch_im_in,
-                   const uint16_t dim_kernel,
-                   const uint16_t padding,
-                   const uint16_t stride, const uint16_t dim_im_out, q7_t * bufferA, q7_t * Im_out)
+void arm_maxpool_q7_HWC(q7_t *Im_in,
+                        const uint16_t dim_im_in,
+                        const uint16_t ch_im_in,
+                        const uint16_t dim_kernel,
+                        const uint16_t padding,
+                        const uint16_t stride,
+                        const uint16_t dim_im_out,
+                        q7_t *bufferA,
+                        q7_t *Im_out)
 {
     (void)bufferA;
-#if defined (ARM_MATH_DSP)
+#if defined(ARM_MATH_DSP) && !defined(ARM_MATH_MVEI)
     /* Run the following code for Cortex-M4 and Cortex-M7 */
 
-    int16_t   i_x, i_y;
+    int16_t i_x, i_y;
 
     /* first does the pooling along x axis */
     for (i_y = 0; i_y < dim_im_in; i_y++)
@@ -188,13 +192,14 @@ arm_maxpool_q7_HWC(q7_t * Im_in,
         for (i_x = 0; i_x < dim_im_out; i_x++)
         {
             /* for each output pixel */
-            q7_t     *target = Im_in + (i_y * dim_im_in + i_x) * ch_im_in;
-            q7_t     *win_start;
-            q7_t     *win_stop;
+            q7_t *target = Im_in + (i_y * dim_im_in + i_x) * ch_im_in;
+            q7_t *win_start;
+            q7_t *win_stop;
             if (i_x * stride - padding < 0)
             {
                 win_start = target;
-            } else
+            }
+            else
             {
                 win_start = Im_in + (i_y * dim_im_in + i_x * stride - padding) * ch_im_in;
             }
@@ -202,7 +207,8 @@ arm_maxpool_q7_HWC(q7_t * Im_in,
             if (i_x * stride - padding + dim_kernel >= dim_im_in)
             {
                 win_stop = Im_in + (i_y * dim_im_in + dim_im_in) * ch_im_in;
-            } else
+            }
+            else
             {
                 win_stop = Im_in + (i_y * dim_im_in + i_x * stride - padding + dim_kernel) * ch_im_in;
             }
@@ -225,14 +231,15 @@ arm_maxpool_q7_HWC(q7_t * Im_in,
     {
 
         /* for each output row */
-        q7_t     *target = Im_out + i_y * dim_im_out * ch_im_in;
-        q7_t     *row_start;
-        q7_t     *row_end;
+        q7_t *target = Im_out + i_y * dim_im_out * ch_im_in;
+        q7_t *row_start;
+        q7_t *row_end;
         /* setting the starting row */
         if (i_y * stride - padding < 0)
         {
             row_start = Im_in;
-        } else
+        }
+        else
         {
             row_start = Im_in + (i_y * stride - padding) * dim_im_in * ch_im_in;
         }
@@ -240,7 +247,8 @@ arm_maxpool_q7_HWC(q7_t * Im_in,
         if (i_y * stride - padding + dim_kernel >= dim_im_in)
         {
             row_end = Im_in + dim_im_in * dim_im_in * ch_im_in;
-        } else
+        }
+        else
         {
             row_end = Im_in + (i_y * stride - padding + dim_kernel) * dim_im_in * ch_im_in;
         }
@@ -260,8 +268,8 @@ arm_maxpool_q7_HWC(q7_t * Im_in,
 
 #else
     /* Run the following code as reference implementation for Cortex-M0 and Cortex-M3 */
-    int16_t   i_ch_in, i_x, i_y;
-    int16_t   k_x, k_y;
+    int16_t i_ch_in, i_x, i_y;
+    int16_t k_x, k_y;
 
     for (i_ch_in = 0; i_ch_in < ch_im_in; i_ch_in++)
     {
@@ -269,7 +277,7 @@ arm_maxpool_q7_HWC(q7_t * Im_in,
         {
             for (i_x = 0; i_x < dim_im_out; i_x++)
             {
-                int       max = -129;
+                int max = -129;
                 for (k_y = i_y * stride - padding; k_y < i_y * stride - padding + dim_kernel; k_y++)
                 {
                     for (k_x = i_x * stride - padding; k_x < i_x * stride - padding + dim_kernel; k_x++)
@@ -288,51 +296,52 @@ arm_maxpool_q7_HWC(q7_t * Im_in,
         }
     }
 
-#endif                          /* ARM_MATH_DSP */
-
+#endif /* ARM_MATH_DSP */
 }
 
-  /**
-   * @brief Q7 average pooling function
-   * @param[in,out]   Im_in       pointer to input tensor
-   * @param[in]       dim_im_in   input tensor dimention
-   * @param[in]       ch_im_in    number of input tensor channels
-   * @param[in]       dim_kernel  filter kernel size
-   * @param[in]       padding     padding sizes
-   * @param[in]       stride      convolution stride
-   * @param[in]       dim_im_out  output tensor dimension
-   * @param[in,out]   bufferA     pointer to buffer space for input
-   * @param[in,out]   Im_out      pointer to output tensor
-   *
-   * @details
-   *
-   * <b>Buffer size:</b>
-   *
-   * bufferA size:  2*dim_im_out*ch_im_in
-   *
-   * The pooling function is implemented as split x-pooling then
-   * y-pooling.
-   *
-   * This pooling function is input-destructive. Input data is undefined
-   * after calling this function.
-   *
-   */
+/**
+ * @brief Q7 average pooling function
+ * @param[in,out]   Im_in       pointer to input tensor
+ * @param[in]       dim_im_in   input tensor dimention
+ * @param[in]       ch_im_in    number of input tensor channels
+ * @param[in]       dim_kernel  filter kernel size
+ * @param[in]       padding     padding sizes
+ * @param[in]       stride      convolution stride
+ * @param[in]       dim_im_out  output tensor dimension
+ * @param[in,out]   bufferA     pointer to buffer space for input
+ * @param[in,out]   Im_out      pointer to output tensor
+ *
+ * @details
+ *
+ * <b>Buffer size:</b>
+ *
+ * bufferA size:  2*dim_im_out*ch_im_in
+ *
+ * The pooling function is implemented as split x-pooling then
+ * y-pooling.
+ *
+ * This pooling function is input-destructive. Input data is undefined
+ * after calling this function.
+ *
+ */
 
-void
-arm_avepool_q7_HWC(q7_t * Im_in,
-                   const uint16_t dim_im_in,
-                   const uint16_t ch_im_in,
-                   const uint16_t dim_kernel,
-                   const uint16_t padding,
-                   const uint16_t stride, const uint16_t dim_im_out, q7_t * bufferA, q7_t * Im_out)
+void arm_avepool_q7_HWC(q7_t *Im_in,
+                        const uint16_t dim_im_in,
+                        const uint16_t ch_im_in,
+                        const uint16_t dim_kernel,
+                        const uint16_t padding,
+                        const uint16_t stride,
+                        const uint16_t dim_im_out,
+                        q7_t *bufferA,
+                        q7_t *Im_out)
 {
 
-#if defined (ARM_MATH_DSP)
+#if defined(ARM_MATH_DSP) && !defined(ARM_MATH_MVEI)
     /* Run the following code for Cortex-M4 and Cortex-M7 */
 
-    q15_t    *buffer = (q15_t *) bufferA;
-    int16_t   i_x, i_y;
-    int16_t   count = 0;
+    q15_t *buffer = (q15_t *)bufferA;
+    int16_t i_x, i_y;
+    int16_t count = 0;
 
     /* first does the pooling along x axis */
     for (i_y = 0; i_y < dim_im_in; i_y++)
@@ -341,13 +350,14 @@ arm_avepool_q7_HWC(q7_t * Im_in,
         for (i_x = 0; i_x < dim_im_out; i_x++)
         {
             /* for each output pixel */
-            q7_t     *target = Im_in + (i_y * dim_im_in + i_x) * ch_im_in;
-            q7_t     *win_start;
-            q7_t     *win_stop;
+            q7_t *target = Im_in + (i_y * dim_im_in + i_x) * ch_im_in;
+            q7_t *win_start;
+            q7_t *win_stop;
             if (i_x * stride - padding < 0)
             {
                 win_start = target;
-            } else
+            }
+            else
             {
                 win_start = Im_in + (i_y * dim_im_in + i_x * stride - padding) * ch_im_in;
             }
@@ -355,7 +365,8 @@ arm_avepool_q7_HWC(q7_t * Im_in,
             if (i_x * stride - padding + dim_kernel >= dim_im_in)
             {
                 win_stop = Im_in + (i_y * dim_im_in + dim_im_in) * ch_im_in;
-            } else
+            }
+            else
             {
                 win_stop = Im_in + (i_y * dim_im_in + i_x * stride - padding + dim_kernel) * ch_im_in;
             }
@@ -379,14 +390,15 @@ arm_avepool_q7_HWC(q7_t * Im_in,
     for (i_y = 0; i_y < dim_im_out; i_y++)
     {
         /* for each output row */
-        q7_t     *target = Im_out + i_y * dim_im_out * ch_im_in;
-        q7_t     *row_start;
-        q7_t     *row_end;
+        q7_t *target = Im_out + i_y * dim_im_out * ch_im_in;
+        q7_t *row_start;
+        q7_t *row_end;
         /* setting the starting row */
         if (i_y * stride - padding < 0)
         {
             row_start = Im_in;
-        } else
+        }
+        else
         {
             row_start = Im_in + (i_y * stride - padding) * dim_im_in * ch_im_in;
         }
@@ -394,7 +406,8 @@ arm_avepool_q7_HWC(q7_t * Im_in,
         if (i_y * stride - padding + dim_kernel >= dim_im_in)
         {
             row_end = Im_in + dim_im_in * dim_im_in * ch_im_in;
-        } else
+        }
+        else
         {
             row_end = Im_in + (i_y * stride - padding + dim_kernel) * dim_im_in * ch_im_in;
         }
@@ -418,8 +431,8 @@ arm_avepool_q7_HWC(q7_t * Im_in,
     /* Run the following code as reference implementation for Cortex-M0 and Cortex-M3 */
 
     (void)bufferA;
-    int16_t   i_ch_in, i_x, i_y;
-    int16_t   k_x, k_y;
+    int16_t i_ch_in, i_x, i_y;
+    int16_t k_x, k_y;
 
     for (i_ch_in = 0; i_ch_in < ch_im_in; i_ch_in++)
     {
@@ -427,8 +440,8 @@ arm_avepool_q7_HWC(q7_t * Im_in,
         {
             for (i_x = 0; i_x < dim_im_out; i_x++)
             {
-                int       sum = 0;
-                int       count = 0;
+                int sum = 0;
+                int count = 0;
                 for (k_y = i_y * stride - padding; k_y < i_y * stride - padding + dim_kernel; k_y++)
                 {
                     for (k_x = i_x * stride - padding; k_x < i_x * stride - padding + dim_kernel; k_x++)
@@ -445,10 +458,11 @@ arm_avepool_q7_HWC(q7_t * Im_in,
         }
     }
 
-#endif                          /* ARM_MATH_DSP */
-
+#endif /* ARM_MATH_DSP */
 }
 
 /**
  * @} end of Pooling group
  */
+
+#endif // EI_CLASSIFIER_TFLITE_LOAD_CMSIS_NN_SOURCES

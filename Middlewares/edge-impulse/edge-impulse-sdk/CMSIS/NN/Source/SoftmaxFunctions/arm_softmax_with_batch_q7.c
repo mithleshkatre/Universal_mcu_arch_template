@@ -1,5 +1,7 @@
+#include "edge-impulse-sdk/classifier/ei_classifier_config.h"
+#if EI_CLASSIFIER_TFLITE_LOAD_CMSIS_NN_SOURCES
 /*
- * Copyright (C) 2010-2019 Arm Limited or its affiliates. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright 2010-2019, 2022 Arm Limited and/or its affiliates <open-source-office@arm.com>
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -21,14 +23,13 @@
  * Title:        arm_softmax_with_batch_q7.c
  * Description:  Q7 softmax function
  *
- * $Date:        05. August 2019
- * $Revision:    V.1.0.0
+ * $Date:        4 Aug 2022
+ * $Revision:    V.1.0.2
  *
  * Target Processor:  Cortex-M and Cortex-A cores
  *
  * -------------------------------------------------------------------- */
 
-#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_math.h"
 #include "edge-impulse-sdk/CMSIS/NN/Include/arm_nnfunctions.h"
 
 /**
@@ -40,36 +41,34 @@
  * @{
  */
 
-  /**
-   * @brief Q7 softmax function with batch parameter
-   * @param[in]       vec_in      pointer to input vector
-   * @param[in]       nb_batches  number of batches
-   * @param[in]       dim_vec     input vector dimention
-   * @param[out]      p_out       pointer to output vector
-   *
-   * @details
-   *
-   *  Here, instead of typical natural logarithm e based softmax, we use
-   *  2-based softmax here, i.e.,:
-   *
-   *  y_i = 2^(x_i) / sum(2^x_j)
-   *
-   *  The relative output will be different here.
-   *  But mathematically, the gradient will be the same
-   *  with a log(2) scaling factor.
-   *
-   */
+/*
+ * Q7 softmax function with batch parameter
+ *
+ * details
+ *
+ *  Here, instead of typical natural logarithm e based softmax, we use
+ *  2-based softmax here, i.e.,:
+ *
+ *  y_i = 2^(x_i) / sum(2^x_j)
+ *
+ *  The relative output will be different here.
+ *  But mathematically, the gradient will be the same
+ *  with a log(2) scaling factor.
+ *
+ */
 
-void arm_softmax_with_batch_q7(const q7_t * vec_in, const uint16_t nb_batches,const uint16_t dim_vec, q7_t * p_out )
+void arm_softmax_with_batch_q7(const q7_t *vec_in, const uint16_t nb_batches, const uint16_t dim_vec, q7_t *p_out)
 {
-     for(int i=0; i<nb_batches; i++)
-     {
-         arm_softmax_q7(vec_in, dim_vec, p_out );
-         vec_in += dim_vec;
-         p_out += dim_vec;
-     }
+    for (int i = 0; i < nb_batches; i++)
+    {
+        arm_softmax_q7(vec_in, dim_vec, p_out);
+        vec_in += dim_vec;
+        p_out += dim_vec;
+    }
 }
 
 /**
  * @} end of Softmax group
  */
+
+#endif // EI_CLASSIFIER_TFLITE_LOAD_CMSIS_NN_SOURCES

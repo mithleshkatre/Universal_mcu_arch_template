@@ -1,5 +1,7 @@
+#include "edge-impulse-sdk/classifier/ei_classifier_config.h"
+#if EI_CLASSIFIER_TFLITE_LOAD_CMSIS_NN_SOURCES
 /*
- * Copyright (C) 2010-2019 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 Arm Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -21,14 +23,15 @@
  * Title:        arm_nn_accumulate_q7_to_q15.c
  * Description:  Accumulate q7 vector into q15 one.
  *
- * $Date:        July 2019
- * $Revision:    V.1.0.0
+ * $Date:        20 July 2021
+ * $Revision:    V.1.1.2
  *
- * pSrc Processor:  Cortex-M cores
+ * pSrc Processor:  Cortex-M CPUs
  *
  * -------------------------------------------------------------------- */
-#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_math.h"
+
 #include "edge-impulse-sdk/CMSIS/NN/Include/arm_nnfunctions.h"
+#include "edge-impulse-sdk/CMSIS/NN/Include/arm_nnsupportfunctions.h"
 
 /**
  * @ingroup groupSupport
@@ -43,43 +46,44 @@ void arm_nn_accumulate_q7_to_q15(q15_t *pDst, const q7_t *pSrc, uint32_t length)
 {
     q15_t *pCnt = pDst;
     const q7_t *pV = pSrc;
+    int32_t count = length;
+#if defined(ARM_MATH_DSP) && !defined(ARM_MATH_MVEI)
     q31_t v1, v2, vo1, vo2;
-    int32_t cnt = length >> 2;
+    count = length >> 2;
     q31_t in;
 
-    while (cnt > 0l)
+    while (count > 0l)
     {
         q31_t value = arm_nn_read_q7x4_ia(&pV);
-        v1 = __SXTB16(__ROR(value, 8));
+        v1 = __SXTB16(__ROR((uint32_t)value, 8));
         v2 = __SXTB16(value);
 #ifndef ARM_MATH_BIG_ENDIAN
-
-        vo2 = __PKHTB(v1, v2, 16);
-        vo1 = __PKHBT(v2, v1, 16);
-
+        vo2 = (q31_t)__PKHTB(v1, v2, 16);
+        vo1 = (q31_t)__PKHBT(v2, v1, 16);
 #else
-
-        vo1 = __PKHTB(v1, v2, 16);
-        vo2 = __PKHBT(v2, v1, 16);
-
+        vo1 = (q31_t)__PKHTB(v1, v2, 16);
+        vo2 = (q31_t)__PKHBT(v2, v1, 16);
 #endif
 
         in = arm_nn_read_q15x2(pCnt);
-        write_q15x2_ia(&pCnt, __QADD16(vo1, in));
+        arm_nn_write_q15x2_ia(&pCnt, __QADD16(vo1, in));
 
         in = arm_nn_read_q15x2(pCnt);
-        write_q15x2_ia(&pCnt, __QADD16(vo2, in));
+        arm_nn_write_q15x2_ia(&pCnt, __QADD16(vo2, in));
 
-        cnt--;
+        count--;
     }
-    cnt = length & 0x3;
-    while (cnt > 0l)
+    count = length & 0x3;
+#endif
+    while (count > 0l)
     {
         *pCnt++ += *pV++;
-        cnt--;
+        count--;
     }
 }
 
 /**
  * @} end of NNBasicMath group
  */
+
+#endif // EI_CLASSIFIER_TFLITE_LOAD_CMSIS_NN_SOURCES

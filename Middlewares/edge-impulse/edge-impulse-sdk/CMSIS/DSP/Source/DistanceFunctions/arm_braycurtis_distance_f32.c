@@ -1,14 +1,18 @@
+#include "edge-impulse-sdk/dsp/config.hpp"
+#if EIDSP_LOAD_CMSIS_DSP_SOURCES
 
 /* ----------------------------------------------------------------------
  * Project:      CMSIS DSP Library
  * Title:        arm_braycurtis_distance_f32.c
  * Description:  Bray-Curtis distance between two vectors
  *
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -25,25 +29,14 @@
  * limitations under the License.
  */
 
-#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_math.h"
+#include "edge-impulse-sdk/CMSIS/DSP/Include/dsp/distance_functions.h"
 #include <limits.h>
 #include <math.h>
 
 
 
 /**
- * @ingroup groupDistance
- * @{
- */
-
-/**
- * @defgroup FloatDist Float Distances
- *
- * Distances between two vectors of float values.
- */
-
-/**
-  @addtogroup FloatDist
+  @addtogroup braycurtis
   @{
  */
 
@@ -58,7 +51,7 @@
  */
 #if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
 
-#include "arm_helium_utils.h"
+#include "edge-impulse-sdk/CMSIS/DSP/Include/arm_helium_utils.h"
 
 float32_t arm_braycurtis_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
 {
@@ -191,9 +184,8 @@ float32_t arm_braycurtis_distance_f32(const float32_t *pA,const float32_t *pB, u
 
 
 /**
- * @} end of FloatDist group
+ * @} end of braycurtis group
  */
 
-/**
- * @} end of groupDistance group
- */
+
+#endif // EIDSP_LOAD_CMSIS_DSP_SOURCES
