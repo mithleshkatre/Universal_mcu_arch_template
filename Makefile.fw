@@ -4,12 +4,19 @@
 
 TARGET = final
 DEBUG = 1
-OPT = -Og
+#1.(-O0: ~32) KB binary
+#2.(-Og: ~16 KB (half the size, still debuggable))
+#3.(-O2: ~12 KB) ((smaller, harder to debug))
+#4.(-Os: ~10 KB) binary (smallest, hardest to debug)
+OPT = -Og    # default: -Og   
 BUILD_DIR = Output
 
 # Response file to hold object list
 OBJLIST := $(BUILD_DIR)/objects.lst
 
+# Total memory (adjust if you switch MCU)
+FLASH_TOTAL := 524288   # 512 KB
+RAM_TOTAL   := 131072   # 128 KB 
 #######################################
 # Select MCU Family (default = F4)
 #######################################
@@ -170,14 +177,34 @@ $(BUILD_DIR)/%.o: %.S
 
 $(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) $(OBJLIST) Makefile
 	$(CXX) @$(OBJLIST) $(LDFLAGS) -o $@
-	$(SZ) $@
+	@echo "======ELF File Size ========"
+	@$(SZ) --format=berkeley $@ | tee $(BUILD_DIR)/$(TARGET).size
+	@echo "=================================="
+	@echo "======Section Breakdown ========"
+	@arm-none-eabi-size -A $(BUILD_DIR)/$(TARGET).elf | \
+		grep -E "^(\\.isr_vector|\\.text|\\.rodata|\\.ARM|\\.init_array|\\.fini_array|\\.data|\\.bss|\\._user_heap_stack)" | \
+		awk '{printf "%-18s %8d bytes\n", $$1, $$2}'
+	@echo "=================================="
+	@echo
+	@echo "========== Memory Usage =========="
+	@awk -v ftotal=$(FLASH_TOTAL) -v rtotal=$(RAM_TOTAL) 'NR==2 { \
+		text=$$1; data=$$2; bss=$$3; \
+		flash=text+data; ram=data+bss; \
+		printf "Flash: %d / %d (%.1f%%)\n", flash, ftotal, (flash*100.0)/ftotal; \
+		printf "RAM  : %d / %d (%.1f%%)\n", ram, rtotal, (ram*100.0)/rtotal; \
+	}' $(BUILD_DIR)/$(TARGET).size
+	@echo "=================================="
 
 $(BUILD_DIR)/%.hex: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
 	$(HEX) $< $@
 
 $(BUILD_DIR)/%.bin: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
 	$(BIN) $< $@
-	
+	@echo "========== BIN Size =========="
+	@BIN_SIZE=$$(wc -c < $@); \
+	echo "BIN : $$BIN_SIZE bytes ($$((BIN_SIZE/1024)) KB)"
+	@echo "=============================="
+
 $(BUILD_DIR):
 	@mkdir -p $@
 
