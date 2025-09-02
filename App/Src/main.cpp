@@ -12,6 +12,8 @@ extern "C" {
 #include"tx_api.h"
 #include "ei_run_classifier.h"
 
+#define APP_START_ADDRESS  0x08010000
+
 static void SystemClock_Config(void);
 void uartPrintf(const char* fmt, ...); 
 void onUartByte(uint8_t byte) ;
@@ -91,6 +93,8 @@ int main(void)
   /* Configure the system clock */
   SystemClock_Config();
 
+    /* Relocate vector table for app */
+  SCB->VTOR = APP_START_ADDRESS;
 
   PAL::initAll();
   PAL::pinSet(led, false);
