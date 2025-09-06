@@ -22,9 +22,9 @@ jobs:
 
     - name: Fetch and build googletest
       run: |
-        rm -rf external/googletest   # ensure no stale copy
-        mkdir -p external
-        cd external
+        rm -rf Middlewares/googletest   # ensure no stale copy
+        mkdir -p Middlewares
+        cd Middlewares
         git clone https://github.com/google/googletest.git
         cd googletest
         cmake -S . -B build
