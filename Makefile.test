@@ -1,17 +1,17 @@
 CXX := g++
-CXXFLAGS := -std=c++17 -Wall -pthread                \
-            -IPAL                                    \
-            -IPAL/PALWrappers                        \
-            -ITests/uart                             \
-            -Iexternal/googletest/googletest/include \
-            -Iexternal/googletest/googlemock/include
+CXXFLAGS := -std=c++17 -Wall -pthread                   \
+            -IBSP/PAL                                   \
+            -IBSP/PAL/PALWrappers                       \
+            -ITests/uart                                \
+            -IMiddlewares/googletest/googletest/include \
+            -IMiddlewares/googletest/googlemock/include
 
-LDFLAGS := -Lexternal/googletest/build/lib \
+LDFLAGS := -LMiddlewares/googletest/build/lib \
            -lgtest -lgmock -pthread
 
 # Source files
 TEST_SRCS := Tests/test_main.cpp Tests/uart/test_uart.cpp \
-             PAL/PALWrappers/UartWrapper.cpp PAL/PALWrappers/Pin.cpp
+             BSP/PAL/PALWrappers/UartWrapper.cpp BSP/PAL/PALWrappers/Pin.cpp
 
 # Build & Bin dirs
 BUILD_DIR := Tests/Build
@@ -42,7 +42,7 @@ all: $(TEST_BIN) copy-dlls
 
 # Ensure dirs exist
 $(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)/Tests/uart $(BUILD_DIR)/PAL/PALWrappers
+	mkdir -p $(BUILD_DIR)/Tests/uart $(BUILD_DIR)/BSP/PAL/PALWrappers $(BUILD_DIR)/Tests
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)

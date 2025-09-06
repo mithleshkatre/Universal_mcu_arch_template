@@ -5,6 +5,7 @@
 #include <cstring>
 #include <cstdio>
 #include <cstdarg>
+#include "etx_ota_update.hpp"
 
 static void SystemClock_Config(void);
 static void goto_application(void);
@@ -24,31 +25,59 @@ int main(void)
   SystemClock_Config();
 
   PAL::initAll();
-  PAL::pinSet(led, true);
-
-  Board::delay(2000);
+  PAL::pinSet(led, false);
   uartPrintf("System initialized.\r\n");
-  goto_application();
+
+  uint32_t end_tick = HAL_GetTick() + 3000;   // from now to 3 Seconds
+  do
+  {
+    uint32_t current_tick = HAL_GetTick();
+
+    /* Check the button is pressed or not for 3seconds */
+    if( current_tick > end_tick ) 
+    {
+      /* Either timeout or Button is pressed */
+      break;
+    }
+  }while( 1 );
+
+    if (ota_flag_read() != OTA_FLAG_VALUE)
+    {
+        uartPrintf("Starting Firmware Download!!!\r\n");
+
+        if (etx_ota_download_and_flash() == ETX_OTA_EX_OK)
+        {
+            ota_flag_write(OTA_FLAG_VALUE);   // set marker
+            uartPrintf("OTA Done. Rebooting...\r\n");
+            HAL_NVIC_SystemReset();
+        }
+        else
+        {
+            uartPrintf("OTA ERROR! Halt.\r\n");
+            while (1);
+        }
+    }
+    else
+    {
+        // Skip OTA, jump to application
+        goto_application();
+    }
 
 while (1)
   {
-      // PAL::pinSet(led, true);
-      // Board::delay(500);
-      // PAL::pinSet(led, false);
-      // Board::delay(500);
-
+ 
   }
+   
 }
-
 
 static void goto_application(void)
 {
     uartPrintf("Gonna Jump to Application\n");
     // 1. Get stack pointer value from application vector table
-    uint32_t app_stack = *((volatile uint32_t*) 0x08010000);
+    uint32_t app_stack = *((volatile uint32_t*) 0x8010000);
 
     // 2. Get reset handler address (vector table + 4)
-    uint32_t app_reset_addr = *((volatile uint32_t*) (0x08010000 + 4U));
+    uint32_t app_reset_addr = *((volatile uint32_t*) (0x8010000 + 4U));
 
     // 3. Define function pointer with correct cast
     void (*app_reset_handler)(void) = reinterpret_cast<void (*)(void)>(app_reset_addr);
@@ -59,6 +88,7 @@ static void goto_application(void)
     // 5. Jump to application
     app_reset_handler();
 }
+
 /**
   * @brief System Clock Configuration
   * @retval None
@@ -100,9 +130,11 @@ void uartPrintf(const char* fmt, ...) {
     vsnprintf(buffer, sizeof(buffer), fmt, args);
     va_end(args);
 
-    PAL::uartSendBlocking(UartInst::Uart2,
+    PAL::uartSendBlocking(UartInst::Uart3,
                           reinterpret_cast<const uint8_t*>(buffer),
                           strlen(buffer));
+
 }
+
 
 

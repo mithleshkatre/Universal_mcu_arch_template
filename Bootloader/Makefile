@@ -25,7 +25,7 @@ FPU         = -mfpu=fpv4-sp-d16
 FLOAT_ABI   = -mfloat-abi=hard
 C_DEFS      = -DUSE_HAL_DRIVER -DSTM32F446xx
 LDSCRIPT    = bl_linker.ld
-ASM_SOURCES = ../HAL/ST/stm32f4/STM32F4xx_HAL_Driver/startup_stm32f4.s
+ASM_SOURCES = ../BSP/HAL/ST/stm32f4/STM32F4xx_HAL_Driver/startup_stm32f4.s
 endif
 
 ifeq ($(MCU_FAMILY),F7)
@@ -86,27 +86,29 @@ CXXFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 #######################################
 
 C_SOURCES += \
-../HAL/ST/stm32f4/Configs/stm32_hal_msp.c \
+../BSP/HAL/ST/stm32f4/Configs/stm32_hal_msp.c \
 ../App/Src/sysmem.c \
 ../App/Src/syscalls.c \
 
 
 ifeq ($(MCU_FAMILY),F4)
 C_SOURCES += \
-../CMSIS/Vendor_Device/ST/STM32F4xx/Source/system_stm32f4xx.c \
-$(wildcard ../HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/*.c)
+../BSP/CMSIS/Vendor_Device/ST/STM32F4xx/Source/system_stm32f4xx.c \
+$(wildcard ../BSP/HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/*.c)
 endif
 
 CPP_SOURCES += \
 Src/bl_stm32f4xx_it.cpp \
 Src/main.cpp \
-../HAL/ST/stm32f4/Configs/stm32_clock.cpp \
-../HAL/ST/stm32f4/Configs/stm32_hal_init.cpp \
-../HAL/ST/stm32f4/Stm32Uart.cpp \
-../HAL/ST/stm32f4/Stm32IO.cpp \
-../PAL/PALWrappers/Pin.cpp \
-../PAL/PALWrappers/UartWrapper.cpp \
-../PAL/Board/HardwareInit.cpp \
+Src/etx_ota_update.cpp \
+../BSP/HAL/ST/stm32f4/Configs/stm32_clock.cpp \
+../BSP/HAL/ST/stm32f4/Configs/stm32_hal_init.cpp \
+../BSP/HAL/ST/stm32f4/Stm32Uart.cpp \
+../BSP/HAL/ST/stm32f4/Stm32IO.cpp \
+../BSP/PAL/PALWrappers/Pin.cpp \
+../BSP/PAL/PALWrappers/UartWrapper.cpp \
+../BSP/PAL/Board/HardwareInit.cpp \
+
 
 
 #######################################
@@ -114,18 +116,18 @@ Src/main.cpp \
 #######################################
 C_INCLUDES += \
 -IInc \
--I../CMSIS/Vendor_Device/ST/STM32F4xx/Include \
--I../CMSIS/Core/Include \
--I../HAL \
--I../HAL/ST/stm32f4/Configs \
--I../HAL/ST/stm32f4 \
--I../PAL \
--I../PAL/PALWrappers \
+-I../BSP/CMSIS/Vendor_Device/ST/STM32F4xx/Include \
+-I../BSP/CMSIS/Core/Include \
+-I../BSP/HAL \
+-I../BSP/HAL/ST/stm32f4/Configs \
+-I../BSP/HAL/ST/stm32f4 \
+-I../BSP/PAL \
+-I../BSP/PAL/PALWrappers \
 
 ifeq ($(MCU_FAMILY),F4)
 C_INCLUDES += \
--I../HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Inc \
--I../HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Inc/Legacy
+-I../BSP/HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Inc \
+-I../BSP/HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Inc/Legacy
 endif
 
 #######################################

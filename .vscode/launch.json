@@ -14,7 +14,7 @@
         "interface/stlink.cfg",
         "target/stm32f4x.cfg"
       ],
-      "svdFile": "${workspaceFolder}/SVD/STM32F446.svd",
+      "svdFile": "${workspaceFolder}/BSP/SVD/STM32F446.svd",
       "enableSVD": true,
       "liveWatch": true,
       "runToMain": true,

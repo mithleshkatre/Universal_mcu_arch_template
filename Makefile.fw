@@ -9,7 +9,7 @@ DEBUG = 1
 #3.(-O2: ~12 KB) ((smaller, harder to debug))
 #4.(-Os: ~10 KB) binary (smallest, hardest to debug)
 OPT = -Og    # default: -Og   
-BUILD_DIR = Output
+BUILD_DIR = Build
 
 # Response file to hold object list
 OBJLIST := $(BUILD_DIR)/objects.lst
@@ -27,8 +27,8 @@ CPU         = -mcpu=cortex-m4
 FPU         = -mfpu=fpv4-sp-d16
 FLOAT_ABI   = -mfloat-abi=hard
 C_DEFS      = -DUSE_HAL_DRIVER -DSTM32F446xx
-LDSCRIPT    = HAL/ST/stm32f4/STM32F4xx_HAL_Driver/stm32f4_flash.ld
-ASM_SOURCES = HAL/ST/stm32f4/STM32F4xx_HAL_Driver/startup_stm32f4.s
+LDSCRIPT    = BSP/HAL/ST/stm32f4/STM32F4xx_HAL_Driver/stm32f4_flash.ld
+ASM_SOURCES = BSP/HAL/ST/stm32f4/STM32F4xx_HAL_Driver/startup_stm32f4.s
 endif
 
 
@@ -99,8 +99,8 @@ C_SOURCES += $(THREADX_SRC)
 
 ifeq ($(MCU_FAMILY),F4)
 C_SOURCES += \
-CMSIS/Vendor_Device/ST/STM32F4xx/Source/system_stm32f4xx.c \
-$(wildcard HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/*.c)
+BSP/CMSIS/Vendor_Device/ST/STM32F4xx/Source/system_stm32f4xx.c \
+$(wildcard BSP/HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Src/*.c)
 endif
 
 CPP_SOURCES = 
@@ -114,9 +114,9 @@ C_INCLUDES =
 
 ifeq ($(MCU_FAMILY),F4)
 C_INCLUDES += \
--IHAL/ST/stm32f4/STM32F4xx_HAL_Driver/Inc \
--IHAL/ST/stm32f4/STM32F4xx_HAL_Driver/Inc/Legacy \
--IHAL/ST/stm32f4/STM32F4xx_HAL_Driver 
+-IBSP/HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Inc \
+-IBSP/HAL/ST/stm32f4/STM32F4xx_HAL_Driver/Inc/Legacy \
+-IBSP/HAL/ST/stm32f4/STM32F4xx_HAL_Driver 
 endif
 
 #######################################

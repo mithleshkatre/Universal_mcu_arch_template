@@ -5,7 +5,11 @@
 extern "C" {
 #endif
 
+#include "stm32f4xx.h"
+
+#define OTA_FLAG_ADDR   0x08060000   // Sector 7 start address
 void uartPrintf(const char* fmt, ...); 
+void ota_flag_write(uint32_t value);
 
 #define B1_Pin GPIO_PIN_13
 #define B1_GPIO_Port GPIOC

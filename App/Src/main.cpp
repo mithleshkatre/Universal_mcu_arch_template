@@ -92,9 +92,11 @@ int main(void)
 
   /* Configure the system clock */
   SystemClock_Config();
+  //reset marker for future OTAs
+  ota_flag_write(0xFFFFFFFF);  
 
     /* Relocate vector table for app */
-  SCB->VTOR = APP_START_ADDRESS;
+//   SCB->VTOR = APP_START_ADDRESS;
 
   PAL::initAll();
   PAL::pinSet(led, false);
@@ -315,4 +317,29 @@ static void SystemClock_Config(void)
    
 }
 
+void ota_flag_write(uint32_t value)
+{
+    HAL_FLASH_Unlock();
 
+    FLASH_EraseInitTypeDef EraseInitStruct;
+    uint32_t SectorError = 0;
+
+    EraseInitStruct.TypeErase = FLASH_TYPEERASE_SECTORS;
+    EraseInitStruct.Sector = FLASH_SECTOR_7;   // Last sector for STM32F446
+    EraseInitStruct.NbSectors = 1;
+    EraseInitStruct.VoltageRange = FLASH_VOLTAGE_RANGE_3;
+
+    if (HAL_FLASHEx_Erase(&EraseInitStruct, &SectorError) != HAL_OK)
+    {
+        HAL_FLASH_Lock();
+        // Error_Handler();   // handle erase error
+    }
+
+    if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, OTA_FLAG_ADDR, value) != HAL_OK)
+    {
+        HAL_FLASH_Lock();
+        // Error_Handler();   // handle program error
+    }
+
+    HAL_FLASH_Lock();
+}

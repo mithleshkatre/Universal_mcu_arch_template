@@ -103,6 +103,25 @@
     "typeinfo": "cpp",
     "thread": "cpp",
     "chrono": "cpp",
-    "arm_math.h": "c"
-  }
+    "arm_math.h": "c",
+    "pal.hpp": "c",
+    "any": "cpp",
+    "cinttypes": "cpp",
+    "codecvt": "cpp",
+    "complex": "cpp",
+    "condition_variable": "cpp",
+    "csignal": "cpp",
+    "ctime": "cpp",
+    "forward_list": "cpp",
+    "list": "cpp",
+    "map": "cpp",
+    "set": "cpp",
+    "unordered_set": "cpp",
+    "ratio": "cpp",
+    "iomanip": "cpp",
+    "iostream": "cpp",
+    "mutex": "cpp",
+    "variant": "cpp"
+  },
+  "cortex-debug.variableUseNaturalFormat": false
 }

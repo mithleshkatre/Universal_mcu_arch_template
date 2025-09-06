@@ -3,13 +3,13 @@
 #######################################
 C_INCLUDES += \
 -IApp/Inc \
--ICMSIS/Vendor_Device/ST/STM32F4xx/Include \
--ICMSIS/Core/Include \
--IHAL \
--IHAL/ST/stm32f4/Configs \
--IHAL/ST/stm32f4 \
--IPAL \
--IPAL/PALWrappers \
+-IBSP/CMSIS/Vendor_Device/ST/STM32F4xx/Include \
+-IBSP/CMSIS/Core/Include \
+-IBSP/HAL \
+-IBSP/HAL/ST/stm32f4/Configs \
+-IBSP/HAL/ST/stm32f4 \
+-IBSP/PAL \
+-IBSP/PAL/PALWrappers \
 -IMiddlewares/azure-rtos/threadx/common/inc \
 -IMiddlewares/azure-rtos/threadx/ports/cortex_m4/gnu/inc \
 -IMiddlewares/edge-impulse \
@@ -28,20 +28,20 @@ C_INCLUDES += \
 # Sources
 #######################################
 C_SOURCES += \
-HAL/ST/stm32f4/Configs/stm32_hal_msp.c \
+BSP/HAL/ST/stm32f4/Configs/stm32_hal_msp.c \
 App/Src/sysmem.c \
 App/Src/syscalls.c \
 
 CPP_SOURCES += \
 App/Src/stm32f4xx_it.cpp \
 App/Src/main.cpp \
-HAL/ST/stm32f4/Configs/stm32_clock.cpp \
-HAL/ST/stm32f4/Configs/stm32_hal_init.cpp \
-HAL/ST/stm32f4/Stm32Uart.cpp \
-HAL/ST/stm32f4/Stm32IO.cpp \
-PAL/Board/HardwareInit.cpp \
-PAL/PALWrappers/UartWrapper.cpp \
-PAL/PALWrappers/Pin.cpp \
+BSP/HAL/ST/stm32f4/Configs/stm32_clock.cpp \
+BSP/HAL/ST/stm32f4/Configs/stm32_hal_init.cpp \
+BSP/HAL/ST/stm32f4/Stm32Uart.cpp \
+BSP/HAL/ST/stm32f4/Stm32IO.cpp \
+BSP/PAL/Board/HardwareInit.cpp \
+BSP/PAL/PALWrappers/UartWrapper.cpp \
+BSP/PAL/PALWrappers/Pin.cpp \
 
 
 # TFLite model
