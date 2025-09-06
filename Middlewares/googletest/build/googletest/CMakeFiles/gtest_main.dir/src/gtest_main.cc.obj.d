@@ -1,5 +1,5 @@
 googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj: \
- C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest\googletest\src\gtest_main.cc \
+ C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest\googletest\src\gtest_main.cc \
  C:/mingw64/include/c++/14.2.0/cstdio \
  C:/mingw64/include/c++/14.2.0/x86_64-w64-mingw32/bits/c++config.h \
  C:/mingw64/include/c++/14.2.0/x86_64-w64-mingw32/bits/os_defines.h \
@@ -16,7 +16,7 @@ googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj: \
  C:/mingw64/x86_64-w64-mingw32/include/_mingw_off_t.h \
  C:/mingw64/x86_64-w64-mingw32/include/swprintf.inl \
  C:/mingw64/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/gtest.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/gtest.h \
  C:/mingw64/include/c++/14.2.0/cstddef \
  C:/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h \
  C:/mingw64/x86_64-w64-mingw32/include/stddef.h \
@@ -175,9 +175,9 @@ googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj: \
  C:/mingw64/include/c++/14.2.0/bits/stl_vector.h \
  C:/mingw64/include/c++/14.2.0/bits/stl_bvector.h \
  C:/mingw64/include/c++/14.2.0/bits/vector.tcc \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/gtest-assertion-result.h \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/gtest-message.h \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/internal/gtest-port.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/gtest-assertion-result.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/gtest-message.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/internal/gtest-port.h \
  C:/mingw64/include/c++/14.2.0/version \
  C:/mingw64/x86_64-w64-mingw32/include/string.h \
  C:/mingw64/x86_64-w64-mingw32/include/sec_api/string_s.h \
@@ -192,8 +192,8 @@ googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj: \
  C:/mingw64/include/c++/14.2.0/bits/locale_conv.h \
  C:/mingw64/x86_64-w64-mingw32/include/sys/stat.h \
  C:/mingw64/x86_64-w64-mingw32/include/io.h \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/internal/custom/gtest-port.h \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/internal/gtest-port-arch.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/internal/custom/gtest-port.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/internal/gtest-port-arch.h \
  C:/mingw64/x86_64-w64-mingw32/include/direct.h \
  C:/mingw64/include/c++/14.2.0/condition_variable \
  C:/mingw64/include/c++/14.2.0/bits/chrono.h \
@@ -202,9 +202,9 @@ googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj: \
  C:/mingw64/include/c++/14.2.0/bits/std_mutex.h \
  C:/mingw64/include/c++/14.2.0/bits/unique_lock.h \
  C:/mingw64/include/c++/14.2.0/mutex \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/gtest-death-test.h \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/internal/gtest-death-test-internal.h \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/gtest-matchers.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/gtest-death-test.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/internal/gtest-death-test-internal.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/gtest-matchers.h \
  C:/mingw64/include/c++/14.2.0/atomic \
  C:/mingw64/include/c++/14.2.0/functional \
  C:/mingw64/include/c++/14.2.0/bits/std_function.h \
@@ -215,30 +215,30 @@ googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj: \
  C:/mingw64/include/c++/14.2.0/bits/enable_special_members.h \
  C:/mingw64/include/c++/14.2.0/array \
  C:/mingw64/include/c++/14.2.0/compare \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/gtest-printers.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/gtest-printers.h \
  C:/mingw64/include/c++/14.2.0/any C:/mingw64/include/c++/14.2.0/optional \
  C:/mingw64/include/c++/14.2.0/utility \
  C:/mingw64/include/c++/14.2.0/bits/stl_relops.h \
  C:/mingw64/include/c++/14.2.0/variant \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/internal/gtest-internal.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/internal/gtest-internal.h \
  C:/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/float.h \
  C:/mingw64/x86_64-w64-mingw32/include/float.h \
  C:/mingw64/include/c++/14.2.0/map \
  C:/mingw64/include/c++/14.2.0/bits/stl_map.h \
  C:/mingw64/include/c++/14.2.0/bits/stl_multimap.h \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/internal/gtest-filepath.h \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/internal/gtest-string.h \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/internal/gtest-type-util.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/internal/gtest-filepath.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/internal/gtest-string.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/internal/gtest-type-util.h \
  C:/mingw64/include/c++/14.2.0/cxxabi.h \
  C:/mingw64/include/c++/14.2.0/x86_64-w64-mingw32/bits/cxxabi_tweaks.h \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/internal/custom/gtest-printers.h \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/gtest-param-test.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/internal/custom/gtest-printers.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/gtest-param-test.h \
  C:/mingw64/include/c++/14.2.0/iterator \
  C:/mingw64/include/c++/14.2.0/bits/stream_iterator.h \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/internal/gtest-param-util.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/internal/gtest-param-util.h \
  C:/mingw64/include/c++/14.2.0/cassert \
  C:/mingw64/x86_64-w64-mingw32/include/assert.h \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/gtest-test-part.h \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/gtest-typed-test.h \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/gtest_pred_impl.h \
- C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/include/gtest/gtest_prod.h
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/gtest-test-part.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/gtest-typed-test.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/gtest_pred_impl.h \
+ C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/include/gtest/gtest_prod.h

@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googlemock/src/gmock_main.cc" "googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj" "gcc" "googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj.d"
+  "C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googlemock/src/gmock_main.cc" "googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj" "gcc" "googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

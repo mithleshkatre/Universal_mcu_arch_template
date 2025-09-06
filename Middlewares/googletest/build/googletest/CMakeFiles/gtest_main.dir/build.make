@@ -52,10 +52,10 @@ RM = "C:\Program Files\CMake\bin\cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest
+CMAKE_SOURCE_DIR = C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest\build
+CMAKE_BINARY_DIR = C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest\build
 
 # Include any dependencies generated for this target.
 include googletest/CMakeFiles/gtest_main.dir/depend.make
@@ -73,18 +73,18 @@ googletest/CMakeFiles/gtest_main.dir/codegen:
 
 googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj: googletest/CMakeFiles/gtest_main.dir/flags.make
 googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj: googletest/CMakeFiles/gtest_main.dir/includes_CXX.rsp
-googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj: C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/external/googletest/googletest/src/gtest_main.cc
+googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj: C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/googletest/src/gtest_main.cc
 googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj: googletest/CMakeFiles/gtest_main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj"
-	cd /d C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest\build\googletest && C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj -MF CMakeFiles\gtest_main.dir\src\gtest_main.cc.obj.d -o CMakeFiles\gtest_main.dir\src\gtest_main.cc.obj -c C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest\googletest\src\gtest_main.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj"
+	cd /d C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest\build\googletest && C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj -MF CMakeFiles\gtest_main.dir\src\gtest_main.cc.obj.d -o CMakeFiles\gtest_main.dir\src\gtest_main.cc.obj -c C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest\googletest\src\gtest_main.cc
 
 googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gtest_main.dir/src/gtest_main.cc.i"
-	cd /d C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest\build\googletest && C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest\googletest\src\gtest_main.cc > CMakeFiles\gtest_main.dir\src\gtest_main.cc.i
+	cd /d C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest\build\googletest && C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest\googletest\src\gtest_main.cc > CMakeFiles\gtest_main.dir\src\gtest_main.cc.i
 
 googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gtest_main.dir/src/gtest_main.cc.s"
-	cd /d C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest\build\googletest && C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest\googletest\src\gtest_main.cc -o CMakeFiles\gtest_main.dir\src\gtest_main.cc.s
+	cd /d C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest\build\googletest && C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest\googletest\src\gtest_main.cc -o CMakeFiles\gtest_main.dir\src\gtest_main.cc.s
 
 # Object files for target gtest_main
 gtest_main_OBJECTS = \
@@ -96,19 +96,19 @@ gtest_main_EXTERNAL_OBJECTS =
 lib/libgtest_main.a: googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj
 lib/libgtest_main.a: googletest/CMakeFiles/gtest_main.dir/build.make
 lib/libgtest_main.a: googletest/CMakeFiles/gtest_main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library ..\lib\libgtest_main.a"
-	cd /d C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest\build\googletest && $(CMAKE_COMMAND) -P CMakeFiles\gtest_main.dir\cmake_clean_target.cmake
-	cd /d C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest\build\googletest && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\gtest_main.dir\link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library ..\lib\libgtest_main.a"
+	cd /d C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest\build\googletest && $(CMAKE_COMMAND) -P CMakeFiles\gtest_main.dir\cmake_clean_target.cmake
+	cd /d C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest\build\googletest && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\gtest_main.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 googletest/CMakeFiles/gtest_main.dir/build: lib/libgtest_main.a
 .PHONY : googletest/CMakeFiles/gtest_main.dir/build
 
 googletest/CMakeFiles/gtest_main.dir/clean:
-	cd /d C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest\build\googletest && $(CMAKE_COMMAND) -P CMakeFiles\gtest_main.dir\cmake_clean.cmake
+	cd /d C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest\build\googletest && $(CMAKE_COMMAND) -P CMakeFiles\gtest_main.dir\cmake_clean.cmake
 .PHONY : googletest/CMakeFiles/gtest_main.dir/clean
 
 googletest/CMakeFiles/gtest_main.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest\googletest C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest\build C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest\build\googletest C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\external\googletest\build\googletest\CMakeFiles\gtest_main.dir\DependInfo.cmake "--color=$(COLOR)"
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest\googletest C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest\build C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest\build\googletest C:\Mithlesh\STM32\2025\proj_space\universal_mcu_arch_template\Middlewares\googletest\build\googletest\CMakeFiles\gtest_main.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : googletest/CMakeFiles/gtest_main.dir/depend
 
