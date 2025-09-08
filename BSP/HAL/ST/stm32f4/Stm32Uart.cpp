@@ -50,28 +50,28 @@ void Stm32Uart::init(const UartConfig& cfg) {
   
 }
 
-void Stm32Uart::transmitBlocking(const uint8_t* data, size_t len) { 
-  HAL_UART_Transmit(&huart_, const_cast<uint8_t*>(data), (uint16_t)len, HAL_MAX_DELAY); 
+uint8_t Stm32Uart::transmitBlocking(const uint8_t* data, size_t len) { 
+ return HAL_UART_Transmit(&huart_, const_cast<uint8_t*>(data), (uint16_t)len, HAL_MAX_DELAY); 
 }
 
-void Stm32Uart::receiveBlocking(uint8_t* data, size_t len) { 
-  HAL_UART_Receive(&huart_, data, (uint16_t)len, HAL_MAX_DELAY); 
+uint8_t Stm32Uart::receiveBlocking(uint8_t* data, size_t len) { 
+ return HAL_UART_Receive(&huart_, data, (uint16_t)len, HAL_MAX_DELAY); 
 }
 
-void Stm32Uart::transmitIT(const uint8_t* data, size_t len) { 
-  HAL_UART_Transmit_IT(&huart_, const_cast<uint8_t*>(data), (uint16_t)len); 
+uint8_t Stm32Uart::transmitIT(const uint8_t* data, size_t len) { 
+ return HAL_UART_Transmit_IT(&huart_, const_cast<uint8_t*>(data), (uint16_t)len); 
 }
 
-void Stm32Uart::receiveIT(uint8_t* data, size_t len) { 
-    HAL_UART_Receive_IT(&huart_, data, (uint16_t)len); 
+uint8_t Stm32Uart::receiveIT(uint8_t* data, size_t len) { 
+  return  HAL_UART_Receive_IT(&huart_, data, (uint16_t)len); 
 }
 
-void Stm32Uart::transmitDMA(const uint8_t* data, size_t len) { 
-  HAL_UART_Transmit_DMA(&huart_, const_cast<uint8_t*>(data), (uint16_t)len); 
+uint8_t Stm32Uart::transmitDMA(const uint8_t* data, size_t len) { 
+  return HAL_UART_Transmit_DMA(&huart_, const_cast<uint8_t*>(data), (uint16_t)len); 
 }
 
-void Stm32Uart::receiveDMA(uint8_t* data, size_t len) { 
-  HAL_UART_Receive_DMA(&huart_, data, (uint16_t)len); 
+uint8_t Stm32Uart::receiveDMA(uint8_t* data, size_t len) { 
+  return HAL_UART_Receive_DMA(&huart_, data, (uint16_t)len); 
 }
 
 void Stm32Uart::onRxByte(RxByteCb cb) { 

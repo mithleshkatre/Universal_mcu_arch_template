@@ -15,12 +15,12 @@ public:
   ~UartWrapper();
   void init();
 
-  void sendBlocking(const uint8_t* d, size_t l);
-  void recvBlocking(uint8_t* d, size_t l);
-  void sendIT(const uint8_t* d, size_t l);
-  void recvIT(uint8_t* d, size_t l);
-  void sendDma(const uint8_t* d, size_t l);
-  void recvDma(uint8_t* d, size_t l);
+  uint8_t sendBlocking(const uint8_t* d, size_t l);
+  uint8_t recvBlocking(uint8_t* d, size_t l);
+  uint8_t sendIT(const uint8_t* d, size_t l);
+  uint8_t recvIT(uint8_t* d, size_t l);
+  uint8_t sendDma(const uint8_t* d, size_t l);
+  uint8_t recvDma(uint8_t* d, size_t l);
 
   void setRxByteCb(RxByteCb cb);
   void setRxBlockCb(RxBlockCb cb);

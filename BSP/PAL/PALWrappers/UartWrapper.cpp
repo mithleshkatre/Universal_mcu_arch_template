@@ -10,10 +10,10 @@ void UartWrapper::init(){
   while(1) {
       // Error: Unsupported UART instance
   }
-  // policy.enableGpioClock(cfg.tx.id.port); 
-  // policy.applyPin(cfg.tx);
-  // policy.enableGpioClock(cfg.rx.id.port); 
-  // policy.applyPin(cfg.rx);
+  policy.enableGpioClock(cfg.tx.id.port); 
+  policy.applyPin(cfg.tx);
+  policy.enableGpioClock(cfg.rx.id.port); 
+  policy.applyPin(cfg.rx);
   policy.enableUartClock(cfg.inst);
   if (cfg.use_irq == true){
    policy.enableUartIrq(cfg.inst);
@@ -28,28 +28,28 @@ void UartWrapper::init(){
   impl->init(uc);
 }
 
-void UartWrapper::sendBlocking(const uint8_t* d, size_t l){ 
-  impl->transmitBlocking(d,l); 
+uint8_t UartWrapper::sendBlocking(const uint8_t* d, size_t l){ 
+  return impl->transmitBlocking(d,l); 
 }
 
-void UartWrapper::recvBlocking(uint8_t* d, size_t l){ 
-  impl->receiveBlocking(d,l); 
+uint8_t UartWrapper::recvBlocking(uint8_t* d, size_t l){ 
+  return impl->receiveBlocking(d,l); 
 }
 
-void UartWrapper::sendIT(const uint8_t* d, size_t l){ 
-  impl->transmitIT(d,l); 
+uint8_t UartWrapper::sendIT(const uint8_t* d, size_t l){ 
+  return impl->transmitIT(d,l); 
 }
 
-void UartWrapper::recvIT(uint8_t* d, size_t l){ 
-  impl->receiveIT(d,l); 
+uint8_t UartWrapper::recvIT(uint8_t* d, size_t l){ 
+  return impl->receiveIT(d,l); 
 }
 
-void UartWrapper::sendDma(const uint8_t* d, size_t l){ 
-  impl->transmitDMA(d,l); 
+uint8_t UartWrapper::sendDma(const uint8_t* d, size_t l){ 
+  return impl->transmitDMA(d,l); 
 }
 
-void UartWrapper::recvDma(uint8_t* d, size_t l){ 
-  impl->receiveDMA(d,l); 
+uint8_t UartWrapper::recvDma(uint8_t* d, size_t l){ 
+  return impl->receiveDMA(d,l); 
 }
 
 void UartWrapper::setRxByteCb(RxByteCb cb){ 

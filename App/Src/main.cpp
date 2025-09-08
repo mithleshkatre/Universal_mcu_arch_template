@@ -93,7 +93,7 @@ int main(void)
   /* Configure the system clock */
   SystemClock_Config();
   //reset marker for future OTAs
-  ota_flag_write(0xFFFFFFFF);  
+//   ota_flag_write(0xFFFFFFFF);  
 
     /* Relocate vector table for app */
 //   SCB->VTOR = APP_START_ADDRESS;
@@ -146,10 +146,10 @@ void tx_application_define(void *first_unused_memory)
     tx_queue_create(&uartQueue, (CHAR*)"UART Queue", 1,
                     uartQueueBuffer, sizeof(uartQueueBuffer));
     
-    tx_event_flags_create(&app_events, "App Events");
+    tx_event_flags_create(&app_events, (CHAR*)"App Events");
 
-    tx_semaphore_create(&sem_trigger, "Classifier Sem", 0);
-    tx_semaphore_create(&sem_done, "Done Sem", 0);
+    tx_semaphore_create(&sem_trigger, (CHAR*)"Classifier Sem", 0);
+    tx_semaphore_create(&sem_done, (CHAR*)"Done Sem", 0);
 }
 
 /* Thread entry */
@@ -181,6 +181,7 @@ void thread0_entry(ULONG thread_input)
     #endif
 
         uartPrintf("Predictions: from Mithlesh Katre\n");
+        PAL::uartSendBlocking(UartInst::Uart3, (uint8_t*)"FRom UART3....", 15);
 
         // Notify Thread1 that we're done
         tx_semaphore_put(&sem_done);
@@ -219,8 +220,6 @@ void thread1_entry(ULONG thread_input)
         }
     }
 }
-
-
 
 // Application-level callback
 void onUartByte(uint8_t byte) {

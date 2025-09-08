@@ -16,16 +16,16 @@ public:
   void init(const UartConfig& cfg) override;
 
   // Blocking
-  void transmitBlocking(const uint8_t* data, size_t len) override;
-  void receiveBlocking(uint8_t* data, size_t len) override;
+  uint8_t transmitBlocking(const uint8_t* data, size_t len) override;
+  uint8_t receiveBlocking(uint8_t* data, size_t len) override;
 
   // IRQ
-  void transmitIT(const uint8_t* data, size_t len) override;
-  void receiveIT(uint8_t* data, size_t len) override;
+  uint8_t transmitIT(const uint8_t* data, size_t len) override;
+  uint8_t receiveIT(uint8_t* data, size_t len) override;
 
   // DMA
-  void transmitDMA(const uint8_t* data, size_t len) override;
-  void receiveDMA(uint8_t* data, size_t len) override;
+  uint8_t transmitDMA(const uint8_t* data, size_t len) override;
+  uint8_t receiveDMA(uint8_t* data, size_t len) override;
 
   // Callbacks
   void onRxByte(RxByteCb cb) override;

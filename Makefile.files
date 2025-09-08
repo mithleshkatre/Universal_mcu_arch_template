@@ -42,6 +42,7 @@ BSP/HAL/ST/stm32f4/Stm32IO.cpp \
 BSP/PAL/Board/HardwareInit.cpp \
 BSP/PAL/PALWrappers/UartWrapper.cpp \
 BSP/PAL/PALWrappers/Pin.cpp \
+BSP/PAL/pal.cpp \
 
 
 # TFLite model

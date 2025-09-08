@@ -36,14 +36,14 @@ public:
 
   virtual void init(const UartConfig& cfg) = 0;
 
-  virtual void transmitBlocking(const uint8_t* data, size_t len) = 0;
-  virtual void receiveBlocking(uint8_t* data, size_t len) = 0;
+  virtual uint8_t transmitBlocking(const uint8_t* data, size_t len) = 0;
+  virtual uint8_t receiveBlocking(uint8_t* data, size_t len) = 0;
 
-  virtual void transmitIT(const uint8_t* data, size_t len) = 0;
-  virtual void receiveIT(uint8_t* data, size_t len) = 0;
+  virtual uint8_t transmitIT(const uint8_t* data, size_t len) = 0;
+  virtual uint8_t receiveIT(uint8_t* data, size_t len) = 0;
 
-  virtual void transmitDMA(const uint8_t* data, size_t len) = 0;
-  virtual void receiveDMA(uint8_t* data, size_t len) = 0;
+  virtual uint8_t transmitDMA(const uint8_t* data, size_t len) = 0;
+  virtual uint8_t receiveDMA(uint8_t* data, size_t len) = 0;
 
   virtual void onRxByte(RxByteCb cb) = 0;
   virtual void onRxBlock(RxBlockCb cb) = 0;

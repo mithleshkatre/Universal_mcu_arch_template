@@ -30,8 +30,12 @@ void Hardware_InitAll(void) {
 
   for (auto &u : kBoardUarts) {
     auto impl = std::make_unique<Stm32Uart>(u.inst==UartInst::Uart2?USART2:USART3,
-                                            DMA1_Stream6, DMA_CHANNEL_4, DMA1_Stream5, DMA_CHANNEL_4);
-    g_uart2 = impl.get();                                        
+                                          DMA1_Stream6, DMA_CHANNEL_4, DMA1_Stream5, DMA_CHANNEL_4);
+    
+    if(u.inst == UartInst::Uart2){
+      g_uart2 = impl.get();  
+    }
+                                         
     auto wrap = std::make_unique<UartWrapper>(policy, std::move(impl), u);
     
     wrap->init();
