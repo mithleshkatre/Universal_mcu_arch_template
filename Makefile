@@ -24,27 +24,27 @@ fw:
 
 # Build test binary
 test:
-	@echo "=============== Building unit tests =============="
-	@echo "================================================="
+#	@echo "=============== Building unit tests =============="
+#	@echo "================================================="
 #	$(MAKE) -f Makefile.test
-	@echo "==========Building unit tests Done  ✅  =========="
-	@echo "==================================================="
+#	@echo "==========Building unit tests Done  ✅  =========="
+#	@echo "==================================================="
 
 # Build + run tests
 runtest: test
-	@echo "================Running unit tests ================"
-	@echo "==================================================="
+#	@echo "================Running unit tests ================"
+#	@echo "==================================================="
 #	$(MAKE) -f Makefile.test run
 # 	./Tests/Bin/test_uart.exe
-	@echo "=============== Running unit tests Done ✅ ========"
-	@echo "==================================================="
+#	@echo "=============== Running unit tests Done ✅ ========"
+#	@echo "==================================================="
 
 # Clean everything
 clean:
 	@echo "============== Cleaning all build artifacts ========="
 	@echo "===================================================="
 	$(MAKE) -f Makefile.fw clean
-	$(MAKE) -f Makefile.test clean
+#	$(MAKE) -f Makefile.test clean
 	@echo "============ Cleaning all build artifacts Done ✅ ==="
 	@echo "===================================================="
 

@@ -12,17 +12,17 @@ C_INCLUDES += \
 -IBSP/PAL/PALWrappers \
 -IMiddlewares/azure-rtos/threadx/common/inc \
 -IMiddlewares/azure-rtos/threadx/ports/cortex_m4/gnu/inc \
--IMiddlewares/edge-impulse \
--IMiddlewares/edge-impulse/tflite-model	\
--IMiddlewares/edge-impulse/model-parameters	\
--IMiddlewares/edge-impulse/edge-impulse-sdk/third_party/flatbuffers/include \
--IMiddlewares/edge-impulse/edge-impulse-sdk/third_party/gemmlowp \
--IMiddlewares/edge-impulse/edge-impulse-sdk \
--IMiddlewares/edge-impulse/edge-impulse-sdk/third_party/ruy \
--IMiddlewares/edge-impulse/edge-impulse-sdk/CMSIS/DSP/Include \
--IMiddlewares/edge-impulse/edge-impulse-sdk/CMSIS/DSP/PrivateInclude \
--IMiddlewares/edge-impulse/edge-impulse-sdk/classifier \
--IMiddlewares/edge-impulse/edge-impulse-sdk/CMSIS/NN/Include \
+#-IMiddlewares/edge-impulse \
+#-IMiddlewares/edge-impulse/tflite-model	\
+#-IMiddlewares/edge-impulse/model-parameters	\
+#-IMiddlewares/edge-impulse/edge-impulse-sdk/third_party/flatbuffers/include \
+#-IMiddlewares/edge-impulse/edge-impulse-sdk/third_party/gemmlowp \
+#-IMiddlewares/edge-impulse/edge-impulse-sdk \
+#-IMiddlewares/edge-impulse/edge-impulse-sdk/third_party/ruy \
+#-IMiddlewares/edge-impulse/edge-impulse-sdk/CMSIS/DSP/Include \
+#-IMiddlewares/edge-impulse/edge-impulse-sdk/CMSIS/DSP/PrivateInclude \
+#-IMiddlewares/edge-impulse/edge-impulse-sdk/classifier \
+#-IMiddlewares/edge-impulse/edge-impulse-sdk/CMSIS/NN/Include \
 
 #######################################
 # Sources
@@ -46,34 +46,34 @@ BSP/PAL/pal.cpp \
 
 
 # TFLite model
-CPP_SOURCES += \
-     Middlewares/edge-impulse/tflite-model/tflite_learn_773147_3_compiled.cpp
+#CPP_SOURCES += \
+#     Middlewares/edge-impulse/tflite-model/tflite_learn_773147_3_compiled.cpp
 
 # Minimal TensorFlow Lite C support
-C_SOURCES += \
-    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/c/common.c
+#C_SOURCES += \
+#    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/c/common.c
 
 # Collect all TFLM C++ sources automatically
-CC_SOURCES += $(wildcard \
-    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/core/api/*.cc \
-    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/kernels/*.cc \
-    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/kernels/internal/*.cc \
-    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/micro/*.cc \
-    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/micro/kernels/*.cc \
-    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/micro/memory_planner/*.cc \
-    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/micro/testing/*.cc)
+#CC_SOURCES += $(wildcard \
+#    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/core/api/*.cc \
+#    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/kernels/*.cc \
+#    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/kernels/internal/*.cc \
+#    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/micro/*.cc \
+#    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/micro/kernels/*.cc \
+#    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/micro/memory_planner/*.cc \
+#    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/micro/testing/*.cc)
 
 # EI Porting + DSP
-CPP_SOURCES += \
-    Middlewares/edge-impulse/edge-impulse-sdk/porting/stm32-cubeai/debug_log.cpp \
-    Middlewares/edge-impulse/edge-impulse-sdk/porting/stm32-cubeai/ei_classifier_porting.cpp \
-    Middlewares/edge-impulse/edge-impulse-sdk/dsp/memory.cpp \
-    Middlewares/edge-impulse/edge-impulse-sdk/dsp/kissfft/kiss_fft.cpp \
-    Middlewares/edge-impulse/edge-impulse-sdk/dsp/kissfft/kiss_fftr.cpp \
-    Middlewares/edge-impulse/edge-impulse-sdk/dsp/dct/fast-dct-fft.cpp
+#CPP_SOURCES += \
+#    Middlewares/edge-impulse/edge-impulse-sdk/porting/stm32-cubeai/debug_log.cpp \
+#    Middlewares/edge-impulse/edge-impulse-sdk/porting/stm32-cubeai/ei_classifier_porting.cpp \
+#    Middlewares/edge-impulse/edge-impulse-sdk/dsp/memory.cpp \
+#    Middlewares/edge-impulse/edge-impulse-sdk/dsp/kissfft/kiss_fft.cpp \
+#    Middlewares/edge-impulse/edge-impulse-sdk/dsp/kissfft/kiss_fftr.cpp \
+#    Middlewares/edge-impulse/edge-impulse-sdk/dsp/dct/fast-dct-fft.cpp
 
 # CMSIS-NN (all C files)
-C_SOURCES += $(wildcard Middlewares/edge-impulse/edge-impulse-sdk/CMSIS/NN/Source/*/*.c)
+#C_SOURCES += $(wildcard Middlewares/edge-impulse/edge-impulse-sdk/CMSIS/NN/Source/*/*.c)
 
 # CMSIS-DSP (all C files)
-C_SOURCES += $(wildcard Middlewares/edge-impulse/edge-impulse-sdk/CMSIS/DSP/Source/*/*.c)
+#C_SOURCES += $(wildcard Middlewares/edge-impulse/edge-impulse-sdk/CMSIS/DSP/Source/*/*.c)
