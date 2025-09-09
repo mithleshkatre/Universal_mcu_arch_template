@@ -1,0 +1,79 @@
+#######################################
+# Includes
+#######################################
+C_INCLUDES += \
+-IApp/Inc \
+-IBSP/CMSIS/Vendor_Device/ST/STM32F4xx/Include \
+-IBSP/CMSIS/Core/Include \
+-IBSP/HAL \
+-IBSP/HAL/ST/stm32f4/Configs \
+-IBSP/HAL/ST/stm32f4 \
+-IBSP/PAL \
+-IBSP/PAL/PALWrappers \
+-IMiddlewares/azure-rtos/threadx/common/inc \
+-IMiddlewares/azure-rtos/threadx/ports/cortex_m4/gnu/inc \
+#-IMiddlewares/edge-impulse \
+#-IMiddlewares/edge-impulse/tflite-model	\
+#-IMiddlewares/edge-impulse/model-parameters	\
+#-IMiddlewares/edge-impulse/edge-impulse-sdk/third_party/flatbuffers/include \
+#-IMiddlewares/edge-impulse/edge-impulse-sdk/third_party/gemmlowp \
+#-IMiddlewares/edge-impulse/edge-impulse-sdk \
+#-IMiddlewares/edge-impulse/edge-impulse-sdk/third_party/ruy \
+#-IMiddlewares/edge-impulse/edge-impulse-sdk/CMSIS/DSP/Include \
+#-IMiddlewares/edge-impulse/edge-impulse-sdk/CMSIS/DSP/PrivateInclude \
+#-IMiddlewares/edge-impulse/edge-impulse-sdk/classifier \
+#-IMiddlewares/edge-impulse/edge-impulse-sdk/CMSIS/NN/Include \
+
+#######################################
+# Sources
+#######################################
+C_SOURCES += \
+BSP/HAL/ST/stm32f4/Configs/stm32_hal_msp.c \
+App/Src/sysmem.c \
+App/Src/syscalls.c \
+
+CPP_SOURCES += \
+App/Src/stm32f4xx_it.cpp \
+App/Src/main.cpp \
+BSP/HAL/ST/stm32f4/Configs/stm32_clock.cpp \
+BSP/HAL/ST/stm32f4/Configs/stm32_hal_init.cpp \
+BSP/HAL/ST/stm32f4/Stm32Uart.cpp \
+BSP/HAL/ST/stm32f4/Stm32IO.cpp \
+BSP/PAL/Board/HardwareInit.cpp \
+BSP/PAL/PALWrappers/UartWrapper.cpp \
+BSP/PAL/PALWrappers/Pin.cpp \
+BSP/PAL/pal.cpp \
+
+
+# TFLite model
+#CPP_SOURCES += \
+#     Middlewares/edge-impulse/tflite-model/tflite_learn_773147_3_compiled.cpp
+
+# Minimal TensorFlow Lite C support
+#C_SOURCES += \
+#    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/c/common.c
+
+# Collect all TFLM C++ sources automatically
+#CC_SOURCES += $(wildcard \
+#    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/core/api/*.cc \
+#    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/kernels/*.cc \
+#    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/kernels/internal/*.cc \
+#    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/micro/*.cc \
+#    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/micro/kernels/*.cc \
+#    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/micro/memory_planner/*.cc \
+#    Middlewares/edge-impulse/edge-impulse-sdk/tensorflow/lite/micro/testing/*.cc)
+
+# EI Porting + DSP
+#CPP_SOURCES += \
+#    Middlewares/edge-impulse/edge-impulse-sdk/porting/stm32-cubeai/debug_log.cpp \
+#    Middlewares/edge-impulse/edge-impulse-sdk/porting/stm32-cubeai/ei_classifier_porting.cpp \
+#    Middlewares/edge-impulse/edge-impulse-sdk/dsp/memory.cpp \
+#    Middlewares/edge-impulse/edge-impulse-sdk/dsp/kissfft/kiss_fft.cpp \
+#    Middlewares/edge-impulse/edge-impulse-sdk/dsp/kissfft/kiss_fftr.cpp \
+#    Middlewares/edge-impulse/edge-impulse-sdk/dsp/dct/fast-dct-fft.cpp
+
+# CMSIS-NN (all C files)
+#C_SOURCES += $(wildcard Middlewares/edge-impulse/edge-impulse-sdk/CMSIS/NN/Source/*/*.c)
+
+# CMSIS-DSP (all C files)
+#C_SOURCES += $(wildcard Middlewares/edge-impulse/edge-impulse-sdk/CMSIS/DSP/Source/*/*.c)

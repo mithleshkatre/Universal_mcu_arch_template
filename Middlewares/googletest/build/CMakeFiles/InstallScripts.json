@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/build/cmake_install.cmake",
+		"C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/build/googlemock/cmake_install.cmake",
+		"C:/Mithlesh/STM32/2025/proj_space/universal_mcu_arch_template/Middlewares/googletest/build/googletest/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

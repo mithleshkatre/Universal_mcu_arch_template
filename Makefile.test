@@ -1,0 +1,68 @@
+CXX := g++
+CXXFLAGS := -std=c++17 -Wall -pthread \
+    -IBSP/PAL \
+    -IBSP/PAL/PALWrappers \
+    -ITests/uart \
+    -IMiddlewares/googletest/googletest/include \
+    -IMiddlewares/googletest/googlemock/include
+
+LDFLAGS := -LMiddlewares/googletest/build/lib \
+           -lgtest -lgmock -pthread
+
+# Source files
+TEST_SRCS := Tests/test_main.cpp Tests/uart/test_uart.cpp \
+             BSP/PAL/PALWrappers/UartWrapper.cpp BSP/PAL/PALWrappers/Pin.cpp
+
+# Build & Bin dirs
+BUILD_DIR := Tests/Build
+BIN_DIR   := Tests/Bin
+
+# Object files go into Build dir
+TEST_OBJS := $(patsubst %.cpp,$(BUILD_DIR)/%.o,$(TEST_SRCS))
+TEST_BIN  := $(BIN_DIR)/test_uart.exe
+
+# MinGW DLLs (Windows only)
+MINGW_BIN := C:/mingw64/bin
+DLLS := libstdc++-6.dll libgcc_s_seh-1.dll libwinpthread-1.dll
+
+# Detect OS
+ifeq ($(OS),Windows_NT)
+    COPY_DLLS_CMD = \
+        for d in $(DLLS); do \
+            echo "Copying $$d..."; \
+            cp $(MINGW_BIN)/$$d $(BIN_DIR) || exit 1; \
+        done
+else
+    COPY_DLLS_CMD = \
+        echo "Skipping DLL copy (not needed on Linux)"
+endif
+
+# Default target
+all: $(TEST_BIN) copy-dlls
+
+# Ensure dirs exist
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)/Tests/uart $(BUILD_DIR)/BSP/PAL/PALWrappers $(BUILD_DIR)/Tests
+
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
+
+# Link final exe
+$(TEST_BIN): $(TEST_OBJS) | $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+
+# Compile rule (redirect .o to Build dir)
+$(BUILD_DIR)/%.o: %.cpp | $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Copy required DLLs
+copy-dlls: | $(BIN_DIR)
+	@$(COPY_DLLS_CMD)
+
+# Run tests
+run: all
+	./$(TEST_BIN)
+
+# Clean everything
+clean:
+	rm -rf $(BUILD_DIR) $(BIN_DIR)
