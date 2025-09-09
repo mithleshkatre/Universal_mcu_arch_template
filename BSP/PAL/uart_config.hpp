@@ -1,7 +1,6 @@
 #pragma once
 #include "Common.hpp"
 #include "Stm32Uart.hpp"
-
 enum class UartInst : uint8_t { 
   None=0, 
   Uart1=1, 

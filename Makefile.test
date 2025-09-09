@@ -1,10 +1,10 @@
 CXX := g++
-CXXFLAGS := -std=c++17 -Wall -pthread                   \
-            -IBSP/PAL                                   \
-            -IBSP/PAL/PALWrappers                       \
-            -ITests/uart                                \
-            -IMiddlewares/googletest/googletest/include \
-            -IMiddlewares/googletest/googlemock/include
+CXXFLAGS := -std=c++17 -Wall -pthread \
+    -IBSP/PAL \
+    -IBSP/PAL/PALWrappers \
+    -ITests/uart \
+    -IMiddlewares/googletest/googletest/include \
+    -IMiddlewares/googletest/googlemock/include
 
 LDFLAGS := -LMiddlewares/googletest/build/lib \
            -lgtest -lgmock -pthread

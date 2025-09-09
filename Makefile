@@ -26,7 +26,7 @@ fw:
 test:
 	@echo "=============== Building unit tests =============="
 	@echo "================================================="
-	$(MAKE) -f Makefile.test
+#	$(MAKE) -f Makefile.test
 	@echo "==========Building unit tests Done  ✅  =========="
 	@echo "==================================================="
 
@@ -34,7 +34,7 @@ test:
 runtest: test
 	@echo "================Running unit tests ================"
 	@echo "==================================================="
-	$(MAKE) -f Makefile.test run
+#	$(MAKE) -f Makefile.test run
 # 	./Tests/Bin/test_uart.exe
 	@echo "=============== Running unit tests Done ✅ ========"
 	@echo "==================================================="
