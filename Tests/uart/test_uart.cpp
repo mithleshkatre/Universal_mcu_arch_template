@@ -5,6 +5,7 @@
 #include "uart_mock.hpp"
 #include "Pin.hpp"
 #include "UartWrapper.hpp"
+#include "Stm32Uart.hpp"
 
 #include <thread>
 #include <chrono>
