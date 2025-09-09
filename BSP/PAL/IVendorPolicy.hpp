@@ -1,5 +1,6 @@
 #pragma once
 #include "Common.hpp"
+#include "uart_config.hpp"
 
 struct IVendorPolicy {
   virtual ~IVendorPolicy() = default;

@@ -29,9 +29,17 @@ void Hardware_InitAll(void) {
   }
 
   for (auto &u : kBoardUarts) {
-    auto impl = std::make_unique<Stm32Uart>(u.inst==UartInst::Uart2?USART2:USART3,
-                                          DMA1_Stream6, DMA_CHANNEL_4, DMA1_Stream5, DMA_CHANNEL_4);
-    
+    // auto impl = std::make_unique<Stm32Uart>(u.inst==UartInst::Uart2?USART2:USART3,
+    //                                       DMA1_Stream6, DMA_CHANNEL_4, DMA1_Stream5, DMA_CHANNEL_4);
+   
+    auto impl = std::make_unique<Stm32Uart>(
+        u.dmaConfig.uart,
+        u.dmaConfig.tx_stream,
+        u.dmaConfig.tx_channel,
+        u.dmaConfig.rx_stream,
+        u.dmaConfig.rx_channel
+    );
+
     if(u.inst == UartInst::Uart2){
       g_uart2 = impl.get();  
     }

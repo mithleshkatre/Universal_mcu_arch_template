@@ -1,5 +1,6 @@
 #pragma once
 #include "Common.hpp"
+#include "uart_config.hpp"
 
 struct IGpio {
    ~IGpio() = default;

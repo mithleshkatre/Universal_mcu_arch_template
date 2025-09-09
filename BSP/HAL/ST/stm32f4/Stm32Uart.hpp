@@ -5,6 +5,14 @@
 #include <cstring>
 #include "ISerial.hpp"
 
+struct UartHwCfg {
+    USART_TypeDef *uart;
+    DMA_Stream_TypeDef *tx_stream;
+    uint32_t tx_channel;
+    DMA_Stream_TypeDef *rx_stream;
+    uint32_t rx_channel;
+};
+
 class Stm32Uart : public ISerial {
 public:
   struct Reg { USART_TypeDef* inst; Stm32Uart* self; };
